@@ -1,0 +1,16 @@
+<%- partial('_partial/post-cover') %>
+
+<%
+    var isTocEnable = theme.toc && theme.toc.enable;
+    var containerClass = isTocEnable ? 'post-container' : 'container';
+%>
+
+<main class="<%- containerClass %> content">
+
+    <% if (isTocEnable) { %>
+    <%- partial('_partial/post-detail-toc.ejs') %>
+    <% } else { %>
+    <%- partial('_partial/post-detail.ejs') %>
+    <% } %>
+
+</main>

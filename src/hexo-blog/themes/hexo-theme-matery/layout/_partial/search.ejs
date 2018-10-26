@@ -1,0 +1,16 @@
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><%= __('search') %></span>
+            <input type="search" id="searchInput" name="s" placeholder="<%= __('searchTip') %>"
+                   class="search-input" autofocus="">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("<%= config.root %>" + "search.xml", 'searchInput', 'searchResult');
+</script>

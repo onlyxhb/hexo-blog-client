@@ -1,0 +1,21 @@
+<a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    <% Object.keys(theme.menu).forEach(function(key) { %>
+    <li class="hide-on-med-and-down">
+        <a href="<%- theme.menu[key].url %>" class="waves-effect waves-light">
+            <% if (theme.menu[key].icon && theme.menu[key].icon.length > 0) { %>
+            <i class="fa <%- theme.menu[key].icon %>"></i>
+            <% } %>
+            <span><%- key %></span>
+        </a>
+    </li>
+    <% }); %>
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<%- partial('_partial/mobile-nav') %>
