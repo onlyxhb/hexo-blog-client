@@ -1,8 +1,8 @@
 {
   "name": "hexo-blog-client",
-  "version": "1.1.4",
-  "author": "高尤波 <gaoyoubo@foxmail.com>",
-  "description": "Hexo 桌面客户端",
+  "version": "1.0.0",
+  "author": "徐辉波 <991923257@qq.com>",
+  "description": "星空守候的博客-客户端",
   "license": "Apache License, Version 2.0",
   "main": "./dist/electron/main.js",
   "scripts": {
@@ -22,8 +22,8 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "productName": "HexoClient",
-    "appId": "org.mspring.hexo.client",
+    "productName": "星空守候的博客",
+    "appId": "com.blog.onlystar.site",
     "directories": {
       "output": "build"
     },
