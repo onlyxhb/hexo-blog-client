@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, BrowserWindow, Menu } from 'electron'
+import { app, BrowserWindow, Menu, ipcMain, dialog } from 'electron'
 
 /**
  * Set `__static` path to static files in production
@@ -239,6 +239,18 @@ app.on('activate', () => {
   if (mainWindow === null) {
     createWindow()
   }
+})
+
+// 打开文件目录
+ipcMain.on('open-file-dialog', (event) => {
+  console.log('调用了open-file-dialog')
+  dialog.showOpenDialog({
+    properties: ['openFile', 'openDirectory']
+  }, (files) => {
+    if (files) {
+      event.sender.send('selected-directory', files)
+    }
+  })
 })
 
 /**

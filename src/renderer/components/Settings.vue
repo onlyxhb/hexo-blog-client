@@ -5,7 +5,9 @@
         <el-tab-pane name="system">
           <span slot="label"><i class="el-icon-setting"></i> 系统配置</span>
           <el-form-item label="Hexo目录" label-width="120px">
-            <el-input v-model="sysConfig.path"/>
+            <el-input v-model="sysConfig.path">
+              <el-button slot="append" @click="getSystemFilePath">选择</el-button>
+            </el-input>
           </el-form-item>
           <el-form-item label="七牛AccessKey" label-width="120px">
             <el-input v-model="sysConfig.qiniuAccessKey"/>
@@ -89,6 +91,16 @@
           console.error(err)
           this.$notify.error('生成失败')
         }
+      },
+      /**
+       * @func 得到系统的路径
+       */
+      getSystemFilePath () {
+        let ipcRenderer = this.$electron.ipcRenderer
+        ipcRenderer.send('open-file-dialog')
+        ipcRenderer.on('selected-directory', (event, path) => {
+          this.sysConfig.path = path.join()
+        })
       }
     }
   }

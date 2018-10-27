@@ -30,6 +30,8 @@ const actions = {
     if (!config || !config.path) {
       context.commit('setDialogFormVisible')
     } else {
+      config.path = config.path.constructor === Array ? config.path.join() : config.path
+      console.log(config.path)
       let hexo = new Hexo(config.path, {
         debug: false
       })

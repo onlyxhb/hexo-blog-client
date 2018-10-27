@@ -10,13 +10,15 @@
     </el-container>
 
     <el-dialog title="请先填写正确的Hexo地址：" :visible.sync="dialogFormVisible" :modal="true"
-               :close-on-click-modal="false"
-               :close-on-press-escape="false"
-               :show-close="true"
-               :before-close="beforeCloseDialog">
+      :close-on-click-modal="false"
+      :close-on-press-escape="false"
+      :show-close="true"
+      :before-close="beforeCloseDialog">
       <el-form>
         <el-form-item>
-          <el-input v-model="path" auto-complete="off"></el-input>
+          <el-input v-model="path" auto-complete="off">
+            <el-button slot="append" @click="getSystemFilePath">选择</el-button>
+          </el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -77,6 +79,16 @@
       beforeCloseDialog () {
         alert('请先填写正确的Hexo地址')
         return false
+      },
+      /**
+       * @func 得到系统的路径
+       */
+      getSystemFilePath () {
+        let ipcRenderer = this.$electron.ipcRenderer
+        ipcRenderer.send('open-file-dialog')
+        ipcRenderer.on('selected-directory', (event, path) => {
+          this.sysConfig.path = path.join()
+        })
       }
     },
 
@@ -123,7 +135,7 @@
   .article {
     position: relative;
     background: #fff;
-    -webkit-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
   }
 
   .article img {
@@ -210,7 +222,6 @@
     border: 1px solid #999;
     border-radius: 10px;
     background: #aaa;
-    display: inline-block;
     float: left;
     margin-right: 6px;
     margin-top: 6px;
