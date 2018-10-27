@@ -72,8 +72,8 @@
       setSysConfig () {
         var me = this
         configManager.setSysConfig({path: me.path}).then(function () {
-          me.dialogFormVisible = false
           me.init()
+          me.$store.commit('Hexo/setDialogFormVisible', false)
         })
       },
       beforeCloseDialog () {
@@ -87,7 +87,7 @@
         let ipcRenderer = this.$electron.ipcRenderer
         ipcRenderer.send('open-file-dialog')
         ipcRenderer.on('selected-directory', (event, path) => {
-          this.sysConfig.path = path.join()
+          this.path = path.join()
         })
       }
     },

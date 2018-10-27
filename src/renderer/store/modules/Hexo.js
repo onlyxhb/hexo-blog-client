@@ -1,5 +1,4 @@
 import when from 'when'
-
 const Hexo = require('hexo')
 const fs = require('fs')
 
@@ -16,8 +15,8 @@ const mutations = {
   setInited (state) {
     state.inited = true
   },
-  setDialogFormVisible (state) {
-    state.dialogFormVisible = true
+  setDialogFormVisible (state, show) {
+    state.dialogFormVisible = show
   },
   setSelectedPostId (state, postId) {
     state.selectedPostId = postId
@@ -26,21 +25,25 @@ const mutations = {
 const actions = {
   // 初始化
   async init (context) {
-    let config = context.rootState.Config.config
-    if (!config || !config.path) {
-      context.commit('setDialogFormVisible')
-    } else {
-      config.path = config.path.constructor === Array ? config.path.join() : config.path
-      console.log(config.path)
-      let hexo = new Hexo(config.path, {
-        debug: false
-      })
-      await hexo.init()
-      await hexo.call('server', {})
-      // await hexo.watch()
-
-      context.commit('setInstance', hexo)
-      context.commit('setInited')
+    try {
+      let config = context.rootState.Config.config
+      if (!config || !config.path) {
+        context.commit('setDialogFormVisible', true)
+      } else {
+        config.path = config.path.constructor === Array ? config.path.join() : config.path
+        console.log(config.path)
+        let hexo = new Hexo(config.path, {
+          debug: false
+        })
+        await hexo.init()
+        await hexo.call('server', {})
+        // await hexo.watch()
+        context.commit('setInstance', hexo)
+        context.commit('setInited')
+      }
+    } catch (error) {
+      console.log(error)
+      context.commit('setDialogFormVisible', true)
     }
   },
 
