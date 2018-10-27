@@ -25,6 +25,7 @@
       </el-tabs>
       <el-form-item>
         <el-button type="primary" @click="saveConfig">保存</el-button>
+        <el-button type="primary" @click="clearHexo">清除</el-button>
         <el-button type="primary" icon="el-icon-upload" @click="generateAndDeploy">生成发布</el-button>
       </el-form-item>
     </el-form>
@@ -90,6 +91,25 @@
           loading.close()
           console.error(err)
           this.$notify.error('生成失败')
+        }
+      },
+      async clearHexo () {
+        let loading = this.$loading({
+          lock: true,
+          text: '清除中...',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+        })
+
+        let hexo = this.$store.state.Hexo.instance
+        try {
+          await hexo.call('clean', {})
+          this.$notify.success('清除成功')
+        } catch (err) {
+          console.error(err)
+          this.$notify.error('清除失败')
+        } finally {
+          loading.close()
         }
       },
       /**
