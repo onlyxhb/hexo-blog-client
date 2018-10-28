@@ -1,11 +1,14 @@
 <template>
   <div id="app" :style="{'height': windowHeight}">
     <el-container v-if="inited">
-      <el-header style="padding: 0px;color: #333; line-height: 60px;">
-        <main-menu></main-menu>
-      </el-header>
+      <aside-left/>
       <el-container>
-        <router-view></router-view>
+        <el-header style="height: 55px; padding: 0; border-bottom: 1px solid #EDEDED; line-height: 55px;">
+          <header-view/>
+        </el-header>
+        <el-container>
+          <router-view/>
+        </el-container>
       </el-container>
     </el-container>
 
@@ -29,12 +32,13 @@
 </template>
 
 <script>
-  import MainMenu from './components/MainMenu'
+  import AsideLeft from './components/AsideLeft'
+  import HeaderView from './components/HeaderView'
   import configManager from '@/service/ConfigManager'
 
   export default {
     name: 'hexo-client',
-    components: {MainMenu},
+    components: {AsideLeft, HeaderView},
     data () {
       return {
         path: '',
@@ -57,7 +61,7 @@
       async init () {
         var loading = this.$loading({
           lock: true,
-          text: 'Loading...',
+          text: '玩命加载中...',
           spinner: 'el-icon-loading'
         })
         await this.$store.dispatch('Config/initConfig')
@@ -541,4 +545,10 @@
   pre .css ~ * .id {
     color: #fd971f;
   }
+</style>
+
+<style lang="scss">
+.el-main {
+  padding: 0
+}
 </style>

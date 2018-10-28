@@ -8,32 +8,32 @@ export default new Router({
     {
       path: '/posts',
       name: 'posts',
-      component: require('@/components/Posts').default
+      component: require('@/views/Posts').default
     },
     {
       path: '/create',
       name: 'create',
-      component: require('@/components/Create').default
+      component: require('@/views/Create').default
     },
     {
       path: '/preview',
       name: 'preview',
-      component: require('@/components/Preview').default
+      component: require('@/views/Preview').default
     },
     {
       path: '/edit',
       name: 'edit',
-      component: require('@/components/Edit').default
+      component: require('@/views/Edit').default
     },
     {
       path: '/settings',
       name: 'settings',
-      component: require('@/components/Settings').default
+      component: require('@/views/Settings').default
     },
     {
       path: '/about',
       name: 'about',
-      component: require('@/components/About').default
+      component: require('@/views/About').default
     },
     {
       path: '*',

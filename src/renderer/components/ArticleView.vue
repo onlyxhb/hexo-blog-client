@@ -1,14 +1,14 @@
 <template>
   <div v-if="post">
-    <article class="article">
+    <article class="article article-detail">
       <div class="article-inner">
         <header class="article-header">
           <h1 class="article-title">{{ post.title }}</h1>
           <label class="article-time">{{ post.date.format('YYYY-MM-DD HH:mm:ss') }}</label>
-          <label class="article-cat" v-for="(category, index) in post.categories.data">
+          <label class="article-cat" v-for="category in post.categories.data" :key="category.id">
             <el-tag size="small">{{ category.name }}</el-tag>
           </label>
-          <label class="article-tag" v-for="(tag, index) in post.tags.data">
+          <label class="article-tag" v-for="tag in post.tags.data" :key="tag.id">
             <el-tag type="info" size="small">{{ tag.name }}</el-tag>
           </label>
         </header>
@@ -46,4 +46,9 @@
     }
   }
 </script>
+<style>
+.article-detail {
+  padding: 15px;
+}
+</style>
 

@@ -6,6 +6,7 @@ const state = {
 
 const mutations = {
   updateConfig (state, config) {
+    console.log(config)
     state.config = config
   }
 }

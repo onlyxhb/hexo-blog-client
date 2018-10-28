@@ -1,23 +1,22 @@
 <template>
   <el-container>
-    <el-aside style="min-width: 300px;" id="articleListContainer" @scroll.native="scroll">
+    <el-aside class="aside-article-list" style="width: 270px;" id="articleListContainer" @scroll.native="scroll">
       <article-list></article-list>
     </el-aside>
 
-    <el-main style="padding-top: 0px;">
+    <el-main style="padding-top: 0px;" class="article-detail-box">
       <article-view></article-view>
     </el-main>
   </el-container>
 </template>
 
 <script>
-  import MainMenu from './MainMenu'
-  import ArticleList from './Posts/ArticleList'
-  import ArticleView from './Posts/ArticleView'
+  import ArticleList from '@/components/ArticleList'
+  import ArticleView from '@/components/ArticleView'
 
   export default {
     name: 'main-page',
-    components: {MainMenu, ArticleList, ArticleView},
+    components: {ArticleList, ArticleView},
     data () {
       return {}
     },
@@ -45,4 +44,21 @@
     }
   }
 </script>
+<style lang="scss">
+.aside-article-list,
+.article-detail-box {
+  &::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: transparent;
+  }
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(69, 90, 100, .2)
+  }
+}
+</style>
 

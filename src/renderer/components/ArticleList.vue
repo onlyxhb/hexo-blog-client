@@ -1,22 +1,24 @@
 <template>
 
   <div class="article-list">
-    <div class="article-list-panel" v-for="(post, index) in posts" ref="post" @click="selected(post.id)"
-         :data-id="post.id" v-bind:class="{active: post.id === selectedPostId}">
+    <div class="article-list-panel" v-for="post in posts" :key="post.id" ref="post" @click="selected(post.id)"
+      :data-id="post.id" v-bind:class="{active: post.id === selectedPostId}">
       <div class="article-list-item">
-        <h4 class="article-title">{{ post.title }}</h4>
-        <p class="article-desc"></p>
-        <ul class="article-info">
-          <li class="meta">{{ post.date }}</li>
-          <!--<li class="meta">{{ post.author }}</li>-->
-        </ul>
+        <img :src="post.img" alt="图片">
+        <div>
+          <h4 class="article-title">{{ post.title.length > 20 ? post.title.slice(0, 20) + '...' : post.title }}</h4>
+          <p class="article-desc"></p>
+          <ul class="article-info">
+            <li class="meta">{{ post.date }}</li>
+          </ul>
 
-        <a class="article-edit-btn" @click="editPost(post.id)">
-          <i class="el-icon-edit-outline"></i>
-        </a>
-        <a class="article-delete-btn" @click="deletePost(post.id)">
-          <i class="el-icon-delete"></i>
-        </a>
+          <a class="article-edit-btn" @click="editPost(post.id)">
+            <i class="el-icon-edit-outline"></i>
+          </a>
+          <a class="article-delete-btn" @click="deletePost(post.id)">
+            <i class="el-icon-delete"></i>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -37,23 +39,34 @@
       editPost: function (id) {
         this.$router.push({name: 'edit', params: {postId: id}})
       },
-
-      async deletePost (id) {
-        if (confirm('是否确认删除该文章？')) {
+      deletePost (id) {
+        this.$confirm('此操作将永久删除该文章, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(async () => {
           await this.$store.dispatch('Hexo/deletePost', id)
           this.$notify({title: '成功', message: '删除成功', type: 'success'})
-        }
+        })
       }
     },
 
     computed: {
       posts () {
-        return this.$store.getters['Hexo/posts']
+        let posts = this.$store.getters['Hexo/posts']
+        let keyword = this.keyword
+        if (!keyword) {
+          return posts
+        }
+        return posts.filter(v => ~v.title.indexOf(keyword))
       },
       selectedPostId () {
         let selectedPost = this.$store.getters['Hexo/selectedPost']
         // return this.$store.state.Hexo.selectedPostId
         return selectedPost ? selectedPost._id : null
+      },
+      keyword () {
+        return this.$store.state.Hexo.keyword
       }
     }
   }
@@ -61,19 +74,20 @@
 
 <style>
   .article-list {
-    background-color: #F7FAFF;
+    border-right: 1px solid #EDEDED;
+    background-color: #fff;
   }
 
   .article-list-panel.active {
-    background-color: #DFEBFF;
+    background-color: #f5f6f7;
   }
 
   .article-list-panel.active:hover {
-    background-color: #DFEBFF;
+    background-color: #f5f6f7;
   }
 
   .article-list-panel:hover {
-    background-color: #ECF3FF;
+    background-color: #f5f6f7;
   }
 
   .article-list-item {
@@ -161,4 +175,18 @@
   }
 
 </style>
+
+<style lang="scss">
+.article-list-item {
+  display: flex;
+  img {
+    width: 40px;
+    height: 40px;
+    margin-top: 2.5px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+}
+</style>
+
 

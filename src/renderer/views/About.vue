@@ -23,10 +23,7 @@
 </template>
 
 <script>
-  import MainMenu from './MainMenu'
-
   export default {
-    components: {MainMenu},
     data () {
       return {}
     },

@@ -21,8 +21,9 @@ function createWindow () {
    */
   mainWindow = new BrowserWindow({
     useContentSize: true,
+    frame: false,
     width: 1000,
-    height: 563
+    height: 668
   })
 
   mainWindow.loadURL(winURL)
@@ -63,6 +64,27 @@ ipcMain.on('open-file-dialog', (event) => {
       event.sender.send('selected-directory', files)
     }
   })
+})
+
+// 登录窗口最小化
+ipcMain.on('window-min', () => {
+  mainWindow.minimize()
+})
+// 登录窗口最大化
+ipcMain.on('window-max', () => {
+  if (mainWindow.isMaximized()) {
+    mainWindow.restore()
+  } else {
+    mainWindow.maximize()
+  }
+})
+// 关闭窗口
+ipcMain.on('window-close', () => {
+  mainWindow.close()
+})
+// 刷新页面
+ipcMain.on('window-refresh', () => {
+  mainWindow.reload()
 })
 
 /**

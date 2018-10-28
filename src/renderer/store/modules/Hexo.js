@@ -6,7 +6,8 @@ const state = {
   instance: null,
   inited: false,
   dialogFormVisible: false,
-  selectedPostId: null
+  selectedPostId: null,
+  keyword: ''
 }
 const mutations = {
   setInstance (state, hexo) {
@@ -20,6 +21,9 @@ const mutations = {
   },
   setSelectedPostId (state, postId) {
     state.selectedPostId = postId
+  },
+  setKeyWord (state, keyword) {
+    state.keyword = keyword
   }
 }
 const actions = {
@@ -35,6 +39,7 @@ const actions = {
         let hexo = new Hexo(config.path, {
           debug: false
         })
+        console.log(hexo)
         await hexo.init()
         await hexo.call('server', {})
         // await hexo.watch()
@@ -76,6 +81,24 @@ const actions = {
     let deferred = when.defer()
     let hexo = context.state.instance
     hexo.post.create(postForm, true).then(function () {
+      deferred.resolve()
+    }, function (err) {
+      deferred.reject(err)
+    })
+    return deferred.promise
+  },
+
+  // 保存为草稿
+  async createDraft (context, postForm) {
+    let deferred = when.defer()
+    let hexo = context.state.instance
+    // 将草稿发布为文章
+    // hexo.post.publish(postForm, true).then(function () {
+    //   deferred.resolve()
+    // }, function (err) {
+    //   deferred.reject(err)
+    // })
+    hexo.post.render('E:\\前端学习\\个人博客\\hexo-blog\\source\\_drafts', postForm).then(function () {
       deferred.resolve()
     }, function (err) {
       deferred.reject(err)
@@ -132,6 +155,7 @@ const getters = {
         })
       })
     }
+    console.log(posts)
     return posts
   },
   selectedPost: state => {
