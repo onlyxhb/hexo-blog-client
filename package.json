@@ -2,12 +2,10 @@
   "name": "hexo-blog-client",
   "version": "0.1.0",
   "private": true,
-  "main": "src/api/index.js",
-  "homepage": ".",
+  "main": "app",
   "DEV": true,
   "dependencies": {
     "antd": "^3.10.3",
-    "mavon-editor-hexo-client": "^2.6.19",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-scripts": "2.1.0"
@@ -30,11 +28,15 @@
   ],
   "devDependencies": {
     "babel-plugin-import": "^1.11.0",
-    "electron": "~1.6.2",
+    "electron": "^3.0.7",
+    "fs-extra": "^7.0.0",
+    "glob": "^7.1.3",
+    "hexo-cli": "^1.1.0",
     "node-sass": "^4.9.4",
     "react-app-rewire-sass-modules": "^1.1.7",
     "react-app-rewired": "^1.6.2",
     "react-router-dom": "^4.3.1",
-    "sass-loader": "^7.1.0"
+    "sass-loader": "^7.1.0",
+    "uuid": "^3.3.2"
   }
 }

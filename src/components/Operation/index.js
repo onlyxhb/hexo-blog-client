@@ -1,17 +1,17 @@
 import React from 'react'
 import { Icon } from 'antd'
 import './index.scss'
-const {ipcRenderer} = window.electron
+import execute from '../../utils/execute.js'
 
 export default class Config extends React.Component {
   setWindowClose () {
-    ipcRenderer.send('window-close')
+    execute('window.close')
   }
   setWindowMin () {
-    ipcRenderer.send('window-min')
+    execute('window.min')
   }
   setWindowMax () {
-    ipcRenderer.send('window-max')
+    execute('window.max')
   }
   render () {
     return (

@@ -1,7 +1,8 @@
 import React from 'react'
 import { Input, Menu, Icon, Tooltip } from 'antd'
 import './index.scss'
-const { shell, ipcRenderer } = window.electron
+import execute from '../../utils/execute.js'
+const { shell, ipcRenderer  } = window.electron
 const Search = Input.Search
 
 export default class Config extends React.Component {
@@ -15,7 +16,7 @@ export default class Config extends React.Component {
   render () {
     return (
       <div className="common-header">
-        <div class="left-items"><Search placeholder="请输入关键词搜索" /></div>
+        <div className="left-items"><Search placeholder="请输入关键词搜索" /></div>
         <div className="right-items">
           <Menu mode="horizontal">
             <Menu.Item>

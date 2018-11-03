@@ -4,7 +4,7 @@ import './App.css'
 class App extends Component {
   render() {
     return (
-      <div class="root-box">
+      <div className="root-box">
         {this.props.children}
       </div>
     )

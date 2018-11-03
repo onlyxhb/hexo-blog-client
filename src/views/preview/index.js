@@ -5,7 +5,7 @@ export default class Config extends React.Component {
   render () {
     return (
       <div className="preview-page">
-        <iframe src="https://blog.onlystar.site" frameborder="0"></iframe>
+        <iframe src="https://blog.onlystar.site" frameBorder="0"></iframe>
       </div>
     )
   }

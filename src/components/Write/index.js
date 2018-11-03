@@ -1,11 +1,27 @@
 import React from 'react'
 import { Form, Input, Button, Dropdown, Menu, Icon, DatePicker, Switch } from 'antd'
-import mavonEditor from 'mavon-editor-hexo-client'
-import 'mavon-editor-hexo-client/dist/css/index.css'
 import './index.scss'
 const FormItem = Form.Item
 
 export default class Write extends React.Component {
+  state = {
+    editor: null
+  }
+  componentDidMount(){
+    let editor =  window.Mditor.fromTextarea(document.getElementById('md_editor'))
+    this.setState({ editor })
+    // 获取或设置编辑器的值
+    editor.on('ready', () => {
+      this.configEditor()
+    })
+  }
+  configEditor () {
+    let btn = this.state.editor.toolbar.getItem('image')
+    //替换按钮动作
+    btn.handler = () => {
+      console.log('处理图片上传')
+    }
+  }
   cancelBtn () {
     console.log('取消')
   }
@@ -21,13 +37,13 @@ export default class Write extends React.Component {
       </Menu>
     )
     return (
-      <div class="write-page">
+      <div className="write-page">
         <Form>
           <FormItem label="标题">
             <Input placeholder="请输入标题..." />
           </FormItem>
           <FormItem label="内容">
-            <mavonEditor />
+            <textarea id="md_editor"></textarea>
           </FormItem>
           <FormItem className="write-item-inline">
             <FormItem label="分类">

@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.scss'
 import {Form, Input, Switch, Button} from 'antd'
-const {ipcRenderer} = window.electron
+import execute from '../../utils/execute.js'
 const FormItem = Form.Item
 const Search = Input.Search
 
@@ -13,10 +13,9 @@ export default class Config extends React.Component {
     }
   }
   getSystemFilePath () {
-    ipcRenderer.send('open-file-dialog')
-    ipcRenderer.on('selected-directory', (event, path) => {
-      this.setState({path: path.join()})
-      console.log(path.join())
+    execute('dialog.open').then((res) => {
+      this.setState({path: res.result.join()})
+      console.log(res.result.join())
     })
   }
   cancelBtn () {
