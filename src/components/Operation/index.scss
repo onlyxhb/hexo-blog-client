@@ -1,0 +1,35 @@
+.common-operation {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  li {
+    flex: 1;
+    text-align: center;
+    list-style: none;
+    cursor: pointer;
+    i {
+      font-size: 10px;
+      border: 1px solid transparent;
+      border-radius: 50%;
+      &.operate-close {
+        border-color: #ff544d;
+        background-color: #ff544d;
+        color: #ff544d;
+      }
+      &.operate-min {
+        border-color: #ffb62a;
+        background-color: #ffb62a;
+        color: #ffb62a;
+      }
+      &.operate-max {
+        border-color: #25c439;
+        background-color: #25c439;
+        color: #25c439;
+      }
+      &:hover {
+        color: black;
+      }
+    }
+  }
+}

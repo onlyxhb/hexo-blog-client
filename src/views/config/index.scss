@@ -1,0 +1,30 @@
+.config-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  -webkit-app-region: drag;
+  .ant-form {
+    width: 100%;
+  }
+  .ant-form-item {
+    display: flex;
+    align-items: center;
+    margin: 20px 40px;
+    -webkit-app-region: no-drag;
+    .ant-form-item-label {
+      width: 70px;
+      margin-top: 5px;
+    }
+    .ant-form-item-control-wrapper {
+      flex: 1;
+    }
+    &.bottom-btns {
+      text-align: right;
+      .ant-btn:last-child {
+        margin-left: 25px;
+      }
+    }
+  }
+}

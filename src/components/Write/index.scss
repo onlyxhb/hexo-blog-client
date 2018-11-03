@@ -1,0 +1,51 @@
+.write-page {
+  width: 100%;
+  height: 100%;
+  -webkit-app-region: drag;
+  .ant-form {
+    width: 100%;
+  }
+  .ant-form-item {
+    display: flex;
+    align-items: center;
+    margin: 20px 40px;
+    -webkit-app-region: no-drag;
+    .ant-form-item-label {
+      width: 70px;
+      margin-top: 5px;
+    }
+    .ant-form-item-control-wrapper {
+      flex: 1;
+    }
+    &.write-item-inline {
+      margin: 0 40px;
+      .ant-form-item-children {
+        display: flex;
+        .ant-form-item {
+          margin: 0 40px 0 0;
+        }
+      }
+    }
+    &.write-item-bottom {
+      margin: 0 40px;
+      .ant-form-item-children {
+        display: flex;
+        justify-content: space-between;
+        .left {
+          display: flex;
+          .ant-form-item {
+            margin: 0 25px 0 0;
+            .ant-form-item-label {
+              margin-top: -5px;
+            }
+          }
+        }
+        .bottom-btns {
+          .ant-btn.ant-btn-primary {
+            margin: 0 25px;
+          }
+        }
+      }
+    }
+  }
+}

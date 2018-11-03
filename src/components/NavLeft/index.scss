@@ -1,0 +1,38 @@
+.common-left {
+  display: flex;
+  flex-direction: column;
+  -webkit-app-region: drag;
+  .common-operation {
+    height: 55px;
+  }
+  ul.ant-menu {
+    position: relative;
+    flex: 1;
+    border: none;
+    background-color: #499AFA;
+    li.ant-menu-item {
+      text-align: center;
+      opacity: .5;
+      cursor: pointer;
+      -webkit-app-region: no-drag;
+      i {
+        margin: 0;
+        color: #fff;
+        font-size: 25px;
+      }
+      &.menu-bottom {
+        position: absolute;
+        bottom: 80px;
+        width: 100%;
+        &:last-child {
+          bottom: 30px;
+        }
+      }
+      &:hover,
+      &.ant-menu-item-selected {
+        background-color: #499AFA;
+        opacity: 1;
+      }
+    }
+  }
+}

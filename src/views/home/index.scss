@@ -1,0 +1,96 @@
+.page-home {
+  display: flex;
+  height: 100%;
+
+  &-left {
+    width: 250px;
+    border-right: 1px solid #ddd;
+    &-item {
+      display: flex;
+      align-items: center;
+      padding: 15px 0 10px 10px;
+      border-bottom: 1px solid #ddd;
+      cursor: pointer;
+      &.active,
+      &:hover {
+        background-color: #eee;
+      }
+      img {
+        width: 45px;
+        height: 45px;
+        margin-right: 5px;
+        border-radius: 50%;
+      }
+      .item-content {
+        flex: 1;
+        &-title {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          span {
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 12px;
+          }
+          p {
+            overflow: hidden;/*超出部分隐藏*/
+            width: 130px;
+            margin: 0;
+            font-weight: bold;
+            font-size: 14px;
+            white-space: nowrap;/*不换行*/
+            text-overflow:ellipsis;/*超出部分文字以...显示*/
+          }
+        }
+        &-subtitle {
+          margin-top: 5px;
+          margin-bottom: 0;
+          color: #9a8a8a;
+          font-size: 12px;
+          .ant-tag {
+            height: 16px;
+            padding: 0 3px;
+            line-height: 14px;
+            &.category-item {
+              margin-right: 15px;
+            }
+            &.tag-item {
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+  &-right {
+    flex: 1;
+    padding: 15px;
+    .front-matter {
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+      .title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h1 {
+          margin: 0;
+        }
+        .ant-btn {
+          margin-right: 10px;
+        }
+      }
+      .subtitle {
+        span {
+          margin-right: 15px;
+          font-size: 14px;
+        }
+        .category-item {
+          margin-right: 15px;
+        }
+      }
+    }
+    &-content {
+      padding-top: 10px;
+    }
+  }
+}

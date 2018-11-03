@@ -1,0 +1,45 @@
+.common-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 55px;
+  padding: 0 25px 0 8px;
+  border-bottom: 1px solid #ddd;
+  -webkit-app-region: drag;
+  .left-items {
+    width: 240px;
+    -webkit-app-region: no-drag;
+    .ant-input {
+      border: none;
+      background: #f5f6f7;
+      box-shadow: none;
+      outline: none;
+      &:focus {
+        border: none;
+        box-shadow: none;
+        outline: none;
+      }
+    }
+  }
+  .right-items {
+    ul.ant-menu {
+      border: none;
+      .ant-menu-item {
+        padding: 0 10px;
+        border: none;
+        text-align: center;
+        -webkit-app-region: no-drag;
+        i {
+          font-size: 20px;
+        }
+        &.item-img img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}

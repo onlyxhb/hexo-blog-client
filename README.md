@@ -1,63 +1,44 @@
-# hexo-client
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-> 这是一个基于electron-vue搭建的hexo博客管理客户端,我的博客网站： [星空守候的博客](https://blog.onlystar.site)
+## Available Scripts
 
-### 功能简介
-- 新增、编辑、删除文章
-- 首页文章列表按照时间排序显示
-- 本地博客预览
-- 本篇文章预览
-- 软件系统环境配置
-- 文章支持七牛图片上传
-- 支持hexo clean、generate、deploy
-- windows/mac/linux/web 平台打包
-- 关于我
+In the project directory, you can run:
 
-### 后续开发计划
-- [x] 左侧搜索文章
-- [ ] 优化关键词交互
-- [x] 自定义顶部菜单栏
-- [ ] 更换logo
-- [ ] 更换代码高亮插件
-- [ ] 代码显示行号
-- [ ] 系统设置补充
-- [ ] 自动保存文章
-- [ ] 将文章保存为草稿
-- [ ] 窗口置顶与取消置顶
-- [ ] 软件消息提示
-- [ ] 操作日志记录
-- [ ] 检查软件更新
+### `npm start`
 
-### 截屏预览
-![](http://file.mspring.org/75b72e173544f8d97bd439973e022f65!detail)
-![](http://file.mspring.org/af961ed25d01cceb2bb64855324c9cc9!detail)
-![](http://file.mspring.org/3376dc96e75b3719f1a40e65dd54b71e!detail)
-![](http://file.mspring.org/8a017cf3cb56561da107383ac21da2df!detail)
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-### 开发
+### `npm test`
 
-``` bash
-# install dependencies
-yarn
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-# dev
-yarn dev
+### `npm run build`
 
-# build electron application for production
-yarn build
-yarn build:win
-yarn build:mac
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-# lint all JS/Vue component files in `src/`
-yarn lint
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-# use tip
-第一次使用需要选择你的hexo博客的目录，可手动输入，也可选择
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `npm run eject`
 
-```
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
----
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).

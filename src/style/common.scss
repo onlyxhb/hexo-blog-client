@@ -1,0 +1,44 @@
+.page-common {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  .common-left {
+    width: 67px;
+    background-color: #499AFA;
+  }
+  .common-right-box {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    .common-container {
+      flex: 1;
+    }
+  }
+}
+
+.ant-btn.ant-btn-warning {
+  border-color: #e6a23c;
+  color: #fff;
+  background-color: #e6a23c;
+  &:hover {
+    border-color: #ebb563;
+    background-color: #ebb563;
+  }
+  &:active {
+    border-color: #cf9236;
+    background-color: #cf9236;
+  }
+}
+.ant-btn.ant-btn-danger {
+  border-color: #f56c6c;
+  color: #fff;
+  background-color: #f56c6c;
+  &:hover {
+    border-color: #f78989;
+    background-color: #f78989;
+  }
+  &:active {
+    border-color: #dd6161;
+    background: #dd6161;
+  }
+}
