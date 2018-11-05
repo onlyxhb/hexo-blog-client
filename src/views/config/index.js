@@ -13,9 +13,9 @@ export default class Config extends React.Component {
     }
   }
   getSystemFilePath () {
-    execute('dialog.open').then((res) => {
-      this.setState({path: res.result.join()})
-      console.log(res.result.join())
+    execute('window.dialog').then(({result}) => {
+      this.setState({path: result})
+      console.log(result)
     })
   }
   cancelBtn () {

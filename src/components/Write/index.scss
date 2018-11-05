@@ -22,12 +22,16 @@
       .ant-form-item-children {
         display: flex;
         .ant-form-item {
-          margin: 0 40px 0 0;
+          width: 220px;
+          margin: 0 30px 0 0;
         }
       }
     }
+    &.editor-item {
+      align-items: flex-start;
+    }
     &.write-item-bottom {
-      margin: 0 40px;
+      margin: 0 40px 20px;
       .ant-form-item-children {
         display: flex;
         justify-content: space-between;
@@ -46,6 +50,11 @@
           }
         }
       }
+    }
+  }
+  .mditor {
+    .toolbar .item {
+      float: left;
     }
   }
 }

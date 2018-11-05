@@ -1,17 +1,30 @@
 .page-common {
-  display: flex;
-  width: 100%;
-  height: 100%;
   .common-left {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
     width: 67px;
     background-color: #499AFA;
   }
   .common-right-box {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+    .common-header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 67px;
+      height: 55px;
+    }
     .common-container {
-      flex: 1;
+      position: fixed;
+      top: 55px;
+      right: 0;
+      bottom: 0;
+      left: 67px;
+      >div {
+        overflow-y: auto;
+      }
     }
   }
 }
@@ -41,4 +54,19 @@
     border-color: #dd6161;
     background: #dd6161;
   }
+}
+
+/* 左侧菜单滚动条 */
+.scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: transparent;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+  height: 10px;
+  border-radius: 6px;
+  background-color: transparent;
+}
+.scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(69,90,100,.2)
 }

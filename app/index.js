@@ -10,7 +10,7 @@ let win
 // 创建浏览器窗口时，调用这个函数。
 
 function createWindow () {
-  win = create(1000, 650, 'home')
+  win = create(1080, 650, 'home')
   win.webContents.openDevTools()
   registry(windows)
   registry(article)

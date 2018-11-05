@@ -51,5 +51,6 @@ module.exports = (width, height, key, callback) => {
   Menu.setApplicationMenu(null)
   // 安装react开发工具
   // BrowserWindow.addDevToolsExtension('E:/hexo-blog-client/react-dev-tools/3.4.2_0')
+  BrowserWindow.addDevToolsExtension('/Volumes/数据/hexo-blog-client/react-dev-tools/3.4.2_0')
   return win
 }

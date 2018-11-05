@@ -1,3 +1,6 @@
+const os = require('os')
+let platform = os.platform()
+let changeLine = platform === 'win32' ? '\r\n': '\n'
 module.exports = {
   /**
    * @func 把markdown文件内容转换成JSON格式.
@@ -5,9 +8,12 @@ module.exports = {
    * @return {Object}
    */
   json (article) {
-    let temp = article.split('---\r\n').slice(1)
-    let meta = temp.shift().split('\r\n')
-    let body = temp.pop().replace(/^(\r\n)*/, '').trim()
+    let temp = article.split(`---${changeLine}`).slice(1)
+    if (!temp || !temp.length) {
+      temp = article.split(`---\r\n`).slice(1)
+    }
+    let meta = temp.shift().split(changeLine)
+    let body = platform === 'win32' ? temp.pop().replace(/^(\r\n)*/, '').trim() : temp.pop().replace(/^(\n)*/, '').trim()
     let result = {}
     let parentKey = ''
     meta.forEach((value) => {
@@ -25,12 +31,13 @@ module.exports = {
           result[key] = val.trim()
         }
         parentKey = key
-      } else  if (parentKey && parentKey === 'tags' ||  parentKey === 'categories' ) { 
+      } else  if (parentKey && (parentKey === 'tags' ||  parentKey === 'categories') ) { 
         let val = value.replace('- ', '')
-        result[parentKey].push(val)
+        val && result[parentKey].push(val)
         }
     })
-
+    if (!result.tags) {result.tags = []}
+    if (!result.categories) {result.categories = []}
     return Object.assign(result, { body })
   },
 
@@ -40,6 +47,6 @@ module.exports = {
    * @return {String}
    */
   markdown (article) {
-    return `---\r\ntitle: ${ (article.title || '').trim() }\r\ndate: ${ (article.date || '').trim() }\r\ntags: ${ JSON.stringify(article.tags || []).replace(/[\"|\']/g, '') }\n---\r\n\r\n${ (article.body || '').trim() }`
+    return `---\r\ntitle: ${ (article.title || '').trim() }\r\nimg: ${ (article.img || '').trim() }\r\ntop: ${ article.top || false }\r\ntoc: ${ article.toc || false }\r\ndate: ${ (article.date || '').trim() }\r\nupdated: ${ (article.updated || '').trim() }\r\ntags: ${ JSON.stringify(article.tags || []).replace(/[\"|\']/g, '') }\r\ncategories: ${ JSON.stringify(article.categories || []).replace(/[\"|\']/g, '') }\n---\r\n\r\n${ (article.body || '').trim() }`
   }
 }

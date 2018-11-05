@@ -10,12 +10,12 @@ module.exports = {
    * @param {Function} done 回调
    * @return {Object}
    */
-  '$dialog.open': (done) => {
+  '$window.dialog': (done) => {
     dialog.showOpenDialog({
       properties: ['openFile', 'openDirectory']
     }, (files) => {
       if (files) {
-        return done(response(files, 200, '打开文件目录成功'))
+        return done(response(files.pop() || '', 200, '打开文件目录成功'))
       }
     })
   },
@@ -51,7 +51,7 @@ module.exports = {
     BrowserWindow.getFocusedWindow().close()
     return done(response(200, '关闭完成'))
   },
-    /**
+  /**
    * @func 刷新
    * @param {Function} done 回调
    * @return {Object}

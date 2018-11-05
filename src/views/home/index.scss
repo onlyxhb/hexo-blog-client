@@ -1,8 +1,11 @@
 .page-home {
+  overflow: hidden !important;
   display: flex;
   height: 100%;
 
   &-left {
+    overflow-x: hidden;
+    overflow-y: auto;
     width: 250px;
     border-right: 1px solid #ddd;
     &-item {
@@ -29,12 +32,12 @@
           align-items: center;
           span {
             display: inline-block;
-            margin-right: 10px;
-            font-size: 12px;
+            margin-right: 5px;
+            font-size: 10px;
           }
           p {
             overflow: hidden;/*超出部分隐藏*/
-            width: 130px;
+            width: 110px;
             margin: 0;
             font-weight: bold;
             font-size: 14px;
@@ -63,6 +66,7 @@
     }
   }
   &-right {
+    overflow-y: auto;
     flex: 1;
     padding: 15px;
     .front-matter {
@@ -91,6 +95,30 @@
     }
     &-content {
       padding-top: 10px;
+    }
+  }
+
+  // 编辑器
+  .mditor {
+    padding: 0;
+    border: none;
+    .head {
+      display: none;
+    }
+    .body {
+      box-shadow: none;
+      .editor {
+        display: none;
+      }
+      .viewer {
+        padding: 0;
+        .markdown-body {
+          max-width: none;
+        }
+      }
+      .finder {
+        display: none;
+      }
     }
   }
 }
