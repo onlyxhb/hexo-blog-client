@@ -1,0 +1,99 @@
+{
+  "name": "hexo-client",
+  "version": "1.0.0",
+  "productName": "博客客户端",
+  "description": "Desktop app for Hexo.",
+  "main": "index.js",
+  "build": {
+    "appId": "blog.onlystar.site",
+    "copyright": "Copyright © 2017 Rain.",
+    "files": [
+      "./app",
+      "./index.js",
+      "./renderer.js",
+      "./style.css",
+      "./public"
+    ],
+    "publish": {
+      "provider": "github"
+    }
+  },
+  "scripts": {
+    "start": "./node_modules/.bin/webpack --env development -w --config webpack/webpack.config.js",
+    "client": "./node_modules/.bin/cross-env NODE_ENV=development ./node_modules/.bin/electron .",
+    "prepack": "./node_modules/.bin/webpack --env production --config webpack/webpack.config.js",
+    "pack": "npm run prepack && electron-builder",
+    "pack:dir": "npm run prepack && electron-builder --dir",
+    "pack:win": "npm run prepack && electron-builder --win",
+    "pack:linux": "npm run prepack && electron-builder --linux",
+    "pack:mac": "npm run prepack && electron-builder --mac",
+    "build:dir": "electron-builder --dir",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code-artisan/hexo-client.git"
+  },
+  "keywords": [
+    "hexo",
+    "hexo-client",
+    "electron"
+  ],
+  "author": "artisan",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "antd": "^3.10.4",
+    "codemirror": "^5.26.0",
+    "editor.md": "^1.5.0",
+    "electron-log": "^2.2.7",
+    "element-react": "^1.0.0",
+    "element-theme-default": "^1.3.3",
+    "events": "^1.1.1",
+    "fs-jetpack": "^1.0.0",
+    "glob": "^7.1.2",
+    "hexo-cli": "^1.0.3",
+    "hexo-server": "^0.2.1",
+    "jquery": "^3.2.1",
+    "log4js": "^2.0.1",
+    "marked": "^0.3.6",
+    "moment": "^2.18.1",
+    "normalize.css": "^7.0.0",
+    "pangu": "^3.3.0",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-router": "^3.0.5",
+    "shelljs": "^0.7.8",
+    "underscore": "^1.8.3",
+    "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-import": "^1.11.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "cross-env": "^5.0.1",
+    "css-loader": "^0.28.1",
+    "electron": "~1.6.2",
+    "electron-builder": "^20.31.2",
+    "electron-updater": "^2.3.1",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
+    "html-webpack-plugin": "^2.28.0",
+    "ignore-loader": "^0.1.2",
+    "node-sass": "^4.5.3",
+    "npm": "^5.0.3",
+    "sass-loader": "^6.0.5",
+    "shebang-loader": "0.0.1",
+    "style-loader": "^0.17.0",
+    "url": "^0.11.0",
+    "webpack": "^2.5.1",
+    "webpack-dev-server": "^2.4.5",
+    "webpack-merge": "^4.1.0"
+  }
+}

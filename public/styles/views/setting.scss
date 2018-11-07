@@ -1,0 +1,59 @@
+.setting-container {
+  padding: 0 40px 26px;
+  background-color: #ececec;
+
+  .form-btn {
+    padding: 4px 30px;
+
+    &:active {
+      color: #fff;
+    }
+
+    & ~ .form-btn {
+      margin-left: 10px;
+    }
+  }
+
+  .fixed-bottom {
+    position: absolute;
+    bottom: 5px;
+    right: 15px;
+  }
+
+  .el-checkbox {
+    margin-top: 8px;
+  }
+
+  .el-form-item {
+    margin-bottom: 15px;
+  }
+
+  .el-input__inner {
+    &:focus,
+    &:hover {
+      border-color: #bfcbd9;
+    }
+  }
+
+  .el-input-number {
+    width: 100%;
+    display: block;
+    position: relative;
+
+    &:after {
+      content: '分钟';
+      position: absolute;
+      top: 6px;
+      left: 22px;
+      font-size: 12px;
+    }
+  }
+
+  .el-form-item__label {
+    padding: 8px 12px 8px 0;
+  }
+
+  .el-form-item__content {
+    line-height: 30px;
+  }
+}
