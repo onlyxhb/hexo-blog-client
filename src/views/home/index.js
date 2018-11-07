@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Tag, Modal } from 'antd'
+import { Button, Tag, Modal, Tabs } from 'antd'
 import './index.scss'
 import execute from '../../utils/execute'
 let MarkdownIt = require('markdown-it')
@@ -98,45 +98,58 @@ export default class Config extends React.Component {
       }
     })
   }
+
+  renderLeftList (draft = false) {
+    let articles = this.state.articles.filter(v => v.draft === draft )
+    if (!articles || !articles.length) {
+      return (
+        <div className="page-home-left-item no-content">暂无内容...</div>
+      )
+    }
+    return articles.map((item, index) => {
+      return (
+        <div className="page-home-left-item" key={ + new Date().getTime() + index} onClick={this.changeArticle.bind(this, item)}>
+          <img src={item.img}/>
+          <div className="item-content">
+            <div className="item-content-title">
+              <p>{item.title}</p>
+              <span>{item.date && item.date.slice(0, 10)}</span>
+            </div>
+            <div className="item-content-subtitle">
+            {
+              item.categories && item.categories.map((category, id) => {
+              return (
+                category && <Tag color="#108ee9" className="category-item" key={ + new Date().getTime() + id}>{category}</Tag>
+              )
+            })}
+            {
+              item.tags && item.tags.map((tag, id) => {
+              return (
+                tag && <Tag color="#87d068" className="tag-item" key={ + new Date().getTime() + id}>{tag}</Tag>
+              )
+            })}
+            </div>
+          </div>
+        </div>  
+      )
+    })
+  }
+
   render () {
     return (
       <div className="page-home">
         {/* 这里是左侧列表显示区域 */}
         <div className="page-home-left scrollbar">
-          {
-            this.state.articles.map((item, index) => {
-              return (
-                <div className="page-home-left-item" key={ + new Date().getTime() + index} onClick={this.changeArticle.bind(this, item)}>
-                  <img src={item.img}/>
-                  <div className="item-content">
-                    <div className="item-content-title">
-                      <p>{item.title}</p>
-                      <span>{item.date && item.date.slice(0, 10)}</span>
-                    </div>
-                    <div className="item-content-subtitle">
-                    {
-                      item.categories && item.categories.map((category, id) => {
-                      return (
-                        category && <Tag color="#108ee9" className="category-item" key={ + new Date().getTime() + id}>{category}</Tag>
-                      )
-                    })}
-                    {
-                      item.tags && item.tags.map((tag, id) => {
-                      return (
-                        tag && <Tag color="#87d068" className="tag-item" key={ + new Date().getTime() + id}>{tag}</Tag>
-                      )
-                    })}
-                    </div>
-                  </div>
-                </div>  
-              )
-            })
-          }
+          <Tabs defaultActiveKey="1">
+            <Tabs.TabPane tab="文章" key="1">{this.renderLeftList(false)}</Tabs.TabPane>
+            <Tabs.TabPane tab="草稿" key="2">{this.renderLeftList(true)}</Tabs.TabPane>
+            <Tabs.TabPane tab="语雀" key="3" disabled></Tabs.TabPane>
+          </Tabs>
         </div>
         {/* 这里是右侧内容显示区域 */}
         {
           this.state.article.title && 
-          <div className="page-home-right scrollbar">
+          <div className="page-home-right">
             <div className="front-matter">
               <div className="title">
                 <h1>{this.state.article.title}</h1>

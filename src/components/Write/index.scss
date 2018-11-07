@@ -55,6 +55,9 @@
   .mditor {
     .toolbar .item {
       float: left;
+      &.control {
+        float: right;
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 
 import { notification } from 'antd'
 export default (message, type = 'success') => {
-  // 使用ant的同事
+  // 使用ant的通知
   notification[type]({
     message: '友情提示',
     description: message

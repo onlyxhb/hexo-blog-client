@@ -1,5 +1,5 @@
 import uuidV4 from 'uuid/v4'
-const { ipcRenderer } = window.electron
+const { ipcRenderer } = window.require('electron')
 
 export default payload => {
   console.log(payload)

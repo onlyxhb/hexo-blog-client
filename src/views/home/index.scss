@@ -4,10 +4,48 @@
   height: 100%;
 
   &-left {
-    overflow-x: hidden;
-    overflow-y: auto;
+    position: relative;
+    // overflow-x: hidden;
+    // overflow-y: auto;
     width: 250px;
     border-right: 1px solid #ddd;
+    .ant-tabs {
+      width: 100%;
+      height: 100%;
+      .ant-tabs-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        margin-bottom: 0;
+      }
+      .ant-tabs-content {
+        position: absolute;
+        top: 44px;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        .ant-tabs-tabpane-active {
+          overflow-x: hidden;
+          overflow-y: auto;
+        }
+
+        .ant-tabs-tabpane-active::-webkit-scrollbar {
+          width: 6px;
+          height: 6px;
+          background-color: transparent;
+        }
+        .ant-tabs-tabpane-active::-webkit-scrollbar-thumb {
+          height: 10px;
+          border-radius: 6px;
+          background-color: transparent;
+        }
+        .ant-tabs-tabpane-active:hover::-webkit-scrollbar-thumb {
+          background-color: rgba(69,90,100,.2)
+        }
+
+      }
+    }
     &-item {
       display: flex;
       align-items: center;
@@ -17,6 +55,9 @@
       &.active,
       &:hover {
         background-color: #eee;
+      }
+      &.no-content {
+        justify-content: center;
       }
       img {
         width: 45px;

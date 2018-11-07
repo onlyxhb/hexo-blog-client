@@ -9,13 +9,6 @@ const LOG_DIR = path.join(ROOT_DIR, 'Logs')
 
 const SERVER_LOG_FILE_NAME = 'server.log'
 const CLIENT_LOG_FILE_NAME = 'client.log'
-console.log({
-  ROOT_DIR,
-  LOG_DIR,
-  ASSETS_PATH,
-  SERVER_LOG_FILE_NAME,
-  CLIENT_LOG_FILE_NAME
-})
 module.exports = {
   ROOT_DIR,
   LOG_DIR,

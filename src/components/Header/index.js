@@ -2,7 +2,7 @@ import React from 'react'
 import { Input, Menu, Icon, Tooltip } from 'antd'
 import './index.scss'
 import execute from '../../utils/execute.js'
-const { shell, ipcRenderer  } = window.electron
+const { shell, ipcRenderer  } = window.require('electron')
 const Search = Input.Search
 
 export default class Config extends React.Component {
