@@ -1,0 +1,147 @@
+<template>
+  <el-container style="height: 100%; position: relative">
+    <!-- 左侧部分 -->
+    <div class="main-left-container">
+      <el-form class="main-left-search">
+        <el-form-item style="margin-bottom: 0;">
+          <i class="el-icon-back" :class="{ disabled: !getBackStatus }" :title="$t('goBack')" @click="$router.back()"/>
+          <el-input clearable :placeholder="$t('search')" v-model="keyword"/>
+          <el-dropdown placement="bottom-start" @command="handleDropdown">
+            <span class="el-dropdown-link">
+              <i class="el-icon-sort"></i>
+              <i class="el-icon-caret-bottom"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item v-for="(item, index) in dropdownList" :key="index" :command="item.value">
+                <i class="el-icon-check" v-if="+filterType === item.value"/>
+                {{item.text}}
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </el-form-item>
+      </el-form>
+      <div class="main-left-scrollbar main-scrollbar">
+        <article-list :type="type" :keyword="keyword"/>
+      </div>
+    </div>
+    <!-- 右侧部分 -->
+    <article-view :type="type">
+      <div slot="opera"><operation/></div>
+    </article-view>
+  </el-container>
+</template>
+
+<script>
+  import TreeNav from '@/components/TreeNav'
+  import ArticleList from '@/components/ArticleList'
+  import ArticleView from '@/components/ArticleView'
+  import Operation from '@/components/Operation'
+
+  export default {
+    components: {TreeNav, ArticleList, ArticleView, Operation},
+    props: {
+      type: {
+        type: String,
+        default: 'recentArticle' // articleCategories articleTags
+      },
+      dropdownList: {
+        type: Array,
+        default: () => []
+      },
+      hasParentKey: {
+        type: Boolean,
+        default: false
+      }
+    },
+    data () {
+      return {
+        keyword: '',
+        filterType: 2 // 1摘要  2 列表
+      }
+    },
+
+    computed: {
+      getBackStatus () {
+        return this.type === 'recentArticle' && this.hasParentKey
+      }
+    },
+    methods: {
+      handleDropdown (command) {
+        this.filterType = command
+      }
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+.el-dropdown-menu {
+  margin-top: -5px;
+  padding: 0;
+  .el-dropdown-menu__item {
+    text-align: right;
+  }
+}
+.main-left-container {
+  position: relative;
+  width: 305px;
+  min-width: 305px;
+  height: 100%;
+  background-color: #fafafa;
+  .main-left-search {
+    overflow: hidden;
+    width: 100%;
+    height: 75px;
+    padding: 20px 15px 15px 25px;
+    box-sizing: border-box;
+    -webkit-app-region: drag;
+    /deep/ .el-form-item__content {
+      display: flex;
+      .el-icon-back {
+        line-height: 40px;
+        color: #333;
+        font-size: 18px;
+        cursor: pointer;
+        -webkit-app-region: no-drag;
+        &.disabled {
+          color: #c8c8c8;
+          cursor: not-allowed;
+        }
+      }
+      .el-input {
+        width: 185px;
+        margin: 0 15px 0 10px;
+        -webkit-app-region: no-drag;
+        .el-input__inner {
+          border: 1px solid #e5e5e5 !important;
+          border-radius: 40px;
+          font-size: 12px;
+        }
+      }
+      .el-dropdown {
+        -webkit-app-region: no-drag;
+        &:focus {
+          outline: none;
+        }
+        .el-icon-sort,
+        .el-icon-caret-bottom {
+          line-height: 40px;
+          color: #333;
+          font-size: 18px;
+          opacity: .7;
+          cursor: pointer;
+          &:hover {
+            opacity: 1;
+          }
+        }
+        .el-icon-caret-bottom {
+          font-size: 8px !important;
+          vertical-align: top;
+        }
+      }
+    }
+  }
+  .main-left-scrollbar {
+    top: 75px;
+  }
+}
+</style>
