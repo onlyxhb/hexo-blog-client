@@ -1,0 +1,66 @@
+* {
+  background: transparent;
+  font-family: system, -apple-system, 'Source Code Pro', 'Microsoft YaHei',
+    Menlo, Monaco, 'Courier New', monospace;
+}
+
+html,
+body {
+  overflow: hidden;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  background-color: #fff;
+}
+
+.markdown-body pre code,
+.token.punctuation {
+  color: #333;
+}
+
+.token.comment {
+  font-style: italic;
+}
+
+.hljs {
+  background: transparent !important;
+  color: #333 !important;
+}
+.v-show-content.scroll-style {
+  background-color: #fff !important;
+}
+
+.el-aside {
+  color: #333;
+}
+// 按钮的hover和active效果
+.click-back {
+  &:hover {
+    background-color: #E8F0FF;
+  }
+  &:active,
+  &:focus {
+    background-color: #D2E2FF;
+  }
+}
+// 内容区域滚动跳样式
+.main-scrollbar {
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  width: 100%;
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    height: 10px;
+    background-color: transparent;
+  }
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: #e8eaf4
+  }
+}

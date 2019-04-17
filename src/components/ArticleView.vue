@@ -4,7 +4,7 @@
       <article class="article" v-show="inited">
         <header class="article-header" :class="{ 'hasArticle': type==='recentArticle' }">
           <div class="window-operation"><slot name="opera"/></div>
-          <label class="article-title" v-show="type==='recentArticle'">{{ post.title }}</label>
+          <div class="artile-title-box"><label class="article-title" v-show="type==='recentArticle'">{{ post.title }}</label></div>
           <div class="article-sub" v-show="type==='recentArticle'">
             <div>
               <label class="article-time">{{ post.date.format('YYYY-MM-DD HH:mm:ss') }}</label>
@@ -23,7 +23,7 @@
             </label>
           </div>
         </header>
-        <div class="article-entry" v-if="type==='recentArticle'" v-html="post.content"/>
+        <div class="markdown-body" v-if="type==='recentArticle'" v-html="post.content"/>
         <div v-else class="article-no-data">
           <i class="iconfont" :class="type === 'articleTags' ? 'icon-tags' : 'icon-categories'"/>
           <p>无内容</p>
@@ -63,7 +63,7 @@
       },
       // 渲染图片
       renderImage () {
-        let contentDom = document.getElementsByClassName('article-entry')
+        let contentDom = document.getElementsByClassName('markdown-body')
         if (contentDom && contentDom.length > 0) {
           let sysConfig = this.$store.state.Config.config
           let images = contentDom[0].getElementsByTagName('img')
@@ -137,7 +137,8 @@
         })
       },
       sharePost () {
-        
+        let canonical_path= this.post.canonical_path
+        require('electron').shell.openExternal(`https://blog.onlystar.site/${canonical_path}`)
       }
     },
     computed: {
@@ -175,11 +176,23 @@
         right: 0;
         width: 120px;
       }
-      .article-title {
-        color: #000;
-        font-size: 19px;
-        line-height: 32px;
-        -webkit-app-region: no-drag;
+      .artile-title-box {
+        display: flex;
+        &::after {
+          content: '';
+          display: block;
+          width: 130px;
+        }
+        .article-title {
+          flex: 1;
+          color: #000;
+          font-size: 19px;
+          line-height: 32px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          -webkit-app-region: no-drag;
+        }
       }
       .article-sub {
         display: flex;
@@ -212,17 +225,18 @@
         }
       }
     }
-    .article-entry {
+    .markdown-body {
       overflow-x: hidden;
       overflow-y: auto;
       position: absolute;
       top: 75px;
       bottom: 0;
       width: 100%;
-      padding: 0 20px;
+      margin: 0 auto;
+      padding: 20px;
       box-sizing: border-box;
       line-height: 21px;
-      font-size: 15px;
+      font-size: 14px;
       &::-webkit-scrollbar {
         width: 10px;
         height: 10px;

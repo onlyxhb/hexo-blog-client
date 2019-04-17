@@ -4,9 +4,10 @@
     <div class="main-left-container">
       <el-form class="main-left-search">
         <el-form-item style="margin-bottom: 0;">
-          <i class="el-icon-back" :class="{ disabled: !getBackStatus }" :title="$t('goBack')" @click="$router.back()"/>
+          <i class="el-icon-back" :class="{ disabled: !getBackStatus }" :title="$t('goBack')" @click="handleBack"/>
           <el-input clearable :placeholder="$t('search')" v-model="keyword"/>
-          <el-dropdown placement="bottom-start" @command="handleDropdown">
+          <!-- 这里注释掉按条件筛选的下拉框 -->
+          <!-- <el-dropdown placement="bottom-start" @command="handleDropdown">
             <span class="el-dropdown-link">
               <i class="el-icon-sort"></i>
               <i class="el-icon-caret-bottom"></i>
@@ -17,7 +18,7 @@
                 {{item.text}}
               </el-dropdown-item>
             </el-dropdown-menu>
-          </el-dropdown>
+          </el-dropdown> -->
         </el-form-item>
       </el-form>
       <div class="main-left-scrollbar main-scrollbar">
@@ -68,6 +69,11 @@
     methods: {
       handleDropdown (command) {
         this.filterType = command
+      },
+      handleBack () {
+        if (this.getBackStatus) {
+          this.$router.back()
+        }
       }
     }
   }
@@ -108,7 +114,7 @@
         }
       }
       .el-input {
-        width: 185px;
+        // width: 185px;
         margin: 0 15px 0 10px;
         -webkit-app-region: no-drag;
         .el-input__inner {

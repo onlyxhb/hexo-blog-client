@@ -52,7 +52,6 @@
     "vue-cli-plugin-element": "^1.0.1",
     "vue-cli-plugin-i18n": "^0.5.2",
     "vue-template-compiler": "^2.5.21"
-    
   },
   "eslintConfig": {
     "root": true,
@@ -77,5 +76,6 @@
     "last 2 versions",
     "not ie <= 8"
   ],
-  "main": "background.js"
+  "main": "background.js",
+  "__npminstall_done": false
 }
