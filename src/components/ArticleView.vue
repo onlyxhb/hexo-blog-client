@@ -184,7 +184,7 @@
           width: 130px;
         }
         .article-title {
-          flex: 1;
+          // flex: 1;
           color: #000;
           font-size: 19px;
           line-height: 32px;
