@@ -1,11 +1,19 @@
 <template>
-  <mavon-editor ref="editor" :value="value" :toolbars="toolbars" :ishljs="true"
-                @imgAdd="imgAdd" @fullScreen="fullScreen" @change="change"
-                :language="editorLanguage" :boxShadow="false" :subfield="true" defaultOpen="edit"
-                :placeholder="$t('articleContentPlaceholder')"
-                codeStyle="atom-one-dark"
-                :style="{height: contentHeight, width: '100%'}"
-  />
+  <mavon-editor
+    class="custom-markdown-editor"
+    ref="editor"
+    :value="value"
+    :toolbars="toolbars"
+    :ishljs="true"
+    :toolbarsFlag="showToolbars"
+    @imgAdd="imgAdd"
+    @fullScreen="fullScreen"
+    @change="change"
+    :language="editorLanguage"
+    :boxShadow="false"
+    :subfield="subfield"
+    :defaultOpen="defaultOpen"
+    :placeholder="$t('articleContentPlaceholder')"/>
 </template>
 
 <script>
@@ -23,6 +31,18 @@
       initValue: {
         type: String,
         default: ''
+      },
+      showToolbars: {
+        type: Boolean,
+        default: false
+      },
+      defaultOpen: { // edit： 默认展示编辑区域 ， preview： 默认展示预览区域
+        type: String,
+        default: 'preview'
+      },
+      subfield: { // true： 双栏(编辑预览同屏)， false： 单栏(编辑预览分屏)
+        type: Boolean, 
+        default: false
       }
     },
     data () {

@@ -6,29 +6,13 @@
         <el-form-item style="margin-bottom: 0;">
           <i class="el-icon-back" :class="{ disabled: !getBackStatus }" :title="$t('goBack')" @click="handleBack"/>
           <el-input clearable :placeholder="$t('search')" v-model="keyword"/>
-          <!-- 这里注释掉按条件筛选的下拉框 -->
-          <!-- <el-dropdown placement="bottom-start" @command="handleDropdown">
-            <span class="el-dropdown-link">
-              <i class="el-icon-sort"></i>
-              <i class="el-icon-caret-bottom"></i>
-            </span>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item v-for="(item, index) in dropdownList" :key="index" :command="item.value">
-                <i class="el-icon-check" v-if="+filterType === item.value"/>
-                {{item.text}}
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown> -->
         </el-form-item>
       </el-form>
       <div class="main-left-scrollbar main-scrollbar">
         <article-list :type="type" :keyword="keyword"/>
       </div>
     </div>
-    <!-- 右侧部分 -->
-    <article-view :type="type">
-      <div slot="opera"><operation/></div>
-    </article-view>
+    <slot name="right-item"/>
   </el-container>
 </template>
 
@@ -44,10 +28,6 @@
       type: {
         type: String,
         default: 'recentArticle' // articleCategories articleTags
-      },
-      dropdownList: {
-        type: Array,
-        default: () => []
       },
       hasParentKey: {
         type: Boolean,

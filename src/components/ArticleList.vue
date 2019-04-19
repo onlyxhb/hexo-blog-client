@@ -13,7 +13,7 @@
         <div class="article-list-item">
           <i class="article-icon" :class="getListItemIcon"/>
           <span class="article-title">{{ item.title || item }}</span>
-          <span class="article-date">{{ item.date ? item.date.slice(0, 11) : '2018-03-12'}}</span>
+          <span class="article-date">{{ item.date ? item.date.slice(0, 11) : (new Date()).Format('yyyy-MM-dd')}}</span>
         </div>
       </div>
     </div>
