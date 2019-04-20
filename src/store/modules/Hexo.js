@@ -56,9 +56,12 @@ const actions = {
     } else {
       let hexo = new Hexo(config.path, {
         debug: false,
+        safe: true,
         silent: true // 开启安静模式。不在终端中显示任何信息。
       })
       await hexo.init()
+
+      // await hexo.load()
       await hexo.watch()
 
       context.dispatch('UiStatus/setDialogFormVisible', false, {root: true})
@@ -76,12 +79,21 @@ const actions = {
   },
 
   /**
+   * 清除缓存
+   * @param context
+   */
+  clean (context) {
+    context.state.instance.locals.invalidate()
+  },
+
+  /**
    * 获取文章
    * @param context
    * @param postId
    * @returns {*}
    */
   getPost (context, postId) {
+    if (!context.state.instance || !context.state.instance.locals) return {}
     return context.state.instance.locals.get('posts').findOne({_id: postId})
   },
 
@@ -243,6 +255,7 @@ const getters = {
    * @returns {Array}
    */
   tags: state => {
+    if (!state.instance || !state.instance.locals) return []
     let tags = []
     if (state.instance && state.instance.locals) {
       let temp = state.instance.locals.get('tags')
@@ -262,10 +275,10 @@ const getters = {
    * @returns {Array}
    */
   categories: state => {
+    if (!state.instance || !state.instance.locals) return []
     let categories = []
     if (state.instance && state.instance.locals) {
       let temp = state.instance.locals.get('categories')
-      console.log(temp)
       if (temp && temp.length > 0) {
         temp.forEach(category => {
           if (!categories.includes(category.name)) {
@@ -282,6 +295,7 @@ const getters = {
    * @returns {Array}
    */
   posts: state => {
+    if (!state.instance || !state.instance.locals) return []
     let posts = []
     let temp = state.instance.locals.get('posts').sort('date', -1)
     if (temp && temp.length > 0) {
@@ -297,6 +311,7 @@ const getters = {
    * @returns {Array}
    */
   filteredPosts: state => {
+    if (!state.instance || !state.instance.locals) return []
     let posts = []
     let temp = state.instance.locals.get('posts').sort('date', -1)
     if (temp && temp.length > 0) {
@@ -327,6 +342,7 @@ const getters = {
    * @returns {{}}
    */
   selectedPost: state => {
+    if (!state.instance || !state.instance.locals) return {}
     let posts = state.instance.locals.get('posts').sort('date', -1)
     let selectedPostId = state.selectedPostId
     if (!selectedPostId && posts.length > 0) { // 如果没选中，那么默认显示第一篇

@@ -1,0 +1,262 @@
+{"name":"hexo","hostname":"onlystar","pid":13848,"level":20,"msg":"Writing database to E:\\前端学习\\GitLab\\onlystar.gitlab.io/db.json","time":"2019-04-20T10:43:43.169Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":13848,"level":20,"msg":"Hexo version: 3.8.0","time":"2019-04-20T10:43:43.178Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":13848,"level":20,"msg":"Working directory: E:\\前端学习\\GitLab\\onlystar.gitlab.io\\","time":"2019-04-20T10:43:43.179Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":13848,"level":20,"msg":"Config loaded: E:\\前端学习\\GitLab\\onlystar.gitlab.io\\_config.yml","time":"2019-04-20T10:43:44.111Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":13848,"level":20,"msg":"Plugin loaded: hexo-deployer-git","time":"2019-04-20T10:43:44.720Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":13848,"level":20,"msg":"Plugin loaded: hexo-generator-archive","time":"2019-04-20T10:43:44.728Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":13848,"level":20,"msg":"Plugin loaded: hexo-generator-category","time":"2019-04-20T10:43:44.731Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":13848,"level":20,"msg":"Plugin loaded: hexo-generator-feed","time":"2019-04-20T10:43:44.836Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":13848,"level":20,"msg":"Plugin loaded: hexo-generator-index","time":"2019-04-20T10:43:44.843Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":13848,"level":20,"msg":"Plugin loaded: hexo-generator-search","time":"2019-04-20T10:43:44.847Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":13848,"level":20,"msg":"Plugin loaded: hexo-generator-tag","time":"2019-04-20T10:43:44.850Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":13848,"level":20,"msg":"Plugin loaded: hexo-permalink-pinyin","time":"2019-04-20T10:43:44.869Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":13848,"level":20,"msg":"Plugin loaded: hexo-prism-plugin","time":"2019-04-20T10:43:45.197Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":13848,"level":20,"msg":"Plugin loaded: hexo-renderer-ejs","time":"2019-04-20T10:43:45.205Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":13848,"level":20,"msg":"Plugin loaded: hexo-renderer-marked","time":"2019-04-20T10:43:45.286Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":13848,"level":20,"msg":"Plugin loaded: hexo-renderer-stylus","time":"2019-04-20T10:43:45.288Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":13848,"level":20,"msg":"Plugin loaded: hexo-server","time":"2019-04-20T10:43:45.502Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":13848,"level":20,"msg":"Plugin loaded: hexo-wordcount","time":"2019-04-20T10:43:45.504Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":8376,"level":20,"msg":"Writing database to E:\\前端学习\\GitLab\\onlystar.gitlab.io/db.json","time":"2019-04-20T10:44:40.175Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":8376,"level":20,"msg":"Hexo version: 3.8.0","time":"2019-04-20T10:44:40.189Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":8376,"level":20,"msg":"Working directory: E:\\前端学习\\GitLab\\onlystar.gitlab.io\\","time":"2019-04-20T10:44:40.189Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":8376,"level":20,"msg":"Config loaded: E:\\前端学习\\GitLab\\onlystar.gitlab.io\\_config.yml","time":"2019-04-20T10:44:41.483Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":8376,"level":20,"msg":"Plugin loaded: hexo-deployer-git","time":"2019-04-20T10:44:42.365Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":8376,"level":20,"msg":"Plugin loaded: hexo-generator-archive","time":"2019-04-20T10:44:42.376Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":8376,"level":20,"msg":"Plugin loaded: hexo-generator-category","time":"2019-04-20T10:44:42.385Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":8376,"level":20,"msg":"Plugin loaded: hexo-generator-feed","time":"2019-04-20T10:44:42.503Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":8376,"level":20,"msg":"Plugin loaded: hexo-generator-index","time":"2019-04-20T10:44:42.510Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":8376,"level":20,"msg":"Plugin loaded: hexo-generator-search","time":"2019-04-20T10:44:42.515Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":8376,"level":20,"msg":"Plugin loaded: hexo-generator-tag","time":"2019-04-20T10:44:42.519Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":8376,"level":20,"msg":"Plugin loaded: hexo-permalink-pinyin","time":"2019-04-20T10:44:42.544Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":8376,"level":20,"msg":"Plugin loaded: hexo-prism-plugin","time":"2019-04-20T10:44:43.056Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":8376,"level":20,"msg":"Plugin loaded: hexo-renderer-ejs","time":"2019-04-20T10:44:43.065Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":8376,"level":20,"msg":"Plugin loaded: hexo-renderer-marked","time":"2019-04-20T10:44:43.154Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":8376,"level":20,"msg":"Plugin loaded: hexo-renderer-stylus","time":"2019-04-20T10:44:43.156Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":8376,"level":20,"msg":"Plugin loaded: hexo-server","time":"2019-04-20T10:44:43.323Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":8376,"level":20,"msg":"Plugin loaded: hexo-wordcount","time":"2019-04-20T10:44:43.324Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":12532,"level":20,"msg":"Writing database to E:\\前端学习\\GitLab\\onlystar.gitlab.io/db.json","time":"2019-04-20T10:47:10.809Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":12532,"level":20,"msg":"Hexo version: 3.8.0","time":"2019-04-20T10:47:10.822Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":12532,"level":20,"msg":"Working directory: E:\\前端学习\\GitLab\\onlystar.gitlab.io\\","time":"2019-04-20T10:47:10.822Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":12532,"level":20,"msg":"Config loaded: E:\\前端学习\\GitLab\\onlystar.gitlab.io\\_config.yml","time":"2019-04-20T10:47:11.644Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":9960,"level":20,"msg":"Writing database to E:\\前端学习\\GitLab\\onlystar.gitlab.io/db.json","time":"2019-04-20T10:47:55.824Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":9960,"level":20,"msg":"Hexo version: 3.8.0","time":"2019-04-20T10:47:55.839Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":9960,"level":20,"msg":"Working directory: E:\\前端学习\\GitLab\\onlystar.gitlab.io\\","time":"2019-04-20T10:47:55.840Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":9960,"level":20,"msg":"Config loaded: E:\\前端学习\\GitLab\\onlystar.gitlab.io\\_config.yml","time":"2019-04-20T10:47:57.085Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":9960,"level":20,"msg":"Plugin loaded: hexo-deployer-git","time":"2019-04-20T10:47:58.040Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":9960,"level":20,"msg":"Plugin loaded: hexo-generator-archive","time":"2019-04-20T10:47:58.051Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":9960,"level":20,"msg":"Plugin loaded: hexo-generator-category","time":"2019-04-20T10:47:58.055Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":9960,"level":20,"msg":"Plugin loaded: hexo-generator-feed","time":"2019-04-20T10:47:58.186Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":9960,"level":20,"msg":"Plugin loaded: hexo-generator-index","time":"2019-04-20T10:47:58.190Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":9960,"level":20,"msg":"Plugin loaded: hexo-generator-search","time":"2019-04-20T10:47:58.195Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":9960,"level":20,"msg":"Plugin loaded: hexo-generator-tag","time":"2019-04-20T10:47:58.198Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":9960,"level":20,"msg":"Plugin loaded: hexo-permalink-pinyin","time":"2019-04-20T10:47:58.230Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":9960,"level":20,"msg":"Plugin loaded: hexo-prism-plugin","time":"2019-04-20T10:47:58.746Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":9960,"level":20,"msg":"Plugin loaded: hexo-renderer-ejs","time":"2019-04-20T10:47:58.755Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":9960,"level":20,"msg":"Plugin loaded: hexo-renderer-marked","time":"2019-04-20T10:47:58.832Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":9960,"level":20,"msg":"Plugin loaded: hexo-renderer-stylus","time":"2019-04-20T10:47:58.833Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":9960,"level":20,"msg":"Plugin loaded: hexo-server","time":"2019-04-20T10:47:59.002Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":9960,"level":20,"msg":"Plugin loaded: hexo-wordcount","time":"2019-04-20T10:47:59.003Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Writing database to E:\\前端学习\\GitLab\\onlystar.gitlab.io/db.json","time":"2019-04-20T10:48:33.439Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Hexo version: 3.8.0","time":"2019-04-20T10:48:33.468Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Working directory: E:\\前端学习\\GitLab\\onlystar.gitlab.io\\","time":"2019-04-20T10:48:33.468Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Config loaded: E:\\前端学习\\GitLab\\onlystar.gitlab.io\\_config.yml","time":"2019-04-20T10:48:34.659Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Plugin loaded: hexo-generator-archive","time":"2019-04-20T10:48:34.743Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Plugin loaded: hexo-deployer-git","time":"2019-04-20T10:48:35.481Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Plugin loaded: hexo-generator-category","time":"2019-04-20T10:48:35.487Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Plugin loaded: hexo-generator-feed","time":"2019-04-20T10:48:35.595Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Plugin loaded: hexo-generator-index","time":"2019-04-20T10:48:35.599Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Plugin loaded: hexo-generator-search","time":"2019-04-20T10:48:35.606Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Plugin loaded: hexo-generator-tag","time":"2019-04-20T10:48:35.610Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Plugin loaded: hexo-permalink-pinyin","time":"2019-04-20T10:48:35.631Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Plugin loaded: hexo-prism-plugin","time":"2019-04-20T10:48:36.096Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Plugin loaded: hexo-renderer-ejs","time":"2019-04-20T10:48:36.106Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Plugin loaded: hexo-renderer-marked","time":"2019-04-20T10:48:36.187Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Plugin loaded: hexo-renderer-stylus","time":"2019-04-20T10:48:36.189Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Plugin loaded: hexo-server","time":"2019-04-20T10:48:36.334Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Plugin loaded: hexo-wordcount","time":"2019-04-20T10:48:36.335Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Loading database.","time":"2019-04-20T10:48:36.407Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":30,"msg":"Start processing","time":"2019-04-20T10:48:37.306Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _data/friends.json","time":"2019-04-20T10:48:37.520Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _data/musics.json","time":"2019-04-20T10:48:37.523Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/Git基本操作.md","time":"2019-04-20T10:48:37.529Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/PC页面实现换肤.md","time":"2019-04-20T10:48:37.541Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/TypeScript学习（一）.md","time":"2019-04-20T10:48:37.544Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/Unable to preventDefault inside passive event listener.md","time":"2019-04-20T10:48:37.548Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/css知识漏洞.md","time":"2019-04-20T10:48:37.554Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/js判断是否为对象.md","time":"2019-04-20T10:48:37.557Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/js常用工具方法.md","time":"2019-04-20T10:48:37.563Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/ueditor多图上传至阿里云oss.md","time":"2019-04-20T10:48:37.570Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/vue插件开发.md","time":"2019-04-20T10:48:37.574Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/vue自定义组件使用v-model.md","time":"2019-04-20T10:48:37.579Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/vue项目优化之打包速度.md","time":"2019-04-20T10:48:37.588Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/webpack学习.md","time":"2019-04-20T10:48:37.595Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/winscp普通用户上传文件没有权限解决.md","time":"2019-04-20T10:48:37.599Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/使用jsencrypt实现密码的前端加密.md","time":"2019-04-20T10:48:37.605Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/图片上传知识点梳理.md","time":"2019-04-20T10:48:37.607Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/常用的css动画库.md","time":"2019-04-20T10:48:37.612Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/正则常用字符含义.md","time":"2019-04-20T10:48:37.614Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/详解js中的!~.md","time":"2019-04-20T10:48:37.618Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/阿里前端监控.md","time":"2019-04-20T10:48:37.622Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: about/index.md","time":"2019-04-20T10:48:37.624Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: categories/index.md","time":"2019-04-20T10:48:37.627Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: friends/index.md","time":"2019-04-20T10:48:37.629Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: tags/index.md","time":"2019-04-20T10:48:37.632Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/favicon.png","time":"2019-04-20T10:48:37.661Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/css/gitment.css","time":"2019-04-20T10:48:37.801Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/css/matery.css","time":"2019-04-20T10:48:37.805Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/css/my-gitalk.css","time":"2019-04-20T10:48:37.807Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/css/my.css","time":"2019-04-20T10:48:37.810Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/js/matery.js","time":"2019-04-20T10:48:37.813Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/js/search.js","time":"2019-04-20T10:48:37.815Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/avatar.jpg","time":"2019-04-20T10:48:37.831Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/logo.png","time":"2019-04-20T10:48:37.838Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/Vue之keep-alive页面前进刷新后退缓存.md","time":"2019-04-20T10:48:37.858Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Theme config loaded.","time":"2019-04-20T10:48:37.878Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _config.yml","time":"2019-04-20T10:48:37.878Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/Flutter学习-（一）.md","time":"2019-04-20T10:48:37.923Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: languages/default.yml","time":"2019-04-20T10:48:37.925Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: languages/zh-CN.yml","time":"2019-04-20T10:48:37.929Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/about.ejs","time":"2019-04-20T10:48:37.940Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/archive.ejs","time":"2019-04-20T10:48:37.944Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/categories.ejs","time":"2019-04-20T10:48:37.945Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/category.ejs","time":"2019-04-20T10:48:37.948Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/friends.ejs","time":"2019-04-20T10:48:37.951Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/index.ejs","time":"2019-04-20T10:48:37.954Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/layout.ejs","time":"2019-04-20T10:48:37.956Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/post.ejs","time":"2019-04-20T10:48:37.957Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/tag.ejs","time":"2019-04-20T10:48:37.960Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/tags.ejs","time":"2019-04-20T10:48:37.961Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/animate/animate.min.css","time":"2019-04-20T10:48:37.964Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/aos/aos.css","time":"2019-04-20T10:48:37.968Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/aos/aos.js","time":"2019-04-20T10:48:37.970Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/aplayer/APlayer.min.css","time":"2019-04-20T10:48:37.973Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/cryptojs/crypto-js.min.js","time":"2019-04-20T10:48:37.976Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/dplayer/DPlayer.min.css","time":"2019-04-20T10:48:37.978Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/gitalk/gitalk.css","time":"2019-04-20T10:48:37.981Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/gitment/gitment-default.css","time":"2019-04-20T10:48:37.985Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/jqcloud/jqcloud-1.0.4.min.js","time":"2019-04-20T10:48:37.987Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/jqcloud/jqcloud.css","time":"2019-04-20T10:48:37.990Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/masonry/masonry.pkgd.min.js","time":"2019-04-20T10:48:37.994Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/others/busuanzi.pure.mini.js","time":"2019-04-20T10:48:37.997Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/others/clicklove.js","time":"2019-04-20T10:48:38.001Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/scrollprogress/scrollProgress.min.js","time":"2019-04-20T10:48:38.004Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/tocbot/tocbot.css","time":"2019-04-20T10:48:38.007Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/tocbot/tocbot.min.js","time":"2019-04-20T10:48:38.009Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/cover.jpg","time":"2019-04-20T10:48:38.015Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/13.jpg","time":"2019-04-20T10:48:38.020Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/15.jpg","time":"2019-04-20T10:48:38.022Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/16.jpg","time":"2019-04-20T10:48:38.025Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/21.jpg","time":"2019-04-20T10:48:38.029Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/22.jpg","time":"2019-04-20T10:48:38.030Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/23.jpg","time":"2019-04-20T10:48:38.034Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/5.jpg","time":"2019-04-20T10:48:38.037Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/7.jpg","time":"2019-04-20T10:48:38.040Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/8.jpg","time":"2019-04-20T10:48:38.043Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/reward/wechat.png","time":"2019-04-20T10:48:38.049Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: _posts/小程序canvas绘图.md","time":"2019-04-20T10:48:38.062Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/aplayer/APlayer.min.js","time":"2019-04-20T10:48:38.075Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/dplayer/DPlayer.min.js","time":"2019-04-20T10:48:38.080Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/gitment/gitment.js","time":"2019-04-20T10:48:38.084Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/jquery/jquery-2.2.0.min.js","time":"2019-04-20T10:48:38.088Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/valine/Valine.min.js","time":"2019-04-20T10:48:38.093Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/banner/0.jpg","time":"2019-04-20T10:48:38.095Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/0.jpg","time":"2019-04-20T10:48:38.101Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/1.jpg","time":"2019-04-20T10:48:38.104Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/10.jpg","time":"2019-04-20T10:48:38.108Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/11.jpg","time":"2019-04-20T10:48:38.110Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/12.jpg","time":"2019-04-20T10:48:38.114Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/14.jpg","time":"2019-04-20T10:48:38.119Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/17.jpg","time":"2019-04-20T10:48:38.133Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/18.jpg","time":"2019-04-20T10:48:38.138Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/19.jpg","time":"2019-04-20T10:48:38.141Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/2.jpg","time":"2019-04-20T10:48:38.145Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/20.jpg","time":"2019-04-20T10:48:38.148Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/3.jpg","time":"2019-04-20T10:48:38.153Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/4.jpg","time":"2019-04-20T10:48:38.156Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/6.jpg","time":"2019-04-20T10:48:38.159Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/featureimages/9.jpg","time":"2019-04-20T10:48:38.163Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/reward/alipay.jpg","time":"2019-04-20T10:48:38.169Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/back-top.ejs","time":"2019-04-20T10:48:38.190Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/bg-cover-content.ejs","time":"2019-04-20T10:48:38.191Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/bg-cover.ejs","time":"2019-04-20T10:48:38.195Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/disqus.ejs","time":"2019-04-20T10:48:38.196Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/footer.ejs","time":"2019-04-20T10:48:38.197Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/gitalk.ejs","time":"2019-04-20T10:48:38.198Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/github-link.ejs","time":"2019-04-20T10:48:38.200Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/gitment.ejs","time":"2019-04-20T10:48:38.203Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/google-analytics.ejs","time":"2019-04-20T10:48:38.203Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/head.ejs","time":"2019-04-20T10:48:38.205Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/header.ejs","time":"2019-04-20T10:48:38.205Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/index-cover.ejs","time":"2019-04-20T10:48:38.207Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/livere.ejs","time":"2019-04-20T10:48:38.209Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/mobile-nav.ejs","time":"2019-04-20T10:48:38.210Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/navigation.ejs","time":"2019-04-20T10:48:38.210Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/paging.ejs","time":"2019-04-20T10:48:38.211Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/post-cover.ejs","time":"2019-04-20T10:48:38.212Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/post-detail-toc.ejs","time":"2019-04-20T10:48:38.214Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/post-detail.ejs","time":"2019-04-20T10:48:38.218Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/post-statis.ejs","time":"2019-04-20T10:48:38.220Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/reward.ejs","time":"2019-04-20T10:48:38.220Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/search.ejs","time":"2019-04-20T10:48:38.222Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/share.ejs","time":"2019-04-20T10:48:38.222Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/social-link.ejs","time":"2019-04-20T10:48:38.223Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/valine.ejs","time":"2019-04-20T10:48:38.226Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_widget/category-cloud.ejs","time":"2019-04-20T10:48:38.228Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_widget/category-radar.ejs","time":"2019-04-20T10:48:38.229Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_widget/dream.ejs","time":"2019-04-20T10:48:38.230Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_widget/music.ejs","time":"2019-04-20T10:48:38.231Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_widget/my-gallery.ejs","time":"2019-04-20T10:48:38.232Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_widget/my-projects.ejs","time":"2019-04-20T10:48:38.234Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_widget/my-skills.ejs","time":"2019-04-20T10:48:38.240Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_widget/post-calendar.ejs","time":"2019-04-20T10:48:38.241Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_widget/post-charts.ejs","time":"2019-04-20T10:48:38.244Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_widget/recommend.ejs","time":"2019-04-20T10:48:38.247Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_widget/tag-cloud.ejs","time":"2019-04-20T10:48:38.248Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_widget/tag-wordcloud.ejs","time":"2019-04-20T10:48:38.250Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_widget/video.ejs","time":"2019-04-20T10:48:38.253Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/awesome/css/font-awesome.min.css","time":"2019-04-20T10:48:38.257Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/gitalk/gitalk.min.js","time":"2019-04-20T10:48:38.262Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/lightGallery/css/lightgallery.min.css","time":"2019-04-20T10:48:38.266Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/lightGallery/fonts/lg.eot","time":"2019-04-20T10:48:38.270Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/lightGallery/fonts/lg.svg","time":"2019-04-20T10:48:38.273Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/lightGallery/fonts/lg.ttf","time":"2019-04-20T10:48:38.276Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/lightGallery/fonts/lg.woff","time":"2019-04-20T10:48:38.279Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/lightGallery/img/loading.gif","time":"2019-04-20T10:48:38.286Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/lightGallery/img/video-play.png","time":"2019-04-20T10:48:38.290Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/lightGallery/img/vimeo-play.png","time":"2019-04-20T10:48:38.293Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/lightGallery/img/youtube-play.png","time":"2019-04-20T10:48:38.297Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/lightGallery/js/lightgallery-all.min.js","time":"2019-04-20T10:48:38.302Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/materialize/materialize.min.css","time":"2019-04-20T10:48:38.305Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/materialize/materialize.min.js","time":"2019-04-20T10:48:38.307Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/share/css/share.min.css","time":"2019-04-20T10:48:38.311Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/share/fonts/iconfont.eot","time":"2019-04-20T10:48:38.313Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/share/fonts/iconfont.svg","time":"2019-04-20T10:48:38.316Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/share/fonts/iconfont.ttf","time":"2019-04-20T10:48:38.320Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/share/fonts/iconfont.woff","time":"2019-04-20T10:48:38.322Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/share/js/jquery.share.min.js","time":"2019-04-20T10:48:38.325Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/share/js/social-share.min.js","time":"2019-04-20T10:48:38.328Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/valine/av-min.js","time":"2019-04-20T10:48:38.330Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/banner/1.jpg","time":"2019-04-20T10:48:38.334Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/banner/2.jpg","time":"2019-04-20T10:48:38.337Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/banner/3.jpg","time":"2019-04-20T10:48:38.339Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/banner/5.jpg","time":"2019-04-20T10:48:38.343Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/banner/6.jpg","time":"2019-04-20T10:48:38.346Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: layout/_partial/prev-next.ejs","time":"2019-04-20T10:48:38.368Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/awesome/fonts/fontawesome-webfont.woff2","time":"2019-04-20T10:48:38.380Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/awesome/fonts/fontawesome-webfont.woff","time":"2019-04-20T10:48:38.391Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/awesome/fonts/FontAwesome.otf","time":"2019-04-20T10:48:38.395Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/awesome/fonts/fontawesome-webfont.eot","time":"2019-04-20T10:48:38.398Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/awesome/fonts/fontawesome-webfont.ttf","time":"2019-04-20T10:48:38.402Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/medias/banner/4.jpg","time":"2019-04-20T10:48:38.404Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/awesome/fonts/fontawesome-webfont.svg","time":"2019-04-20T10:48:38.412Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Processed: source/libs/echarts/echarts.min.js","time":"2019-04-20T10:48:38.431Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Generator: page","time":"2019-04-20T10:48:39.322Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Generator: post","time":"2019-04-20T10:48:39.322Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Generator: archive","time":"2019-04-20T10:48:39.322Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Generator: category","time":"2019-04-20T10:48:39.322Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Generator: feed","time":"2019-04-20T10:48:39.322Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Generator: index","time":"2019-04-20T10:48:39.322Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Generator: xml","time":"2019-04-20T10:48:39.322Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Generator: tag","time":"2019-04-20T10:48:39.322Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Generator: prism_assets","time":"2019-04-20T10:48:39.322Z","v":0}
+{"name":"hexo","hostname":"onlystar","pid":14128,"level":20,"msg":"Generator: asset","time":"2019-04-20T10:48:39.457Z","v":0}

@@ -38,8 +38,9 @@
         title="文章设置"
         :show-close="false"
         :visible.sync="visible"
+        :before-close="handleDialogCancel"
         width="500px">
-        <el-form :model="postForm" :rules="postFormRules" label-width="80px"  ref="postForm">
+        <el-form :model="postForm" :rules="postFormRules" label-width="80px"  ref="postForm" :show-message="false">
           <el-form-item label="文章标题" prop="title">
             <el-input v-model="postForm.title" placeholder="请输入文章标题" :disabled="type === 'edit'"></el-input>
           </el-form-item>
@@ -49,7 +50,7 @@
           <el-form-item label="文章作者" prop="author">
             <el-input v-model="postForm.author" placeholder="请输入文章作者"></el-input>
           </el-form-item>
-          <el-form-item label="分类标签">
+          <el-form-item label="分类标签" prop="categories">
             <el-col :span="11">
               <el-select v-model="postForm.categories" placeholder="请选择分类" multiple filterable allow-create default-first-option>
                 <el-option
@@ -74,11 +75,11 @@
           </el-form-item>
           <el-form-item label="文章时间">
             <el-col :span="11">
-              <el-date-picker type="date" placeholder="创建时间" v-model="postForm.createTime" style="width: 100%;"/>
+              <el-date-picker type="datetime" placeholder="创建时间" v-model="postForm.createTime" style="width: 100%;"/>
             </el-col>
             <el-col :span="2" class="line"/>
             <el-col :span="11">
-              <el-date-picker placeholder="修改时间" v-model="postForm.date" style="width: 100%;"/>
+              <el-date-picker type="datetime" placeholder="修改时间" v-model="postForm.date" style="width: 100%;"/>
             </el-col>
           </el-form-item>
           <el-form-item label="开启目录">
@@ -93,8 +94,8 @@
             </el-col>
           </el-form-item>
           <el-form-item style="text-align: center">
-            <el-button type="primary" @click="visible = false, formChanged = true">确定</el-button>
-            <el-button @click="visible = false">取消</el-button>
+            <el-button type="primary" @click="handleDialogConfirm">确定</el-button>
+            <el-button @click="handleDialogCancel">取消</el-button>
           </el-form-item>
         </el-form>
       </el-dialog>
@@ -113,6 +114,16 @@
     name: 'main-page',
     components: {ArticleMain, ArticleView , MarkdownEditor},
     data () {
+      const validateCateTags = (rule, value, callback) => {
+        let { categories, tags } = this.postForm
+        if (!categories || !categories.length) {
+          callback(new Error('请选择分类'))
+        } else if (!categories || !categories.length) {
+          callback(new Error('请选择标签'))
+        } else {
+          callback()
+        }
+      }
       return {
         visible: this.type === 'add', // 是否弹出dialog
         hasParentKey: false, // 从分类和标签页带条件过来
@@ -128,8 +139,8 @@
           categories: [], // 分类
           toc: false, // 开启toc
           img:  '', // 文章首页图
-          createTime: '', // 创建时间
-          date: '', // 修改时间
+          createTime: Utils.formatDate(new Date()), // 创建时间
+          date: Utils.formatDate(new Date()), // 修改时间
           author: '徐辉波' // 文章作者
         },
         postFormRules: {
@@ -141,6 +152,7 @@
             {required: true, message: '请输入作者', trigger: 'blur'},
             {min: 1, max: 20, message: '长度在 13 到 20 个字符', trigger: 'blur'}
           ],
+          categories: [{required: true, validator: validateCateTags, trigger: 'blur'}],
           content: [
             {required: true, message: '请输入内容', trigger: 'blur'}
           ]
@@ -159,6 +171,26 @@
     },
     updated () {
       this.renderArticle()
+    },
+    watch: {
+      type (val, old) {
+        if (val === 'add') {
+          this.postForm = {
+            title: '', // 文章标题
+            path: '', // 文章路径
+            originContent: '', // 原文
+            content: '', // 修改后文
+            tags: [], // 标签
+            categories: [], // 分类
+            toc: false, // 开启toc
+            img:  '', // 文章首页图
+            createTime: Utils.formatDate(new Date()), // 创建时间
+            date: Utils.formatDate(new Date()), // 修改时间
+            author: '徐辉波' // 文章作者
+          }
+          this.visible = true
+        }
+      }
     },
     methods: {
       ...mapMutations({
@@ -253,6 +285,7 @@
               break
             case 'date':
               me.postForm.date = post.date.format('YYYY-MM-DD HH:mm:ss')
+              me.postForm.createTime = me.postForm.date
               break
             case 'toc':
               me.postForm.toc = post.toc
@@ -290,6 +323,17 @@
       setPost () {
         this.visible = !this.visible
       },
+      handleDialogConfirm () {
+        this.$refs.postForm.validate(err => {
+          if (!err) return false
+          this.visible = false
+          this.formChanged = true
+        })
+      },
+      handleDialogCancel () {
+        this.visible = false
+        // this.changeType('preview')
+      },
       /**
       * @func 保存弹框的表单信息
       */
@@ -300,12 +344,17 @@
           action = 'Hexo/editPost'
           text = '修改'
         }
-        let valid = await this.$store.dispatch('Hexo/validatePostForm', this.$refs.postForm)
+        console.log(this.$refs.postForm)
+        let valid = this.$refs.postForm ? await this.$store.dispatch('Hexo/validatePostForm', this.$refs.postForm) : true
         if (valid) {
           try {
-            await this.$store.dispatch(action, this.postForm)
+            let submitForm = Object.assign({}, this.postForm)
+            if (!submitForm.img) {
+              delete submitForm.img
+            }
+            await this.$store.dispatch(action, submitForm)
             this.formChanged = false
-            this.postForm.originContent = this.postForm.content
+            this.postForm.originContent = submitForm.content
             this.$notify({title: '成功', message: `${text}成功`, type: 'success'})
           } catch (err) {
             this.$notify.error({title: '错误', message: `${text}失败`})

@@ -2,13 +2,13 @@
   <div id="app" :style="{'height': windowHeight}">
     <el-container v-if="inited">
       <el-aside class="sidebar">
-        <main-menu></main-menu>
+        <main-menu/>
       </el-aside>
 
       <el-main class="app-main">
         <el-container class="app-container">
           <el-main class="main">
-            <router-view></router-view>
+            <router-view/>
           </el-main>
         </el-container>
       </el-main>

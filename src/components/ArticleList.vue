@@ -13,7 +13,7 @@
         <div class="article-list-item">
           <i class="article-icon" :class="getListItemIcon"/>
           <span class="article-title">{{ item.title || item }}</span>
-          <span class="article-date">{{ item.date ? item.date.slice(0, 11) : (new Date()).Format('yyyy-MM-dd')}}</span>
+          <span class="article-date">{{ item.date ? item.date.slice(0, 11) : formatDate(new Date(), 'YYYY-MM-DD')}}</span>
         </div>
       </div>
     </div>
@@ -27,6 +27,7 @@
 
 <script>
   import { mapGetters, mapMutations } from 'vuex'
+  import Utils from '@/service/Utils'
   export default {
     data () {
       return {
@@ -51,6 +52,7 @@
     },
 
     methods: {
+      formatDate: Utils.formatDate,
       ...mapMutations({
         changeType: 'Article/changeType'
       }),

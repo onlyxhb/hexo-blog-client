@@ -3,7 +3,7 @@
     <img src="../assets/images/icon.png" draggable="false" :title="$t('imgTitle')" class="icon"/>
     <ul class="custom-opeartor">
       <li :title="$t('deploy')"><deploy/></li>
-      <li :title="$t('refresh')"><i class="el-icon-refresh"></i></li>
+      <li :title="$t('refresh')" @click="reload"><i class="el-icon-refresh"></i></li>
     </ul>
     <p class="add-article" :title="$t('new')" @click="handleAddArticle"><i class="el-icon-plus"></i></p>
     <el-menu
@@ -35,7 +35,7 @@
 <script>
   const { ipcRenderer } = require('electron')
   import Deploy from '@/components/Deploy'
-  import { mapMutations } from 'vuex'
+  import { mapMutations, mapActions } from 'vuex'
   export default {
     data () {
       return {}
@@ -53,6 +53,7 @@
           case 'tags':
           case 'settings':
           case 'about':
+            this.changeType('preview')
             this.$router.push({name: index})
             break
           default:
@@ -62,6 +63,9 @@
       handleAddArticle () {
         this.changeType('add')
         this.$router.push({name: 'main'})
+      },
+      reload () {
+        window.location.reload()
       }
     }
   }

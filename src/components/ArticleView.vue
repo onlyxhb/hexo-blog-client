@@ -16,7 +16,7 @@
               </label>
             </div>
             <label class="article-opa" @click="handleArticle">
-              <i v-if="type !== 'add'" class="click-back" :class="type === 'preview' ? 'el-icon-edit' : 'el-icon-tickets'" name="edit"/>
+              <i class="click-back" :class="type === 'preview' ? 'el-icon-edit' : 'el-icon-tickets'" name="edit"/>
               <i v-if="type === 'preview'" class="el-icon-delete click-back" name="delete"/>
               <i v-if="type === 'preview'" class="el-icon-share click-back" name="share"/>
               <i v-if="type !== 'preview'" class="el-icon-check click-back" name="save"/>
@@ -134,6 +134,7 @@
       }
       .artile-title-box {
         display: flex;
+        height: 32px;
         &::after {
           content: '';
           display: block;
