@@ -7,7 +7,7 @@
           <div class="artile-title-box"><label class="article-title">{{ post.title }}</label></div>
           <div class="article-sub">
             <div>
-              <label class="article-time">{{ post.date.format('YYYY-MM-DD HH:mm:ss') }}</label>
+              <label class="article-time">{{ type === 'preview' ? post.date.format('YYYY-MM-DD HH:mm:ss') : post.date }}</label>
               <label class="article-cat" v-for="(category, index) in post.categories.data" :key="index + category.name">
                 <el-tag size="small">{{ category.name }}</el-tag>
               </label>
@@ -17,9 +17,27 @@
             </div>
             <label class="article-opa" @click="handleArticle">
               <i v-if="type !== 'add'" class="click-back" :class="type === 'preview' ? 'el-icon-edit' : 'el-icon-tickets'" name="edit"/>
-              <i class="el-icon-delete click-back" name="delete"/>
-              <i class="el-icon-share click-back" name="share"/>
-              <i class="el-icon-more click-back" name="more" />
+              <i v-if="type === 'preview'" class="el-icon-delete click-back" name="delete"/>
+              <i v-if="type === 'preview'" class="el-icon-share click-back" name="share"/>
+              <i v-if="type !== 'preview'" class="el-icon-check click-back" name="save"/>
+              <i v-if="type !== 'preview'" class="el-icon-setting click-back" name="setting"/>
+              <!-- <i v-if="type !== 'preview'" class="el-icon-more click-back" name="more"/> -->
+              <!-- <el-popover
+                popper-class="custom-popover-more"
+                :visible-arrow="false"
+                placement="bottom"
+                width="165px"
+                trigger="click">
+                <i class="el-icon-more click-back" name="more" slot="reference"/>
+                <el-table :data="popoverData">
+                  <el-table-column width="35" align="right" property="icon">
+                    <template slot-scope="scope">
+                      <i :class="scope.row.icon"/>
+                    </template>
+                  </el-table-column>
+                  <el-table-column width="130" align="left" property="text"></el-table-column>
+                </el-table>
+              </el-popover> -->
             </label>
           </div>
         </header>
@@ -45,6 +63,16 @@
         default: 'preview'
       }
     },
+    data () {
+      return {
+        popoverData: [
+          {
+            icon: 'el-icon-rank',
+            text: 'Front-Matter'
+          }
+        ]
+      }
+    },
     methods: {
       handleArticle (event) {
         let name = event.target.getAttribute('name')
@@ -59,6 +87,14 @@
           }
           case 'share' : {
             this.$emit('sharePost')
+            break
+          }
+          case 'save' : {
+            this.$emit('savePost')
+            break
+          }
+          case 'setting' : {
+            this.$emit('setPost')
             break
           }
         }

@@ -19,7 +19,7 @@
     </div>
     <div class="article-none-panel" v-if="getDisplayList.length === 0">
       <p>{{$t('noArticleMsg')}}</p>
-      <el-button round @click="$router.push({name: 'create'})">新建笔记</el-button>
+      <el-button round @click="$router.push({name: 'main', query: {type: 'add'}})">新建笔记</el-button>
     </div>
   </el-scrollbar>
 

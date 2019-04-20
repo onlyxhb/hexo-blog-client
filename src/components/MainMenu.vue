@@ -5,7 +5,7 @@
       <li :title="$t('deploy')"><deploy/></li>
       <li :title="$t('refresh')"><i class="el-icon-refresh"></i></li>
     </ul>
-    <p class="add-article" :title="$t('new')" @click="$router.push({name: 'create'})"><i class="el-icon-plus"></i></p>
+    <p class="add-article" :title="$t('new')" @click="$router.push({name: 'main', query: {type: 'add'}})"><i class="el-icon-plus"></i></p>
     <el-menu
       :collapse="true"
       @select="dispatch"

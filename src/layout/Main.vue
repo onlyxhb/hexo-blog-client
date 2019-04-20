@@ -13,6 +13,7 @@
       </div>
     </div>
     <slot name="right-item"/>
+    <slot name="dialog-area"/>
   </el-container>
 </template>
 

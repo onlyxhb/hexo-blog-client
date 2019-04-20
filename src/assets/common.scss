@@ -6,7 +6,7 @@
 
 html,
 body {
-  overflow: hidden;
+  // overflow: hidden;
   height: 100%;
   margin: 0px;
   padding: 0px;
@@ -45,5 +45,50 @@ body {
   }
   &:hover::-webkit-scrollbar-thumb {
     background-color: #e8eaf4
+  }
+}
+
+// 文章页的popover样式
+.custom-popover-more {
+  margin-top: 0 !important;
+  right: 35px !important;
+  left: auto !important;
+  padding: 0;
+  .el-table__header-wrapper {
+    display: none;
+  }
+  tr {
+    cursor: pointer;
+    .el-table_1_column_1 .cell{
+      padding: 0;
+    }
+  }
+}
+
+// 文章页的dialog弹框样式
+.article-dialog-input {
+  .custom-dialog-form {
+    overflow: hidden;
+    .el-dialog {
+      top: 50%;
+      margin: 0 auto !important;
+      border-radius: 8px;
+      transform: translate(0, -50%);
+      .el-dialog__body {
+        padding: 0 25px 1px;
+        .el-form-item {
+          margin-bottom: 15px;
+          .line {
+            height: 40px;
+          }
+          textarea:hover::-webkit-scrollbar-thumb {
+            background: transparent;
+          }
+          .article-home-img {
+            width: 100%;
+          }
+        }
+      }
+    }
   }
 }
