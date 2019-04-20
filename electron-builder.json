@@ -1,6 +1,6 @@
 {
-  "appId": "org.mspring.hexo.client",
-  "productName": "HexoClient",
+  "appId": "site.onlystar.hexo.blog.client",
+  "productName": "Hexo博客",
   "directories": {
     "output": "build"
   },
@@ -10,7 +10,7 @@
   "publish": {
     "provider": "github",
     "owner": "onlystar",
-    "repo": "hexo-vue-client"
+    "repo": "hexo-blog-client"
   },
   "dmg": {
     "contents": [

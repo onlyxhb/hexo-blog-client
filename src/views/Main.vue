@@ -41,57 +41,44 @@
         :before-close="handleDialogCancel"
         width="500px">
         <el-form :model="postForm" :rules="postFormRules" label-width="80px"  ref="postForm" :show-message="false">
+          <img v-if="postForm.img" :src="postForm.img" class="article-home-img"/>
           <el-form-item label="文章标题" prop="title">
             <el-input v-model="postForm.title" placeholder="请输入文章标题" :disabled="type === 'edit'"></el-input>
-          </el-form-item>
-          <el-form-item label="文章路径">
-            <el-input v-model="postForm.path" placeholder="请输入文章路径" :disabled="type === 'edit'"></el-input>
           </el-form-item>
           <el-form-item label="文章作者" prop="author">
             <el-input v-model="postForm.author" placeholder="请输入文章作者"></el-input>
           </el-form-item>
-          <el-form-item label="分类标签" prop="categories">
-            <el-col :span="11">
-              <el-select v-model="postForm.categories" placeholder="请选择分类" multiple filterable allow-create default-first-option>
-                <el-option
-                  v-for="category in categories"
-                  :key="category"
-                  :label="category"
-                  :value="category">
-                </el-option>
-              </el-select>
-            </el-col>
-            <el-col :span="2" class="line"/>
-            <el-col :span="11">
-              <el-select v-model="postForm.tags" placeholder="请选择标签" multiple filterable allow-create default-first-option>
-                <el-option
-                  v-for="tag in tags"
-                  :key="tag"
-                  :label="tag"
-                  :value="tag">
-                </el-option>
-              </el-select>
-            </el-col>
+          <el-form-item label="文章分类" prop="categories">
+            <el-select v-model="postForm.categories" placeholder="请选择分类" style="width: 100%" multiple filterable allow-create default-first-option>
+              <el-option
+                v-for="category in categories"
+                :key="category"
+                :label="category"
+                :value="category">
+              </el-option>
+            </el-select>
           </el-form-item>
-          <el-form-item label="文章时间">
-            <el-col :span="11">
-              <el-date-picker type="datetime" placeholder="创建时间" v-model="postForm.createTime" style="width: 100%;"/>
-            </el-col>
-            <el-col :span="2" class="line"/>
-            <el-col :span="11">
-              <el-date-picker type="datetime" placeholder="修改时间" v-model="postForm.date" style="width: 100%;"/>
-            </el-col>
+          <el-form-item label="文章标签" prop="tags">
+            <el-select v-model="postForm.tags" placeholder="请选择标签"  style="width: 100%"  multiple filterable allow-create default-first-option>
+              <el-option
+                v-for="tag in tags"
+                :key="tag"
+                :label="tag"
+                :value="tag">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="首页图片">
+            <el-input v-model="postForm.img" placeholder="请输入首页图片"/>
           </el-form-item>
           <el-form-item label="开启目录">
             <el-switch v-model="postForm.toc"></el-switch>
           </el-form-item>
-          <el-form-item label="首页图片">
-            <el-col :span="14">
-              <el-input type="textarea" v-model="postForm.img" rows="3" resize="none"></el-input>
-            </el-col>
-            <el-col :span="10">
-              <img v-if="postForm.img" :src="postForm.img" class="article-home-img"/>
-            </el-col>
+          <el-form-item label="文章置顶">
+            <el-switch v-model="postForm.top"></el-switch>
+          </el-form-item>
+          <el-form-item label="首页轮播">
+            <el-switch v-model="postForm.cover"></el-switch>
           </el-form-item>
           <el-form-item style="text-align: center">
             <el-button type="primary" @click="handleDialogConfirm">确定</el-button>
@@ -114,16 +101,6 @@
     name: 'main-page',
     components: {ArticleMain, ArticleView , MarkdownEditor},
     data () {
-      const validateCateTags = (rule, value, callback) => {
-        let { categories, tags } = this.postForm
-        if (!categories || !categories.length) {
-          callback(new Error('请选择分类'))
-        } else if (!categories || !categories.length) {
-          callback(new Error('请选择标签'))
-        } else {
-          callback()
-        }
-      }
       return {
         visible: this.type === 'add', // 是否弹出dialog
         hasParentKey: false, // 从分类和标签页带条件过来
@@ -132,15 +109,15 @@
         formChanged: false, // 表单是否发生了变化
         postForm: {
           title: '', // 文章标题
-          path: '', // 文章路径
-          originContent: '', // 原文
           content: '', // 修改后文
           tags: [], // 标签
           categories: [], // 分类
           toc: false, // 开启toc
+          top: false, // 置顶
+          cover: false, // 首页轮播
           img:  '', // 文章首页图
-          createTime: Utils.formatDate(new Date()), // 创建时间
-          date: Utils.formatDate(new Date()), // 修改时间
+          date: Utils.formatDate(new Date()), // 创建时间
+          update: Utils.formatDate(new Date()), // 修改时间
           author: '徐辉波' // 文章作者
         },
         postFormRules: {
@@ -152,7 +129,8 @@
             {required: true, message: '请输入作者', trigger: 'blur'},
             {min: 1, max: 20, message: '长度在 13 到 20 个字符', trigger: 'blur'}
           ],
-          categories: [{required: true, validator: validateCateTags, trigger: 'blur'}],
+          categories: [{required: true, message: '请选择分类', trigger: 'blur'}],
+          tags: [{required: true, message: '请选择标签', trigger: 'blur'}],
           content: [
             {required: true, message: '请输入内容', trigger: 'blur'}
           ]
@@ -177,15 +155,15 @@
         if (val === 'add') {
           this.postForm = {
             title: '', // 文章标题
-            path: '', // 文章路径
-            originContent: '', // 原文
             content: '', // 修改后文
             tags: [], // 标签
             categories: [], // 分类
             toc: false, // 开启toc
+            top: false, // 置顶
+            cover: false, // 首页轮播
             img:  '', // 文章首页图
-            createTime: Utils.formatDate(new Date()), // 创建时间
-            date: Utils.formatDate(new Date()), // 修改时间
+            date: Utils.formatDate(new Date()), // 创建时间
+            update: Utils.formatDate(new Date()), // 修改时间
             author: '徐辉波' // 文章作者
           }
           this.visible = true
@@ -257,17 +235,6 @@
             case 'title':
               me.postForm.title = post.title.trim()
               break
-            case 'path': {
-              let source = post.source.trim()
-              if (source) {
-                let start = source.indexOf('/')
-                let end = source.lastIndexOf('.md')
-                if (start !== -1 && end !== -1 && start !== end) {
-                  me.postForm.path = source.substring(start + 1, end)
-                }
-              }
-              break
-            }
             case '_content':
               me.postForm.content = post._content.trim()
               break
@@ -285,10 +252,15 @@
               break
             case 'date':
               me.postForm.date = post.date.format('YYYY-MM-DD HH:mm:ss')
-              me.postForm.createTime = me.postForm.date
               break
             case 'toc':
               me.postForm.toc = post.toc
+              break
+            case 'top':
+              me.postForm.top = post.top
+              break
+            case 'cover':
+              me.postForm.cover = post.cover
               break
             default:
               break
@@ -349,12 +321,12 @@
         if (valid) {
           try {
             let submitForm = Object.assign({}, this.postForm)
-            if (!submitForm.img) {
-              delete submitForm.img
+            if (this.type === 'edit') {
+              submitForm.update = Utils.formatDate(new Date()) // 修改时间
             }
+            console.log(submitForm)
             await this.$store.dispatch(action, submitForm)
             this.formChanged = false
-            this.postForm.originContent = submitForm.content
             this.$notify({title: '成功', message: `${text}成功`, type: 'success'})
           } catch (err) {
             this.$notify.error({title: '错误', message: `${text}失败`})

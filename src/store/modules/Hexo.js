@@ -56,7 +56,6 @@ const actions = {
     } else {
       let hexo = new Hexo(config.path, {
         debug: false,
-        safe: true,
         silent: true // 开启安静模式。不在终端中显示任何信息。
       })
       await hexo.init()
@@ -159,10 +158,10 @@ const actions = {
   createPost (context, postForm) {
     let deferred = when.defer()
     let hexo = context.state.instance
-    let suffix = '.md'
-    if (postForm.path && postForm.path.indexOf(suffix, this.length - suffix.length) === -1) { // 设置了path，并且path不以.md结尾
-      postForm.path = postForm.path + '.md'
-    }
+    // let suffix = '.md'
+    // if (postForm.path && postForm.path.indexOf(suffix, this.length - suffix.length) === -1) { // 设置了path，并且path不以.md结尾
+    //   postForm.path = postForm.path + '.md'
+    // }
     hexo.post.create(postForm, function (err, value) {
       if (err) {
         deferred.reject(err)

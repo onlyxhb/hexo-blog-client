@@ -76,6 +76,15 @@ body {
       transform: translate(0, -50%);
       .el-dialog__body {
         padding: 0 25px 1px;
+        .el-form {
+          position: relative;
+          .article-home-img {
+            position: absolute;
+            bottom: 65px;
+            right: 0;
+            height: 130px;
+          }
+        }
         .el-form-item {
           margin-bottom: 15px;
           .line {
@@ -83,9 +92,6 @@ body {
           }
           textarea:hover::-webkit-scrollbar-thumb {
             background: transparent;
-          }
-          .article-home-img {
-            width: 100%;
           }
         }
       }
