@@ -51,16 +51,13 @@
   const electron = require('electron')
   const fs = require('fs')
   import Operation from '@/components/Operation'
+  import { mapGetters } from 'vuex'
   export default {
     components: {Operation},
     props: {
       post: {
         type: Object,
         default: () => {}
-      },
-      type: {
-        type: String,
-        default: 'preview'
       }
     },
     data () {
@@ -72,6 +69,11 @@
           }
         ]
       }
+    },
+    computed: {
+      ...mapGetters({
+        type: 'Article/type',
+      })
     },
     methods: {
       handleArticle (event) {

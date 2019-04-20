@@ -4,7 +4,6 @@
     <article-view
       slot="right-item"
       :post="headerPost"
-      :type="type"
       @editPost="editPost"
       @deletePost="deletePost"
       @sharePost="sharePost"
@@ -108,15 +107,14 @@
   import ArticleMain from '@/layout/Main'
   import ArticleView from '@/components/ArticleView'
   import MarkdownEditor from '@/components/Editor'
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapMutations } from 'vuex'
   import Utils from '@/service/Utils'
   export default {
     name: 'main-page',
     components: {ArticleMain, ArticleView , MarkdownEditor},
     data () {
       return {
-        type: this.$route.query.type || 'preview', // add edit
-        visible: this.$route.query.type === 'add', // 是否弹出dialog
+        visible: this.type === 'add', // 是否弹出dialog
         hasParentKey: false, // 从分类和标签页带条件过来
         inited: false,
         formLabelWidth: 100,
@@ -163,6 +161,9 @@
       this.renderArticle()
     },
     methods: {
+      ...mapMutations({
+        changeType: 'Article/changeType'
+      }),
       renderArticle () {
         this.renderImage()
         this.renderLink()
@@ -268,7 +269,7 @@
         })
       },
       editPost (type) {
-        this.type = type
+        this.changeType(type)
         // 只有在修改的时候需要获取所有的front-matter
         if (type === 'edit') {
           this.getFrontMatter()
@@ -304,9 +305,7 @@
           try {
             await this.$store.dispatch(action, this.postForm)
             this.formChanged = false
-            // this.visible = false
             this.postForm.originContent = this.postForm.content
-            // this.type = 'preview'
             this.$notify({title: '成功', message: `${text}成功`, type: 'success'})
           } catch (err) {
             this.$notify.error({title: '错误', message: `${text}失败`})
@@ -319,6 +318,7 @@
     computed: {
       ...mapGetters({
         tags: 'Hexo/tags',
+        type: 'Article/type',
         categories: 'Hexo/categories'
       }),
       post () {

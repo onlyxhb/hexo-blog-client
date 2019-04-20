@@ -26,7 +26,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapMutations } from 'vuex'
   export default {
     data () {
       return {
@@ -51,6 +51,9 @@
     },
 
     methods: {
+      ...mapMutations({
+        changeType: 'Article/changeType'
+      }),
       /**
       * @func  处理单击事件
       * @param {Object} item 当前点击项
@@ -58,6 +61,7 @@
       handleItem (item, index) {
         this.selectIndex = index
         if (this.type !== 'recentArticle') return
+        this.changeType('preview')
         this.$store.dispatch('Hexo/selectPost', item.id)
       },
       /**
