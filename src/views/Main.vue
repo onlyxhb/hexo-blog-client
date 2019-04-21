@@ -145,6 +145,10 @@
       this.renderLink()
       this.inited = true
       this.author = this.config.author
+      if (this.type === 'add') {
+        this.clearData()
+        this.visible = true
+      }
     },
     updated () {
       // 预览模式需要滚动到最上方
@@ -156,19 +160,7 @@
     watch: {
       type (val) {
         if (val === 'add') {
-          this.postForm = {
-            title: '', // 文章标题
-            content: '', // 修改后文
-            tags: [], // 标签
-            categories: [], // 分类
-            toc: false, // 开启toc
-            top: false, // 置顶
-            cover: false, // 首页轮播
-            img:  '', // 文章首页图
-            date: Utils.formatDate(new Date()), // 创建时间
-            update: Utils.formatDate(new Date()), // 修改时间
-            author: this.config.author // 文章作者
-          }
+          this.clearData()
           this.visible = true
         }  else if (val === 'edit') {
           this.getFrontMatter()
@@ -179,6 +171,21 @@
       ...mapMutations({
         changeType: 'Article/changeType'
       }),
+      clearData () {
+        this.postForm = {
+          title: '', // 文章标题
+          content: '', // 修改后文
+          tags: [], // 标签
+          categories: [], // 分类
+          toc: false, // 开启toc
+          top: false, // 置顶
+          cover: false, // 首页轮播
+          img:  '', // 文章首页图
+          date: Utils.formatDate(new Date()), // 创建时间
+          update: Utils.formatDate(new Date()), // 修改时间
+          author: this.config.author // 文章作者
+        }
+      },
       // a标签在浏览器中打开
       renderLink () {
         let markdownBody = document.querySelector('.markdown-body.custom-markdown-editor')

@@ -163,7 +163,7 @@ function initTrayIcon () {
     }
   ])
 
-  tray.setToolTip('Hexo博客')
+  tray.setToolTip('Hexo客户端')
 
   tray.on('click', () => {
     if (win.isVisible() && !win.isMinimized()) {

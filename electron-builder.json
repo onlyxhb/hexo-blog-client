@@ -1,6 +1,6 @@
 {
   "appId": "site.onlystar.hexo.blog.client",
-  "productName": "Hexo博客",
+  "productName": "HexoBlogClient",
   "directories": {
     "output": "build"
   },

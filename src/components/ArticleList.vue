@@ -12,13 +12,14 @@
         <div class="article-list-item">
           <i class="article-icon" :class="getListItemIcon"/>
           <span class="article-title">{{ item.title || item }}</span>
-          <span class="article-date">{{ item.date ? item.date.slice(0, 11) : formatDate(new Date(), 'YYYY-MM-DD')}}</span>
+          <span class="article-date" v-if="type === 'recentArticle'">{{ item.date.slice(0, 11) }}</span>
+          <span class="article-num" v-else>{{ getCateTagNum(item) }}</span>
         </div>
       </div>
     </div>
     <div class="article-none-panel" v-if="getDisplayList.length === 0">
       <p>{{$t('noArticleMsg')}}</p>
-      <el-button round @click="$router.push({name: 'main', query: {type: 'add'}})">新建笔记</el-button>
+      <el-button round @click="handleAddArticle">新建笔记</el-button>
     </div>
   </div>
 
@@ -50,6 +51,10 @@
       ...mapMutations({
         changeType: 'Article/changeType'
       }),
+      handleAddArticle () {
+        this.changeType('add')
+        this.$router.push({name: 'main'})
+      },
       /**
       * @func  处理单击事件
       * @param {Object} item 当前点击项
@@ -78,6 +83,20 @@
           name: 'main',
           query
         })
+      },
+      getCateTagNum (name) {
+        let key = this.type === 'articleCategories' ? 'categories' : 'tags'
+        let num = 0
+        this.allPost.some(post => {
+          if (num) return true
+          post[key].some(item => {
+            if (item.name === name) {
+              num = item.length
+              return true
+            }
+          })
+        })
+        return num
       }
     },
     watch: {
@@ -89,12 +108,11 @@
     },
     computed: {
       ...mapGetters({
+        allPost: 'Hexo/posts',
+        posts: 'Hexo/filteredPosts',
         tags: 'Hexo/tags',
         categories: 'Hexo/categories'
       }),
-      posts () {
-        return this.$store.getters['Hexo/filteredPosts']
-      },
       selectedPostId () {
         let selectedPost = this.$store.getters['Hexo/selectedPost']
         return selectedPost ? selectedPost._id : null
@@ -141,7 +159,7 @@
       top: -5px;
       right: -5px;
       border: 6px solid transparent;
-      border-top-color: red;
+      border-top-color: #e8eaf4;
       transform: rotate(220deg);
     }
     .article-list-item {
@@ -182,6 +200,14 @@
         width: 80px;
         text-align: right;
         color: #b2b2b2;
+        font-size: 12px;
+      }
+      .article-num {
+        padding: 0 8px;
+        border-radius: 20px;
+        background-color: #5576BD;
+        color: #fff;
+        opacity: .7;
         font-size: 12px;
       }
     }

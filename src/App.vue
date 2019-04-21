@@ -25,7 +25,7 @@
   import ChoosePath from '@/components/ChoosePath'
 
   export default {
-    name: 'HexoClient',
+    name: 'BlogClient',
     components: {ChoosePath, MainMenu},
     data () {
       return {
