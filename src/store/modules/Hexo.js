@@ -181,10 +181,10 @@ const actions = {
   editPost (context, postForm) {
     let deferred = when.defer()
     let hexo = context.state.instance
-    let suffix = '.md'
-    if (postForm.path && postForm.path.indexOf(suffix, this.length - suffix.length) === -1) { // 设置了path，并且path不以.md结尾
-      postForm.path = postForm.path + '.md'
-    }
+    // let suffix = '.md'
+    // if (postForm.path && postForm.path.indexOf(suffix, this.length - suffix.length) === -1) { // 设置了path，并且path不以.md结尾
+    //   postForm.path = postForm.path + '.md'
+    // }
     hexo.post.create(postForm, true, function (err, value) {
       if (err) {
         deferred.reject(err)
@@ -235,19 +235,23 @@ const actions = {
       loading.text += '生成成功! 发布中...'
       try {
         await hexo.call('deploy', {})
-        vm.$notify.success('发布成功')
+        vm.$message('发布成功')
       } catch (e) {
-        vm.$notify.error('发布失败')
+        vm.$message.error('发布失败')
       } finally {
         loading.close()
       }
     } catch (err) {
       loading.close()
-      vm.$notify.error('生成失败')
+      vm.$message.error('生成失败')
     }
   }
 }
 const getters = {
+  config: state => {
+    if (!state.instance || !state.instance.locals) return {}
+    return state.instance.config
+  },
   /**
    * 所有的标签
    * @param state
@@ -329,8 +333,11 @@ const getters = {
             return
           }
         }
-
-        posts.push(utils.formatPost(post))
+        if (post.top) {
+          posts.unshift(utils.formatPost(post))
+        } else {
+          posts.push(utils.formatPost(post))
+        }
       })
     }
     return posts

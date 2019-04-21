@@ -1,10 +1,11 @@
 const Store = require('electron-store')
 const os = require('os')
 
+
 class Config {
   constructor () {
     this.store = new Store({
-      cwd: os.homedir() + '/.hexo-client',
+      cwd: os.homedir() + '/.hexo-blog-client',
       name: 'sysConfig',
       fileExtension: 'json'
     })

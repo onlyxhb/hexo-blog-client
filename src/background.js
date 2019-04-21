@@ -63,7 +63,7 @@ app.on('ready', async () => {
     try {
       // await installVueDevtools()
       // BrowserWindow.addDevToolsExtension('/Volumes/数据/hexo-vue-client/tools/vue_devtools_4.1.5_0')
-      // BrowserWindow.addDevToolsExtension('E:\\hexo-blog-client\\tools\\vue_devtools_4.1.5_0')
+      BrowserWindow.addDevToolsExtension('E:\\hexo-blog-client\\tools\\vue_devtools_4.1.5_0')
     } catch (e) {
       console.error('Vue Devtools failed to install:', e.toString())
     }

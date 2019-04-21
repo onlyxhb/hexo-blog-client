@@ -111,7 +111,7 @@
             me.$refs.editor.$img2Url(pos, url)
             me.uploading = false
           }, err => {
-            me.$notify.error({message: '图片上传失败：' + err})
+            me.$message.error('图片上传失败：')
             me.uploading = false
           })
         } else if (sysConfig.uploadtype === 'sm.ms') {
@@ -119,7 +119,7 @@
             me.$refs.editor.$img2Url(pos, url)
             me.uploading = false
           }, err => {
-            me.$notify.error({message: '图片上传失败：' + err})
+            me.$message.error('图片上传失败：')
             me.uploading = false
           })
         } else {
@@ -127,7 +127,7 @@
             me.$refs.editor.$img2Url(pos, url)
             me.uploading = false
           }, err => {
-            me.$notify.error({message: '图片上传失败：' + err})
+            me.$message.error('图片上传失败：')
             me.uploading = false
           })
         }

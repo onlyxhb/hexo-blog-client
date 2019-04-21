@@ -18,13 +18,12 @@
 </template>
 
 <script>
-  import TreeNav from '@/components/TreeNav'
   import ArticleList from '@/components/ArticleList'
   import ArticleView from '@/components/ArticleView'
   import Operation from '@/components/Operation'
 
   export default {
-    components: {TreeNav, ArticleList, ArticleView, Operation},
+    components: {ArticleList, ArticleView, Operation},
     props: {
       type: {
         type: String,

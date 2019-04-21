@@ -44,6 +44,7 @@ class Utils {
       path: post.path,
       date: post.date.format('YYYY-MM-DD hh:mm:ss'),
       author: post.author,
+      top: post.top,
       tags: post.tags.data,
       categories: post.categories.data,
       summary: this.getPostSummary(post.content)
@@ -73,10 +74,8 @@ class Utils {
     switch (type) {
       case 'YYYY-MM-DD' :
         return year + '-' + month + '-' + day
-        break
       case 'YYYY-MM-DD HH:MM:SS' :
         return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second
-        break
     }
   }
 }

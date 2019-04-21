@@ -7,12 +7,13 @@
       @editPost="editPost"
       @deletePost="deletePost"
       @sharePost="sharePost"
-      @setPost="setPost"
+      @setPost="visible = !visible"
       @savePost="submitForm">
       <!-- 右侧主界面 -->
       <markdown-editor
         v-if="type === 'preview'"
         slot="right-item-main"
+        ref="mdEditor"
         v-show="inited"
         v-model="post._content"
         :showToolbars="mdConfig.showToolbars"
@@ -97,8 +98,9 @@
   import MarkdownEditor from '@/components/Editor'
   import { mapGetters, mapMutations } from 'vuex'
   import Utils from '@/service/Utils'
+  const electron = require('electron')
   export default {
-    name: 'main-page',
+    name: 'MainPage',
     components: {ArticleMain, ArticleView , MarkdownEditor},
     data () {
       return {
@@ -118,22 +120,14 @@
           img:  '', // 文章首页图
           date: Utils.formatDate(new Date()), // 创建时间
           update: Utils.formatDate(new Date()), // 修改时间
-          author: '徐辉波' // 文章作者
+          author: '' // 文章作者
         },
         postFormRules: {
-          title: [
-            {required: true, message: '请输入标题', trigger: 'blur'},
-            {min: 3, max: 100, message: '长度在 3 到 100 个字符', trigger: 'blur'}
-          ],
-          author: [
-            {required: true, message: '请输入作者', trigger: 'blur'},
-            {min: 1, max: 20, message: '长度在 13 到 20 个字符', trigger: 'blur'}
-          ],
-          categories: [{required: true, message: '请选择分类', trigger: 'blur'}],
-          tags: [{required: true, message: '请选择标签', trigger: 'blur'}],
-          content: [
-            {required: true, message: '请输入内容', trigger: 'blur'}
-          ]
+          title: [{required: true, trigger: 'blur'}],
+          author: [{required: true, trigger: 'blur'}],
+          categories: [{required: true, trigger: 'blur'}],
+          tags: [{required: true, trigger: 'blur'}],
+          content: [{required: true, trigger: 'blur'}]
         }
       }
     },
@@ -145,13 +139,22 @@
       })
     },
     mounted () {
-      this.renderArticle()
+      if (this.type !== 'preview') {
+        this.getFrontMatter()
+      }
+      this.renderLink()
+      this.inited = true
+      this.author = this.config.author
     },
     updated () {
-      this.renderArticle()
+      // 预览模式需要滚动到最上方
+      if (this.type === 'preview') {
+        let targetEl = this.$refs.mdEditor.$el.querySelector('.v-show-content.scroll-style')
+        targetEl.scrollTo(0, 0)
+      }
     },
     watch: {
-      type (val, old) {
+      type (val) {
         if (val === 'add') {
           this.postForm = {
             title: '', // 文章标题
@@ -164,9 +167,11 @@
             img:  '', // 文章首页图
             date: Utils.formatDate(new Date()), // 创建时间
             update: Utils.formatDate(new Date()), // 修改时间
-            author: '徐辉波' // 文章作者
+            author: this.config.author // 文章作者
           }
           this.visible = true
+        }  else if (val === 'edit') {
+          this.getFrontMatter()
         }
       }
     },
@@ -174,57 +179,20 @@
       ...mapMutations({
         changeType: 'Article/changeType'
       }),
-      renderArticle () {
-        this.renderImage()
-        this.renderLink()
-        this.inited = true
-      },
-      // 渲染图片
-      renderImage () {
-        let contentDom = document.getElementsByClassName('markdown-body')
-        if (contentDom && contentDom.length > 0) {
-          let sysConfig = this.$store.state.Config.config
-          let images = contentDom[0].getElementsByTagName('img')
-          for (let i = 0; i < images.length; i++) {
-            let img = images[i]
-            let src = img.getAttribute('src')
-            if (this.startWith(src, '/images')) {
-              try {
-                let path = sysConfig.path + '/source' + src
-                let data = fs.readFileSync(path)
-                let base64 = data.toString('base64')
-                img.setAttribute('src', 'data:image/jpg;base64,' + base64)
-              } catch (e) {
-                console.error(e)
-              }
-              // fs.readFile(path, function (err, data) {
-              //   if (!err) {
-              //     let base64 = data.toString('base64')
-              //     img.setAttribute('src', 'data:image/jpg;base64,' + base64)
-              //   }
-              // })
-            }
-          }
-        }
-      },
-      // 渲染a标签
+      // a标签在浏览器中打开
       renderLink () {
-        let articleDom = document.getElementsByClassName('article')
-        if (articleDom && articleDom.length > 0) {
-          let links = articleDom[0].getElementsByTagName('a')
-          for (let i = 0; i < links.length; i++) {
-            links[i].onclick = function (event) {
-              let href = event.target.getAttribute('href')
-              if (href) {
-                electron.shell.openExternal(href)
-              }
-              return false
+        let markdownBody = document.querySelector('.markdown-body.custom-markdown-editor')
+        markdownBody.onclick = event => {
+          let target = event.target || event.srcElement
+          if(target.nodeName.toLowerCase() == 'a') {
+            event.preventDefault()
+            event.stopPropagation()
+            let href = event.target.getAttribute('href')
+            if (href) {
+              electron.shell.openExternal(href)
             }
           }
         }
-      },
-      startWith (str, prefix) {
-        return str && prefix && str.indexOf(prefix) === 0
       },
       getFrontMatter () {
         let me = this
@@ -266,7 +234,6 @@
               break
           }
         }
-
         // frontMatter
         let frontMatter = Utils.frontMatter(post.raw)
         Object.keys(frontMatter).forEach(key => {
@@ -275,25 +242,16 @@
       },
       editPost (type) {
         this.changeType(type)
-        // 只有在修改的时候需要获取所有的front-matter
-        if (type === 'edit') {
-          this.getFrontMatter()
-        } else if (type === 'edit') {
-          this.visible = true
-        }
       },
       deletePost () {
         let id = this.post._id
         this.$confirm(this.$t('deleteArticleConfirmMsg'), '提示').then(async () => {
           await this.$store.dispatch('Hexo/deletePost', id)
-          this.$notify({title: this.$t('successTitle'), message: this.$t('deleteSuccessMsg'), type: 'success'})
+          this.$message(this.$t('deleteSuccessMsg'))
         })
       },
       sharePost () {
-        require('electron').shell.openExternal(this.post.permalink)
-      },
-      setPost () {
-        this.visible = !this.visible
+        electron.shell.openExternal(this.post.permalink)
       },
       handleDialogConfirm () {
         this.$refs.postForm.validate(err => {
@@ -304,7 +262,6 @@
       },
       handleDialogCancel () {
         this.visible = false
-        // this.changeType('preview')
       },
       /**
       * @func 保存弹框的表单信息
@@ -316,28 +273,28 @@
           action = 'Hexo/editPost'
           text = '修改'
         }
-        console.log(this.$refs.postForm)
         let valid = this.$refs.postForm ? await this.$store.dispatch('Hexo/validatePostForm', this.$refs.postForm) : true
-        if (valid) {
-          try {
-            let submitForm = Object.assign({}, this.postForm)
-            if (this.type === 'edit') {
-              submitForm.update = Utils.formatDate(new Date()) // 修改时间
-            }
-            console.log(submitForm)
-            await this.$store.dispatch(action, submitForm)
-            this.formChanged = false
-            this.$notify({title: '成功', message: `${text}成功`, type: 'success'})
-          } catch (err) {
-            this.$notify.error({title: '错误', message: `${text}失败`})
+        if (!valid || !this.postForm.title) {
+          this.visible = true
+          return
+        }
+        try {
+          let submitForm = Object.assign({}, this.postForm)
+          if (this.type === 'edit') {
+            submitForm.update = Utils.formatDate(new Date()) // 修改时间
           }
-        } else {
-          this.$notify.error({title: '错误', message: '表单验证失败'})
+          console.log(submitForm)
+          await this.$store.dispatch(action, submitForm)
+          this.formChanged = false
+          this.$message(`${text}成功`)
+        } catch (err) {
+          this.$message.error(`${text}失败`)
         }
       },
     },
     computed: {
       ...mapGetters({
+        config: 'Hexo/config',
         tags: 'Hexo/tags',
         type: 'Article/type',
         categories: 'Hexo/categories'

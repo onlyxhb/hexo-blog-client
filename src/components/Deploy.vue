@@ -17,7 +17,7 @@
         if (simpleStatus.modified) {
           this.commit(simpleStatus.branch, 'Commit at ' + Utils.formatDate(new Date()))
         } else {
-          this.$notify({message: '资料库无变更', type: 'warning'})
+          this.$message.warning('资料库无变更')
         }
       },
 
@@ -47,10 +47,10 @@
           await this.git().add('./*')
           await this.git().commit(msg)
           await this.git().push('origin', branch)
-          this.$notify({message: '发布成功', type: 'success'})
+          this.$message('发布成功')
         } catch (e) {
           console.log(e)
-          this.$notify.error({message: '发布失败'})
+          this.$message.error('发布失败')
         } finally {
           loading.close()
         }

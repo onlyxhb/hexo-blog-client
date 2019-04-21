@@ -80,10 +80,7 @@
           message = '保存成功，变更语言需要重启后生效。'
         }
         await this.$store.dispatch('Config/setConfig', this.config)
-        this.$notify.success({
-          title: '成功',
-          message: message
-        })
+        this.$message.success(message)
       }
     }
   }
