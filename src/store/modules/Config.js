@@ -7,6 +7,10 @@ const state = {
 const mutations = {
   updateConfig (state, config) {
     state.config = config
+  },
+  setPhoto (state, photoPic) {
+    console.log('修改了图片路径：' + photoPic)
+    state.config.photoPic = photoPic
   }
 }
 
@@ -20,9 +24,14 @@ const actions = {
   }
 }
 
+const getters = {
+  config: state => state.config
+}
+
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
+  getters
 }

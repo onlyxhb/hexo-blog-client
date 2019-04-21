@@ -50,5 +50,6 @@
   "chinese": "中文",
   "english": "英文",
   "settingTitleImageServer": "图片服务器",
-  "settingImageServerPlaceholder": "请选择图片服务器"
+  "settingImageServerPlaceholder": "请选择图片服务器",
+  "settingPhoto": "图片Logo"
 }

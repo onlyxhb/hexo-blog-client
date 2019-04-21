@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="../assets/images/icon.png" draggable="false" :title="$t('imgTitle')" class="icon"/>
+    <img :src="getPhoto" draggable="false" :title="$t('imgTitle')" class="icon" @click="$router.push('settings')"/>
     <ul class="custom-opeartor">
       <li :title="$t('deploy')"><deploy/></li>
       <li :title="$t('refresh')" @click="reload"><i class="el-icon-refresh"></i></li>
@@ -35,12 +35,14 @@
 <script>
   const { ipcRenderer } = require('electron')
   import Deploy from '@/components/Deploy'
-  import { mapMutations, mapActions } from 'vuex'
+  import photoPic from '@/mixins/photoPic'
+  import { mapMutations } from 'vuex'
   export default {
     data () {
       return {}
     },
     components: {Deploy},
+    mixins: [photoPic],
     methods: {
       ...mapMutations({
         changeType: 'Article/changeType'
