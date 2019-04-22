@@ -8,14 +8,10 @@ export default {
     getPhoto () {
       let { photoPic, path } = this.config
       let url = require('../assets/images/icon.png')
-      try {
-        if (photoPic) {
-          let data = fs.readFileSync(path + '/source' + photoPic)
-          let base64 = data.toString('base64')
-          url = 'data:image/jpg;base64,' + base64
-        }
-      } catch (error) {
-        console.log(error)
+      if (photoPic) {
+        let data = fs.readFileSync(path + '/source' + photoPic)
+        let base64 = data.toString('base64')
+        url = 'data:image/jpg;base64,' + base64
       }
       return url
     }

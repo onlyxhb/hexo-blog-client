@@ -2,7 +2,7 @@
 const state = {}
 const mutations = {}
 const actions = {
-  init (context) {
+  init () {
   }
 }
 export default {

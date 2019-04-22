@@ -56,6 +56,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="saveConfig">{{$t('save')}}</el-button>
+        <el-button type="primary" @click="OpenDevTool">打开开发者工具</el-button>
       </el-form-item>
     </el-form>
   </el-main>
@@ -65,6 +66,7 @@
   import Operation from '@/components/Operation'
   import githubUploader from '@/service/GithubUploader'
   import photoPic from '@/mixins/photoPic'
+  const { ipcRenderer } = require('electron')
   export default {
     data () {
       return {
@@ -99,14 +101,16 @@
         githubUploader.upload(file, this.config).then(url => {
           this.configForm.photoPic = url
           this.setPhoto(url)
-        }, err => {
-          console.log(err)
+        }, () => {
         })
         return false
       },
       handleRemove () {
         this.configForm.photoPic = ''
         this.setPhoto()
+      },
+      OpenDevTool () {
+        ipcRenderer.send('openDevTool')
       }
     }
   }

@@ -9,7 +9,6 @@ const mutations = {
     state.config = config
   },
   setPhoto (state, photoPic) {
-    console.log('修改了图片路径：' + photoPic)
     state.config.photoPic = photoPic
   }
 }

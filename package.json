@@ -17,7 +17,6 @@
   "scripts": {
     "serve": "vue-cli-service electron:serve",
     "build": "vue-cli-service electron:build",
-    "generate-icons": "electron-icon-builder --input=./public/icon.png --output=build --flatten",
     "vue:serve": "vue-cli-service serve",
     "vue:build": "vue-cli-service build",
     "vue:lint": "vue-cli-service lint",
@@ -45,7 +44,6 @@
     "aws-sdk": "^2.414.0",
     "babel-eslint": "^10.0.1",
     "electron": "^4.0.0",
-    "electron-icon-builder": "^1.0.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
     "node-sass": "^4.11.0",

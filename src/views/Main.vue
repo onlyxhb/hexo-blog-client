@@ -290,7 +290,6 @@
           if (this.type === 'edit') {
             submitForm.update = Utils.formatDate(new Date()) // 修改时间
           }
-          console.log(submitForm)
           await this.$store.dispatch(action, submitForm)
           this.formChanged = false
           this.$message(`${text}成功`)

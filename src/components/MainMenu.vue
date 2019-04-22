@@ -48,7 +48,7 @@
         changeType: 'Article/changeType'
       }),
       handle: ipcRenderer.send,
-      dispatch (index, path) {
+      dispatch (index) {
         switch (index) {
           case 'main':
           case 'cates':
@@ -59,7 +59,6 @@
             this.$router.push({name: index})
             break
           default:
-            console.log('dispatch: index=' + index + ', path=' + path)
         }
       },
       handleAddArticle () {

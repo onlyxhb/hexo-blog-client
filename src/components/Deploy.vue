@@ -5,11 +5,16 @@
 <script>
   import Utils from '@/service/Utils'
   export default {
-    name: 'deploy',
+    name: 'Deploy',
     data () {
-      return {}
+      return {
+        git: {}
+      }
     },
     mounted () {
+      let workingDir = this.$store.state.Config.config.path
+      this.git = require('simple-git/promise')(workingDir)
+      window.git = this.git
     },
     methods: {
       async deploy () {
@@ -20,18 +25,28 @@
           this.$message.warning('资料库无变更')
         }
       },
-
+      getStatus () {
+        return new Promise((resolve, reject) => {
+          this.git.status((err, status) => {
+            if (err) {
+              reject(err)
+            } else {
+              resolve(status)
+            }
+          })
+        })
+      },
       async simpleStatus () {
         let status = {modified: false, branch: 'master'}
         try {
-          let statusSummary = await this.git().status()
+          let statusSummary = await this.git.status()
+          console.log('statusSummary: ', statusSummary)
           if (statusSummary.modified.length > 0 || statusSummary.not_added.length > 0 || statusSummary.deleted.length > 0) {
             status.modified = true
           }
           status.branch = statusSummary.current
           return status
         } catch (e) {
-          console.error(e)
           return status
         }
       },
@@ -44,27 +59,17 @@
           background: 'rgba(0, 0, 0, 0.7)'
         })
         try {
-          await this.git().add('./*')
-          await this.git().commit(msg)
-          await this.git().push('origin', branch)
+          await this.git.add('./*')
+          await this.git.commit(msg)
+          await this.git.push('origin', branch)
           this.$message('发布成功')
         } catch (e) {
-          console.log(e)
           this.$message.error('发布失败')
         } finally {
           loading.close()
         }
-      },
-
-      git () {
-        let workingDir = this.workingDir()
-        return require('simple-git/promise')(workingDir)
-      },
-
-      workingDir () {
-        let config = this.$store.state.Config.config
-        return config.path
       }
+
     }
   }
 </script>

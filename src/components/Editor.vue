@@ -110,7 +110,7 @@
           qiniuUploader.upload(file, sysConfig).then(url => {
             me.$refs.editor.$img2Url(pos, url)
             me.uploading = false
-          }, err => {
+          }, () => {
             me.$message.error('图片上传失败：')
             me.uploading = false
           })
@@ -118,7 +118,7 @@
           smmsUploader.upload(file).then(url => {
             me.$refs.editor.$img2Url(pos, url)
             me.uploading = false
-          }, err => {
+          }, () => {
             me.$message.error('图片上传失败：')
             me.uploading = false
           })
@@ -126,7 +126,7 @@
           githubUploader.upload(file, sysConfig).then(url => {
             me.$refs.editor.$img2Url(pos, url)
             me.uploading = false
-          }, err => {
+          }, () => {
             me.$message.error('图片上传失败：')
             me.uploading = false
           })

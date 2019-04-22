@@ -34,6 +34,11 @@ app.on('activate', () => {
   }
 })
 
+// 打开控制台
+ipcMain.on('openDevTool', () => {
+  BrowserWindow.getFocusedWindow().webContents.openDevTools()
+})
+
 // 屏幕最小化
 ipcMain.on('window.min', () => {
   BrowserWindow.getFocusedWindow().minimize()
@@ -65,7 +70,6 @@ app.on('ready', async () => {
       // BrowserWindow.addDevToolsExtension('/Volumes/数据/hexo-vue-client/tools/vue_devtools_4.1.5_0')
       BrowserWindow.addDevToolsExtension('E:\\hexo-blog-client\\tools\\vue_devtools_4.1.5_0')
     } catch (e) {
-      console.error('Vue Devtools failed to install:', e.toString())
     }
   }
   createWindow()
@@ -103,7 +107,7 @@ function createWindow () {
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
     win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
-    if (!process.env.IS_TEST) win.webContents.openDevTools()
+    // if (!process.env.IS_TEST) win.webContents.openDevTools()
   } else {
     createProtocol('app')
     // Load the index.html when not in development
@@ -128,6 +132,7 @@ function createWindow () {
 
 // 创建通知栏图标
 function initTrayIcon () {
+  /* eslint-disabled-next-line */
   tray = new Tray(path.join(__static, 'icons/icon.ico'))
   const trayContextMenu = Menu.buildFromTemplate([
     {
@@ -142,19 +147,19 @@ function initTrayIcon () {
         shell.openExternal('https://blog.onlystar.site')
       }
     },
-    // {
-    //   label: '设置',
-    //   click: () => {
-    //     // 跳转到设置页
-    //     if (process.env.WEBPACK_DEV_SERVER_URL) {
-    //       win.loadURL(process.env.WEBPACK_DEV_SERVER_URL + '/#/settings')
-    //     } else {
-    //       // createProtocol('app')
-    //       win.loadURL('app://./index.html/#/settings')
-    //     }
-    //     win.show()
-    //   }
-    // },
+    {
+      label: '设置',
+      click: () => {
+        // 跳转到设置页
+        if (process.env.WEBPACK_DEV_SERVER_URL) {
+          win.loadURL(process.env.WEBPACK_DEV_SERVER_URL + '/#/settings')
+        } else {
+          // createProtocol('app')
+          win.loadURL('app://./index.html#/settings')
+        }
+        win.show()
+      }
+    },
     {
       label: '退出',
       click: () => {

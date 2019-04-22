@@ -47,6 +47,15 @@ npm run serve // yarn serve
 # 打包
 npm run build // yarn build
 ```
+
+更换icon图标
+```bash
+# 安装
+npm install --save-dev electron-icon-builder
+
+# scripts中添加
+"generate-icons": "electron-icon-builder --input=./public/icon.png --output=build --flatten"
+```
 ## [配置](https://blog.onlystar.site/2019/04/21/hexoblogclient-shi-yong-zhi-nan/)
 
 ## 效果截图

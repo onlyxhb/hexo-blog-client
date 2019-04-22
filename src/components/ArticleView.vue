@@ -48,8 +48,6 @@
 </template>
 
 <script>
-  const electron = require('electron')
-  const fs = require('fs')
   import Operation from '@/components/Operation'
   import { mapGetters } from 'vuex'
   export default {

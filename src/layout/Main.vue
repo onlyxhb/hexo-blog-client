@@ -19,11 +19,9 @@
 
 <script>
   import ArticleList from '@/components/ArticleList'
-  import ArticleView from '@/components/ArticleView'
-  import Operation from '@/components/Operation'
 
   export default {
-    components: {ArticleList, ArticleView, Operation},
+    components: {ArticleList},
     props: {
       type: {
         type: String,
