@@ -30,7 +30,14 @@ app.on('activate', () => {
   // dock icon is clicked and there are no other windows open.
   if (win === null) {
     createWindow()
-    initTrayIcon()
+    if (process.platform === 'win32') {
+      initTrayIcon()
+    }
+    if (process.platform === 'darwin') {
+      initDockMenu()
+    }
+  } else {
+    win.show()
   }
 })
 
@@ -67,13 +74,18 @@ app.on('ready', async () => {
     // Install Vue Devtools
     try {
       // await installVueDevtools()
-      // BrowserWindow.addDevToolsExtension('/Volumes/数据/hexo-vue-client/tools/vue_devtools_4.1.5_0')
-      BrowserWindow.addDevToolsExtension('E:\\hexo-blog-client\\tools\\vue_devtools_4.1.5_0')
+      BrowserWindow.addDevToolsExtension('/Volumes/数据/hexo-blog-client/tools/vue_devtools_4.1.5_0')
+      // BrowserWindow.addDevToolsExtension('E:\\hexo-blog-client\\tools\\vue_devtools_4.1.5_0')
     } catch (e) {
     }
   }
   createWindow()
-  initTrayIcon()
+  if (process.platform === 'win32') {
+    initTrayIcon()
+  }
+  if (process.platform === 'darwin') {
+    initDockMenu()
+  }
 })
 
 // Exit cleanly on request from parent process in development mode.
@@ -127,7 +139,27 @@ function createWindow () {
 
   Menu.setApplicationMenu(null)
 
-  app.dock && app.dock.hide() // 关闭mac的dock
+  if (process.platform !== 'darwin') {
+    app.dock && app.dock.hide()
+  } else {
+    const menu = Menu.buildFromTemplate([
+      {
+        label: 'HexoBlogClient',
+        submenu: [
+          { label: '关于HexoBlogClient', role: 'about' },
+          { type: 'separator' },
+          { label: '服务', role: 'services' },
+          { type: 'separator' },
+          { label: '隐藏HexoBlogClient', role: 'hide' },
+          { label: '隐藏其他', role: 'hideothers' },
+          { label: '全部显示', role: 'unhide' },
+          { type: 'separator' },
+          { label: '退出HexoBlogClient', role: 'quit' }
+        ]
+      }
+    ])
+    Menu.setApplicationMenu(menu)
+  }
 }
 
 // 创建通知栏图标
@@ -150,14 +182,6 @@ function initTrayIcon () {
     {
       label: '设置',
       click: () => {
-        // // 跳转到设置页
-        // if (process.env.WEBPACK_DEV_SERVER_URL) {
-        //   win.loadURL(process.env.WEBPACK_DEV_SERVER_URL + '/#/settings')
-        // } else {
-        //   // createProtocol('app')
-        //   win.loadURL('app://./index.html#/settings')
-        // }
-        // 向渲染进程传递消息
         win.webContents.send('jumping', 'settings')
         win.show()
       }
@@ -182,4 +206,28 @@ function initTrayIcon () {
   tray.on('right-click', () => {
     tray.popUpContextMenu(trayContextMenu)
   })
+}
+
+// 创建docker菜单
+function initDockMenu () {
+  const dockMenu = Menu.buildFromTemplate([
+    {
+      label: '显示主窗口',
+      click () { 
+        win.show()
+      }
+    }, {
+      label: '设置',
+      click () { 
+        win.webContents.send('jumping', 'settings')
+        win.show()
+      }
+    }, {
+      label: '退出',
+      click () {
+        app.quit()
+      }
+    }
+  ])
+  app.dock.setMenu(dockMenu)
 }
