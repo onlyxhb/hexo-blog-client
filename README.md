@@ -23,8 +23,8 @@
 - [x] 搜索文章, 分类以及标签搜索
 - [x] 软件设置
 - [x] 一键编译、发布博客
-- [ ] 优化关键词交互
 - [ ] 将文章保存为草稿
+- [ ] 优化关键词交互
 - [ ] 本地预览博客
 - [ ] 自动保存文章
 - [ ] 检查软件更新
@@ -46,6 +46,15 @@ npm run serve // yarn serve
 
 # 打包
 npm run build // yarn build
+```
+
+注意
+> 本人打包发布后simple-git使用报错，暂未发现好的方法，现提供一个修改simple-git源码的方法来规避此问题
+```js
+// node_modules/simple-git/src/git.js  1591行`requireResponseHandler`修改为
+function requireResponseHandler (type) {
+    return require('./responses/' + type)
+}
 ```
 
 更换icon图标

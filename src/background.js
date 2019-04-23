@@ -150,13 +150,15 @@ function initTrayIcon () {
     {
       label: '设置',
       click: () => {
-        // 跳转到设置页
-        if (process.env.WEBPACK_DEV_SERVER_URL) {
-          win.loadURL(process.env.WEBPACK_DEV_SERVER_URL + '/#/settings')
-        } else {
-          // createProtocol('app')
-          win.loadURL('app://./index.html#/settings')
-        }
+        // // 跳转到设置页
+        // if (process.env.WEBPACK_DEV_SERVER_URL) {
+        //   win.loadURL(process.env.WEBPACK_DEV_SERVER_URL + '/#/settings')
+        // } else {
+        //   // createProtocol('app')
+        //   win.loadURL('app://./index.html#/settings')
+        // }
+        // 向渲染进程传递消息
+        win.webContents.send('jumping', 'settings')
         win.show()
       }
     },

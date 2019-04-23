@@ -25,22 +25,11 @@
           this.$message.warning('资料库无变更')
         }
       },
-      getStatus () {
-        return new Promise((resolve, reject) => {
-          this.git.status((err, status) => {
-            if (err) {
-              reject(err)
-            } else {
-              resolve(status)
-            }
-          })
-        })
-      },
       async simpleStatus () {
         let status = {modified: false, branch: 'master'}
         try {
           let statusSummary = await this.git.status()
-          console.log('statusSummary: ', statusSummary)
+          // console.log('statusSummary: ', statusSummary)
           if (statusSummary.modified.length > 0 || statusSummary.not_added.length > 0 || statusSummary.deleted.length > 0) {
             status.modified = true
           }

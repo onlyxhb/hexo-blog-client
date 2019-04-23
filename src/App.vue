@@ -32,14 +32,13 @@
         windowHeight: '300px' // 窗口高度
       }
     },
-
-    created () {
-    },
-
     mounted () {
       window.addEventListener('resize', this.resize)
       this.resize()
       this.init()
+      require('electron').ipcRenderer.on('jumping', (event, message) => {
+        this.$router.push({ name: message })
+      })
     },
 
     beforeDestroy () {
