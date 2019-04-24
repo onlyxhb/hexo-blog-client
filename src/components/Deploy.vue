@@ -53,6 +53,7 @@
           await this.git.push('origin', branch)
           this.$message('发布成功')
         } catch (e) {
+          console.log(e)
           this.$message.error('发布失败')
         } finally {
           loading.close()
