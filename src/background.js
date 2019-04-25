@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, BrowserWindow, Menu, protocol, ipcMain, Tray, shell  } from 'electron'
+import { app, BrowserWindow, Menu, protocol, ipcMain, Tray, shell, globalShortcut  } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import path from 'path'
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -159,6 +159,17 @@ function createWindow () {
       }
     ])
     Menu.setApplicationMenu(menu)
+    // 解决mac复制粘贴的问题
+    let contents = win.webContents
+    globalShortcut.register("CommandOrControl+C", () => {
+      contents.copy()
+    })
+    globalShortcut.register("CommandOrControl+X", () => {
+      contents.cut()
+    })
+    globalShortcut.register("CommandOrControl+V", () => {
+      contents.paste()
+    })
   }
 }
 

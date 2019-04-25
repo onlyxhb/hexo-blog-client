@@ -3,7 +3,7 @@
     <operation/>
     <el-form label-width="120px" label-position="left" :model="configForm">
       <el-form-item :label="$t('settingTitlePath')">
-        <el-input v-model="configForm.path" style="width:100%"/>
+        <el-input v-model="configForm.path" style="width:100%" clearable />
       </el-form-item>
       <el-form-item :label="$t('settingTitleLanguage')">
         <el-select v-model="configForm.language" default-first-option :placeholder="$t('settingLanguagePlaceholder')"
@@ -45,14 +45,17 @@
         </div>
       </transition>
       <el-form-item :label="$t('settingPhoto')">
-        <el-upload
-          action=""
-          list-type="picture-card"
-          :file-list="config.photoPic ? [{ name: '图片logo', url: getPhoto }] : []"
-          :on-remove="handleRemove"
-          :before-upload="customUpload">
-          <i class="el-icon-plus"></i>
-        </el-upload>
+        <div class="photo-upload" :class="{hasPic: getDisplayPic}">
+          <img :src="getPhoto" v-if="getDisplayPic"/>
+          <i class="el-icon-delete" v-if="getDisplayPic" @click="handleRemove"/>
+          <el-upload
+            action=""
+            v-if="!getDisplayPic"
+            list-type="picture-card"
+            :before-upload="customUpload">
+            <i class="el-icon-plus"></i>
+          </el-upload>
+        </div>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="saveConfig">{{$t('save')}}</el-button>
@@ -66,6 +69,7 @@
   import Operation from '@/components/Operation'
   import githubUploader from '@/service/GithubUploader'
   import photoPic from '@/mixins/photoPic'
+  import { mapActions } from 'vuex'
   const { ipcRenderer } = require('electron')
   export default {
     data () {
@@ -86,28 +90,33 @@
     components: { Operation },
     mixins: [photoPic],
     created () {
-      Object.assign(this.configForm, this.config)
+      this.configForm = {...this.configForm, ...this.config}
+    },
+    computed: {
+      getDisplayPic () {
+        return this.config.photoPic ? this.getPhoto : ''
+      }
     },
     methods: {
+      ...mapActions({
+        'setConfig': "Config/setConfig"
+      }),
       async saveConfig () {
         let message = '保存成功'
         if (this.config.language !== this.configForm.language) {
           message = '保存成功，变更语言需要重启后生效。'
         }
-        await this.$store.dispatch('Config/setConfig', this.configForm)
+        await this.setConfig(this.configForm)
         this.$message.success(message)
       },
       customUpload (file) {
         githubUploader.upload(file, this.config).then(url => {
-          this.configForm.photoPic = url
-          this.setPhoto(url)
-        }, () => {
+          this.setConfig({...this.config, photoPic: url})
         })
         return false
       },
       handleRemove () {
-        this.configForm.photoPic = ''
-        this.setPhoto()
+        this.setConfig({...this.config, photoPic: ''})
       },
       OpenDevTool () {
         ipcRenderer.send('openDevTool')
@@ -124,5 +133,43 @@
       width: 650px;
     }
     padding: 0;
+    .photo-upload {
+      position: relative;
+      overflow: hidden;
+      width: 150px;
+      height: 150px;
+      border: 1px solid #c0ccda;
+      border-radius: 6px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      &.hasPic::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: 6px;
+        background-color: #000;
+        opacity: 0;
+        transition: opacity .3s;
+      }
+      &.hasPic:hover {
+        &::before {
+          opacity: .5;
+        }
+        i {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          color: #fff;
+          font-size: 24px;
+          transform: translate(-50%, -50%);
+          cursor: pointer;
+        }
+      }
+    }
   }
 </style>

@@ -7,9 +7,6 @@ const state = {
 const mutations = {
   updateConfig (state, config) {
     state.config = config
-  },
-  setPhoto (state, photoPic) {
-    state.config.photoPic = photoPic
   }
 }
 

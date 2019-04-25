@@ -40,14 +40,14 @@
         :show-close="false"
         :visible.sync="visible"
         :before-close="handleDialogCancel"
-        width="500px">
-        <el-form :model="postForm" :rules="postFormRules" label-width="80px"  ref="postForm" :show-message="false">
+        width="600px">
+        <el-form :model="postForm" :rules="postFormRules" label-width="100px"  ref="postForm" :show-message="false">
           <img v-if="postForm.img" :src="postForm.img" class="article-home-img"/>
           <el-form-item label="文章标题" prop="title">
-            <el-input v-model="postForm.title" placeholder="请输入文章标题" :disabled="type === 'edit'"></el-input>
+            <el-input v-model="postForm.title" placeholder="请输入文章标题" :disabled="type === 'edit'" clearable></el-input>
           </el-form-item>
           <el-form-item label="文章作者" prop="author">
-            <el-input v-model="postForm.author" placeholder="请输入文章作者"></el-input>
+            <el-input v-model="postForm.author" placeholder="请输入文章作者" clearable></el-input>
           </el-form-item>
           <el-form-item label="文章分类" prop="categories">
             <el-select v-model="postForm.categories" placeholder="请选择分类" style="width: 100%" multiple filterable allow-create default-first-option>
@@ -70,7 +70,7 @@
             </el-select>
           </el-form-item>
           <el-form-item label="首页图片">
-            <el-input v-model="postForm.img" placeholder="请输入首页图片"/>
+            <el-input v-model="postForm.img" placeholder="请输入首页图片" clearable />
           </el-form-item>
           <el-form-item label="开启目录">
             <el-switch v-model="postForm.toc"></el-switch>

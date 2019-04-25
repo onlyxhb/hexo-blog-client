@@ -1,4 +1,4 @@
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters } from 'vuex'
 const fs = require('fs')
 export default {
   computed: {
@@ -15,10 +15,5 @@ export default {
       }
       return url
     }
-  },
-  methods: {
-    ...mapMutations({
-      'setPhoto': "Config/setPhoto"
-    })
   }
 }
