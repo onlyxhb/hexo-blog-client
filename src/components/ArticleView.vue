@@ -21,6 +21,7 @@
               <i v-if="type === 'preview'" class="el-icon-share click-back" name="share"/>
               <i v-if="type !== 'preview'" class="el-icon-check click-back" name="save"/>
               <i v-if="type !== 'preview'" class="el-icon-setting click-back" name="setting"/>
+              <i class="click-back" :class="collapse ? 'el-icon-s-unfold' : 'el-icon-s-fold'" name="collapse"/>
               <!-- <i v-if="type !== 'preview'" class="el-icon-more click-back" name="more"/> -->
               <!-- <el-popover
                 popper-class="custom-popover-more"
@@ -71,6 +72,7 @@
     computed: {
       ...mapGetters({
         type: 'Article/type',
+        collapse: 'Article/collapse'
       })
     },
     methods: {

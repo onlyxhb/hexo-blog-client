@@ -156,20 +156,38 @@ function createWindow () {
           { type: 'separator' },
           { label: '退出HexoBlogClient', role: 'quit' }
         ]
+      },
+      {
+        label: '编辑',
+        submenu: [
+          { label: '撤销', role: 'undo' },
+          { label: '恢复', role: 'redo' },
+          { type: 'separator' },
+          { label: '剪切', role: 'cut' },
+          { label: '复制', role: 'copy' },
+          { label: '粘贴', role: 'paste' },
+          { label: '粘贴并匹配样式', role: 'pasteandmatchstyle' },
+          { label: '删除', role: 'delete' },
+          { label: '全选', role: 'selectall' }
+        ]
+      },
+      {
+        label: '窗口',
+        submenu: [
+          { label: '最小化', role: 'minimize' },
+          { label: '重载', role: 'reload' },
+          { label: '关闭', role: 'close' },
+          { label: '退出', role: 'quit' }
+        ]
+      },
+      {
+        label: '帮助',
+        submenu: [
+          { label: '关于', role: 'about' },
+        ]
       }
     ])
     Menu.setApplicationMenu(menu)
-    // 解决mac复制粘贴的问题
-    let contents = win.webContents
-    globalShortcut.register("CommandOrControl+C", () => {
-      contents.copy()
-    })
-    globalShortcut.register("CommandOrControl+X", () => {
-      contents.cut()
-    })
-    globalShortcut.register("CommandOrControl+V", () => {
-      contents.paste()
-    })
   }
 }
 
