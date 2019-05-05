@@ -3748,9 +3748,9 @@ electron@^4.0.0:
     electron-download "^4.1.0"
     extract-zip "^1.0.3"
 
-element-ui@^2.4.5:
+element-ui@^2.8.2:
   version "2.8.2"
-  resolved "https://registry.npm.taobao.org/element-ui/download/element-ui-2.8.2.tgz#21a7a4cb92616b0f8b75d4d4e637d3a1cd8c09de"
+  resolved "https://registry.npm.taobao.org/element-ui/download/element-ui-2.8.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Felement-ui%2Fdownload%2Felement-ui-2.8.2.tgz#21a7a4cb92616b0f8b75d4d4e637d3a1cd8c09de"
   integrity sha1-Iaeky5Jhaw+LddTU5jfToc2MCd4=
   dependencies:
     async-validator "~1.8.1"

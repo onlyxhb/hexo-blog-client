@@ -12,6 +12,11 @@ const SYSTEM_FRONT_MATTERS = [
 ]
 
 class Utils {
+
+  /**
+   * 获取文章摘要，截取前100个字符
+   * @param {String} content 文章内容
+   */
   getPostSummary (content) {
     let textContent = hexoUtil.stripHTML(content).trim()
       .replace(/\n/g, ' ').replace(/\s+/g, ' ')
@@ -62,6 +67,11 @@ class Utils {
     return ret
   }
 
+  /**
+   * 格式化时间
+   * @param {String} datetime 时间戳
+   * @param {String} type  格式
+   */
   formatDate (datetime, type = 'YYYY-MM-DD HH:MM:SS') {
     // 返回规定格式的字符串 
     let date = new Date(datetime)

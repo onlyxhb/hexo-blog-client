@@ -21,6 +21,7 @@
               <i v-if="type === 'preview'" class="el-icon-share click-back" name="share"/>
               <i v-if="type !== 'preview'" class="el-icon-check click-back" name="save"/>
               <i v-if="type !== 'preview'" class="el-icon-setting click-back" name="setting"/>
+              <i v-if="type !== 'preview'" class="el-icon-more click-back" name="more"/>
               <i class="click-back" :class="collapse ? 'el-icon-s-unfold' : 'el-icon-s-fold'" name="collapse"/>
               <!-- <i v-if="type !== 'preview'" class="el-icon-more click-back" name="more"/> -->
               <!-- <el-popover
@@ -50,7 +51,7 @@
 
 <script>
   import Operation from '@/components/Operation'
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapMutations } from 'vuex'
   export default {
     components: {Operation},
     props: {
@@ -76,6 +77,9 @@
       })
     },
     methods: {
+      ...mapMutations({
+        setCollapse: 'Article/setCollapse'
+      }),
       handleArticle (event) {
         let name = event.target.getAttribute('name')
         switch(name) {
@@ -97,6 +101,14 @@
           }
           case 'setting' : {
             this.$emit('setPost')
+            break
+          }
+          case 'more' : {
+            this.$emit('setMore')
+            break
+          }
+          case 'collapse' : {
+            this.setCollapse(!this.collapse)
             break
           }
         }

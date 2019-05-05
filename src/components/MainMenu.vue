@@ -45,7 +45,8 @@
     mixins: [photoPic],
     methods: {
       ...mapMutations({
-        changeType: 'Article/changeType'
+        changeType: 'Article/changeType',
+        setCollapse: 'Article/setCollapse'
       }),
       handle: ipcRenderer.send,
       dispatch (index) {
@@ -56,6 +57,7 @@
           case 'settings':
           case 'about':
             this.changeType('preview')
+            this.setCollapse(false)
             this.$router.push({name: index})
             break
           default:

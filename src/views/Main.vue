@@ -128,7 +128,8 @@
           categories: [{required: true, trigger: 'blur'}],
           tags: [{required: true, trigger: 'blur'}],
           content: [{required: true, trigger: 'blur'}]
-        }
+        },
+        frontMatters: [] // 文章的font-matter
       }
     },
     beforeRouteEnter (to, from, next) {
@@ -202,40 +203,45 @@
         }
       },
       getFrontMatter () {
-        let me = this
         let post = this.post
         let keys = Object.keys(post)
         for (let i = 0; i < keys.length; i++) {
           switch (keys[i]) {
             case 'title':
-              me.postForm.title = post.title.trim()
+              this.postForm.title = post.title.trim()
               break
             case '_content':
-              me.postForm.content = post._content.trim()
+              this.postForm.content = post._content.trim()
               break
             case 'tags':
-              me.postForm.tags = []
+              this.postForm.tags = []
               post.tags.forEach(tag => {
-                me.postForm.tags.push(tag.name)
+                this.postForm.tags.push(tag.name)
               })
               break
             case 'categories':
-              me.postForm.categories = []
+              this.postForm.categories = []
               post.categories.forEach(cat => {
-                me.postForm.categories.push(cat.name)
+                this.postForm.categories.push(cat.name)
               })
               break
             case 'date':
-              me.postForm.date = post.date.format('YYYY-MM-DD HH:mm:ss')
+              this.postForm.date = post.date.format('YYYY-MM-DD HH:mm:ss')
+              break
+            case 'update':
+              this.postForm.update = post.update.format('YYYY-MM-DD HH:mm:ss')
               break
             case 'toc':
-              me.postForm.toc = post.toc
+              this.postForm.toc = post.toc
               break
             case 'top':
-              me.postForm.top = post.top
+              this.postForm.top = post.top
               break
             case 'cover':
-              me.postForm.cover = post.cover
+              this.postForm.cover = post.cover
+              break
+            case 'img':
+              this.postForm.img = post.img
               break
             default:
               break
@@ -244,7 +250,10 @@
         // frontMatter
         let frontMatter = Utils.frontMatter(post.raw)
         Object.keys(frontMatter).forEach(key => {
-          me.postForm[key] = frontMatter[key]
+          this.frontMatters.push({
+            title: key,
+            value: frontMatter[key]
+          })
         })
       },
       editPost (type) {

@@ -1,7 +1,7 @@
 <template>
   <el-container style="height: 100%; position: relative">
     <!-- 左侧部分 -->
-    <div class="main-left-container">
+    <div class="main-left-container" :class="{collapsed: collapse}">
       <el-form class="main-left-search">
         <el-form-item style="margin-bottom: 0;">
           <i class="el-icon-back" :class="{ disabled: !getBackStatus }" :title="$t('goBack')" @click="handleBack"/>
@@ -19,6 +19,7 @@
 
 <script>
   import ArticleList from '@/components/ArticleList'
+  import { mapGetters } from 'vuex'
 
   export default {
     components: {ArticleList},
@@ -40,6 +41,9 @@
     },
 
     computed: {
+      ...mapGetters({
+        collapse: 'Article/collapse'
+      }),
       getBackStatus () {
         return this.type === 'recentArticle' && this.hasParentKey
       }
@@ -67,10 +71,12 @@
 }
 .main-left-container {
   position: relative;
+  overflow: hidden;
+  display: block;
   width: 305px;
-  min-width: 305px;
   height: 100%;
   background-color: #fafafa;
+  transition: width .3s linear;
   .main-left-search {
     overflow: hidden;
     width: 100%;
@@ -126,6 +132,10 @@
   }
   .main-left-scrollbar {
     top: 75px;
+  }
+  // 收起
+  &.collapsed {
+    width: 0;
   }
 }
 </style>
