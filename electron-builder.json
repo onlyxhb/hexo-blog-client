@@ -9,7 +9,7 @@
   ],
   "publish": {
     "provider": "github",
-    "owner": "Xnlystar",
+    "owner": "Xonlystar",
     "repo": "hexo-blog-client"
   },
   "dmg": {
