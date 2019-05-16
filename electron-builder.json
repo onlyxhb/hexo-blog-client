@@ -9,7 +9,7 @@
   ],
   "publish": {
     "provider": "github",
-    "owner": "onlystar",
+    "owner": "Xnlystar",
     "repo": "hexo-blog-client"
   },
   "dmg": {
@@ -37,28 +37,10 @@
   "linux": {
     "category": "Utility",
     "target": [
-      {
-        "target": "AppImage",
-        "arch": [
-          "x64",
-          "ia32"
-        ]
-      },
-      {
-        "target": "deb",
-        "arch": [
-          "x64",
-          "ia32"
-        ]
-      },
-      {
-        "target": "rpm",
-        "arch": [
-          "x64",
-          "ia32"
-        ]
-      }
+      "deb",
+      "AppImage"
     ],
+    "executableName": "HexoBlogClient",
     "icon": "public/icons"
   }
 }
