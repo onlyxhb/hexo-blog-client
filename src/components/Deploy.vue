@@ -20,7 +20,7 @@
     },
     mounted () {
       let workingDir = this.$store.state.Config.config.path
-      this.git = require('simple-git/promise')(workingDir)
+      this.git = require('little-git/promise')(workingDir)
       window.git = this.git
     },
     methods: {

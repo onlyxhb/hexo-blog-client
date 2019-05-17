@@ -48,15 +48,6 @@ npm start
 npm run build
 ```
 
-注意
-> 本人打包发布后simple-git使用报错，暂未发现好的方法，现提供一个修改simple-git源码的方法来规避此问题
-```js
-// node_modules/simple-git/src/git.js  1591行`requireResponseHandler`修改为
-function requireResponseHandler (type) {
-    return require('./responses/' + type)
-}
-```
-
 更换icon图标
 ```bash
 # 安装
