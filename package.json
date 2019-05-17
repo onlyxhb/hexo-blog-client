@@ -16,7 +16,7 @@
   "license": "Apache License, Version 2.0",
   "scripts": {
     "serve": "vue-cli-service electron:serve",
-    "build": "vue-cli-service electron:build --publish onTagOrDraft",
+    "release": "vue-cli-service electron:build",
     "vue:serve": "vue-cli-service serve",
     "vue:build": "vue-cli-service build",
     "vue:lint": "vue-cli-service lint",
