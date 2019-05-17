@@ -28,7 +28,8 @@
         :showToolbars="mdConfig.showToolbars"
         :defaultOpen="mdConfig.defaultOpen"
         :subfield="mdConfig.subfield"
-        @change="formChanged = true"/>
+        @change="formChanged = true"
+        @save="submitForm"/>
     </article-view>
     <!-- 弹出dialog -->
     
@@ -229,7 +230,7 @@
               this.postForm.date = post.date.format('YYYY-MM-DD HH:mm:ss')
               break
             case 'update':
-              this.postForm.update = post.update.format('YYYY-MM-DD HH:mm:ss')
+              this.postForm.update = post.update
               break
             case 'toc':
               this.postForm.toc = post.toc
@@ -279,6 +280,7 @@
       handleDialogCancel () {
         this.visible = false
       },
+
       /**
       * @func 保存弹框的表单信息
       */

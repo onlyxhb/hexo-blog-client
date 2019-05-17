@@ -3,6 +3,7 @@
     <img :src="getPhoto" draggable="false" :title="$t('imgTitle')" class="icon" @click="$router.push('settings')"/>
     <ul class="custom-opeartor">
       <li :title="$t('deploy')"><deploy/></li>
+      <li :title="$t('download')"><deploy type="download"/></li>
       <li :title="$t('refresh')" @click="reload"><i class="el-icon-refresh"></i></li>
     </ul>
     <p class="add-article" :title="$t('new')" @click="handleAddArticle"><i class="el-icon-plus"></i></p>

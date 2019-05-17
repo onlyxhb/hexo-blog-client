@@ -1,11 +1,18 @@
 <template>
-  <i class="el-icon-upload" @click="deploy"/>
+  <i v-if ="type === 'upload'" class="el-icon-upload" @click="deploy"/>
+  <i v-else class="el-icon-download" @click="downLoad"/>
 </template>
 
 <script>
   import Utils from '@/service/Utils'
   export default {
     name: 'Deploy',
+    props: {
+      type: {
+        type: String,
+        default: 'upload'
+      }
+    },
     data () {
       return {
         git: {}
@@ -24,6 +31,17 @@
         } else {
           this.$message.warning('资料库无变更')
         }
+      },
+      async downLoad () {
+        let loading = this.$loading({
+          lock: true,
+          text: '与云端同步中...',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+        })
+        await this.git.pull()
+        this.$message('同步成功')
+        loading.close()
       },
       async simpleStatus () {
         let status = {modified: false, branch: 'master'}
