@@ -16,6 +16,7 @@
   "license": "Apache License, Version 2.0",
   "scripts": {
     "start": "npm run electron:serve",
+    "release": "npm run electron:build",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",

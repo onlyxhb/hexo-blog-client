@@ -5,7 +5,7 @@
       <el-form class="main-left-search">
         <el-form-item style="margin-bottom: 0;">
           <i class="el-icon-back" :class="{ disabled: !getBackStatus }" :title="$t('goBack')" @click="handleBack"/>
-          <el-input clearable :placeholder="$t('search')" v-model="keyword" clearable />
+          <el-input clearable :placeholder="$t('search')" v-model="keyword" />
         </el-form-item>
       </el-form>
       <div class="main-left-scrollbar main-scrollbar">

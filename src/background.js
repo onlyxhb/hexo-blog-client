@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, BrowserWindow, Menu, protocol, ipcMain, Tray, shell, globalShortcut  } from 'electron'
+import { app, BrowserWindow, Menu, protocol, ipcMain, Tray, shell  } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import path from 'path'
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -77,6 +77,8 @@ app.on('ready', async () => {
       BrowserWindow.addDevToolsExtension('/Users/onlystar/Documents/blog/hexo-blog-client/tools/vue_devtools_4.1.5_0')
       // BrowserWindow.addDevToolsExtension('E:\\hexo-blog-client\\tools\\vue_devtools_4.1.5_0')
     } catch (e) {
+      /* eslint-disable-next-line */
+      console.log(e)
     }
   }
   createWindow()
@@ -193,7 +195,7 @@ function createWindow () {
 
 // 创建通知栏图标
 function initTrayIcon () {
-  /* eslint-disabled-next-line */
+  /* eslint-disable-next-line */
   tray = new Tray(path.join(__static, 'icons/icon.ico'))
   const trayContextMenu = Menu.buildFromTemplate([
     {
