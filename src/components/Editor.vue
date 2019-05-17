@@ -9,6 +9,7 @@
     @imgAdd="imgAdd"
     @fullScreen="fullScreen"
     @change="change"
+    @save="save"
     :language="editorLanguage"
     :boxShadow="false"
     :subfield="subfield"
@@ -71,6 +72,11 @@
           // readmodel: true, // 沉浸式阅读
           // htmlcode: true, // 展示html源码
           help: true, // 帮助
+          // /* 1.3.5 */
+          // undo: true, // 上一步
+          // redo: true, // 下一步
+          // trash: true, // 清空
+          save: true, // 保存（触发events中的save事件）
           /* 1.4.2 */
           navigation: true, // 导航目录
           /* 2.1.8 */
@@ -114,7 +120,7 @@
             me.$message.error('图片上传失败：')
             me.uploading = false
           })
-        } else if (sysConfig.uploadtype === 'sm.ms') {
+        } else if (sysConfig.uploadType === 'sm.ms') {
           smmsUploader.upload(file).then(url => {
             me.$refs.editor.$img2Url(pos, url)
             me.uploading = false
@@ -142,6 +148,12 @@
         if (value !== this.initValue) {
           this.$emit('change', value)
         }
+      },
+      /**
+       * 保存
+       */
+      save (value) {
+        this.$emit('save', value)
       },
       /**
        * 切换全屏

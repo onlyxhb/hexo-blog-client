@@ -23,7 +23,7 @@ install:
   - npm install hexo --save
 
 script:
-  - npm run release
+  - npm run electron:build
 
 branches:
   only:

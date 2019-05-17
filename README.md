@@ -42,10 +42,10 @@ git clone https://github.com/Xonlystar/hexo-blog-client.git
 npm install // yarn
 
 # 开发模式
-npm run serve // yarn serve
+npm start // yarn start
 
 # 打包
-npm run build // yarn build
+npm run electron:build // yarn electron:build
 ```
 
 注意
