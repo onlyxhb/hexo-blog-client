@@ -9,16 +9,22 @@ matrix:
   include:
     - os: osx
     - os: linux
+      before_install:
+        - sudo apt-get -qq update
+        - sudo apt-get install --no-install-recommends -y gcc-multilib g++-multilib
+        - sudo apt-get install --no-install-recommends -y rpm
 
 cache:
   directories:
     - node_modules
 
 install:
+  - npm uninstall hexo --save
   - npm install
+  - npm install hexo --save
 
 script:
-  - npm run release
+  - npm run build
 
 branches:
   only:

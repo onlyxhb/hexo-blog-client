@@ -45,7 +45,7 @@ npm install
 npm start
 
 # 打包
-npm run release
+npm run build
 ```
 
 注意
