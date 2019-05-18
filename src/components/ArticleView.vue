@@ -7,12 +7,12 @@
           <div class="artile-title-box"><label class="article-title">{{ post.title }}</label></div>
           <div class="article-sub">
             <div>
-              <label class="article-time">{{ type === 'preview' ? post.date.format('YYYY-MM-DD HH:mm:ss') : post.date }}</label>
-              <label class="article-cat" v-for="(category, index) in post.categories.data" :key="index + category.name">
-                <el-tag size="small">{{ category.name }}</el-tag>
+              <label class="article-time">{{ post.date }}</label>
+              <label class="article-cat" v-for="(category, index) in post.categories" :key="index + (category.name || category)">
+                <el-tag size="small">{{ category.name || category }}</el-tag>
               </label>
-              <label class="article-tag" v-for="(tag, index) in post.tags.data" :key="index + tag.name">
-                <el-tag type="info" size="small">{{ tag.name }}</el-tag>
+              <label class="article-tag" v-for="(tag, index) in post.tags" :key="index + (tag.name || tag)">
+                <el-tag type="info" size="small">{{ tag.name || tag }}</el-tag>
               </label>
             </div>
             <label class="article-opa" @click="handleArticle">
@@ -120,6 +120,7 @@
 <style lang="scss" scoped>
 .el-main {
   overflow: hidden;
+  flex: 1;
   padding: 0;
   .article {
     position: relative;

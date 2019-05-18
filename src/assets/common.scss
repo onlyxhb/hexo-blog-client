@@ -67,6 +67,7 @@ body {
 
 // 文章页的dialog弹框样式
 .article-dialog-input {
+
   .custom-dialog-form {
     overflow: hidden;
     .el-dialog {
@@ -92,6 +93,21 @@ body {
           }
           textarea:hover::-webkit-scrollbar-thumb {
             background: transparent;
+          }
+        }
+      }
+    }
+  }
+  .custom-dialog-frontmater {
+    .table-front-matters {
+      .el-input {
+        display: none
+      } 
+      .current-row {
+        .el-input {
+          display: block;
+          &+span {
+            display: none;
           }
         }
       }

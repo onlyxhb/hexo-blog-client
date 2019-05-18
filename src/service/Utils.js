@@ -8,7 +8,7 @@ const SYSTEM_FRONT_MATTERS = [
   // 为了兼容之前的错误
   '_content', 'originContent',
   // 已经处理了的
-  'toc'
+  'toc', 'id', "author", "top", "cover", "img", "content", "raw", "summary", "permalink"
 ]
 
 class Utils {
@@ -40,19 +40,26 @@ class Utils {
   /**
    * 将hexo文章格式化成内部使用的格式
    * @param post
-   * @returns {{date: *, summary: (*|*), path: *, author: CodeCommit.UserInfo | string | {email: string; name: string} | null | *, id: *, categories: *, title: *, tags: *}}
+   * @returns Object
    */
   formatPost (post) {
-    return {
-      id: post._id,
-      title: post.title,
-      path: post.path,
-      date: post.date.format('YYYY-MM-DD hh:mm:ss'),
-      author: post.author,
-      top: post.top,
-      tags: post.tags.data,
-      categories: post.categories.data,
-      summary: this.getPostSummary(post.content)
+    let result = {}
+    try {
+      result = {
+        ...post,
+        id: post._id, // 文章唯一id
+        date: post.date.format('YYYY-MM-DD hh:mm:ss'), // 创建日期
+        updated: post.updated.format('YYYY-MM-DD hh:mm:ss'), // 更新日期
+        tags: post.tags.data, // 标签
+        categories: post.categories.data, // 分类
+        summary: this.getPostSummary(post.content), // 摘要
+        content: post.content, // 文章内容
+        _content: post._content, // 文章的markdown
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      return result
     }
   }
 

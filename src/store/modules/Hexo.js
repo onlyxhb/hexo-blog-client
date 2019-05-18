@@ -158,10 +158,10 @@ const actions = {
   createPost (context, postForm) {
     let deferred = when.defer()
     let hexo = context.state.instance
-    // let suffix = '.md'
-    // if (postForm.path && postForm.path.indexOf(suffix, this.length - suffix.length) === -1) { // 设置了path，并且path不以.md结尾
-    //   postForm.path = postForm.path + '.md'
-    // }
+    let suffix = '.md'
+    if (postForm.path && postForm.path.indexOf(suffix, this.length - suffix.length) === -1) { // 设置了path，并且path不以.md结尾
+      postForm.path = postForm.path + '.md'
+    }
     hexo.post.create(postForm, function (err, value) {
       if (err) {
         deferred.reject(err)
@@ -181,10 +181,10 @@ const actions = {
   editPost (context, postForm) {
     let deferred = when.defer()
     let hexo = context.state.instance
-    // let suffix = '.md'
-    // if (postForm.path && postForm.path.indexOf(suffix, this.length - suffix.length) === -1) { // 设置了path，并且path不以.md结尾
-    //   postForm.path = postForm.path + '.md'
-    // }
+    let suffix = '.md'
+    if (postForm.path && postForm.path.indexOf(suffix, this.length - suffix.length) === -1) { // 设置了path，并且path不以.md结尾
+      postForm.path = postForm.path + '.md'
+    }
     hexo.post.create(postForm, true, function (err, value) {
       if (err) {
         deferred.reject(err)
@@ -317,6 +317,10 @@ const getters = {
     if (!state.instance || !state.instance.locals) return []
     let posts = []
     let temp = state.instance.locals.get('posts').sort('date', -1)
+    let tops = temp.filter(v => v.top)
+    let notops = temp.filter(v => !v.top)
+    temp.length = tops.length = notops.length
+    temp.data = [...tops.data, ...notops.data]
     if (temp && temp.length > 0) {
       temp.forEach(post => {
         let tags = []
@@ -333,11 +337,7 @@ const getters = {
             return
           }
         }
-        if (post.top) {
-          posts.unshift(utils.formatPost(post))
-        } else {
-          posts.push(utils.formatPost(post))
-        }
+        posts.push(utils.formatPost(post))
       })
     }
     return posts
@@ -358,7 +358,7 @@ const getters = {
       return null
     }
     let post = posts.findOne({_id: selectedPostId}).toObject()
-    return post
+    return utils.formatPost(post)
   }
 }
 

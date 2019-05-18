@@ -24,7 +24,7 @@
 // 没数据
 .no-data {
   position: relative;
-  width: 100%;
+  flex: 1;
   height: 100%;
   &-content {
     position: absolute;

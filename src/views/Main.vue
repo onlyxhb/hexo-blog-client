@@ -8,7 +8,8 @@
       @deletePost="deletePost"
       @sharePost="sharePost"
       @setPost="visible = !visible"
-      @savePost="submitForm">
+      @savePost="submitForm"
+      @setMore="frontMattersVisible = !frontMattersVisible">
       <!-- 右侧主界面 -->
       <markdown-editor
         v-if="type === 'preview'"
@@ -32,8 +33,8 @@
         @save="submitForm"/>
     </article-view>
     <!-- 弹出dialog -->
-    
     <div slot="dialog-area" class="article-dialog-input">
+      <!-- 基本设置弹框 -->
       <el-dialog
         center
         class="custom-dialog-form"
@@ -88,6 +89,42 @@
           </el-form-item>
         </el-form>
       </el-dialog>
+      <!-- frontMatters弹框 -->
+      <el-dialog
+        center
+        class="custom-dialog-frontmater"
+        title="frontMatters设置(点击行可编辑)"
+        :visible.sync="frontMattersVisible"
+        width="600px">
+        <el-table
+          class="table-front-matters"
+          highlight-current-row
+          :data="frontMatters"
+          height="350"
+          border
+          stripe>
+          <el-table-column prop="title" label="名称" width="100">
+            <template scope="scope">
+              <el-input size="small" v-model="scope.row.title" @blur="valideFrontTitle(scope)" placeholder="键名"></el-input> 
+              <span>{{scope.row.title}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column prop="value" label="值">
+            <template scope="scope">
+              <el-input size="small" v-model="scope.row.value" placeholder="请输入内容"></el-input>
+              <span>{{scope.row.value}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column width="80" align="center">
+            <template slot="header" slot-scope="scope">
+              <el-button size="mini" type="primary" @click="frontMatters = [...frontMatters, {}]">新增</el-button>
+            </template>
+            <template slot-scope="scope">
+              <el-button size="mini" type="danger" @click="deleteFrontMatter(scope)">删除</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+      </el-dialog>
     </div>
 
   </articleMain>
@@ -119,8 +156,8 @@
           top: false, // 置顶
           cover: false, // 首页轮播
           img:  '', // 文章首页图
-          date: Utils.formatDate(new Date()), // 创建时间
-          update: Utils.formatDate(new Date()), // 修改时间
+          date: new Date(), // 创建时间
+          updated: new Date(), // 修改时间
           author: '' // 文章作者
         },
         postFormRules: {
@@ -130,7 +167,8 @@
           tags: [{required: true, trigger: 'blur'}],
           content: [{required: true, trigger: 'blur'}]
         },
-        frontMatters: [] // 文章的font-matter
+        frontMatters: [], // 文章的font-matter
+        frontMattersVisible: false
       }
     },
     beforeRouteEnter (to, from, next) {
@@ -146,7 +184,6 @@
       }
       this.renderLink()
       this.inited = true
-      this.author = this.config.author
       if (this.type === 'add') {
         this.clearData()
         this.visible = true
@@ -154,7 +191,7 @@
     },
     updated () {
       // 预览模式需要滚动到最上方
-      if (this.type === 'preview') {
+      if (this.type === 'preview' && this.$refs && this.$refs.mdEditor) {
         let targetEl = this.$refs.mdEditor.$el.querySelector('.v-show-content.scroll-style')
         targetEl.scrollTo(0, 0)
       }
@@ -183,9 +220,9 @@
           top: false, // 置顶
           cover: false, // 首页轮播
           img:  '', // 文章首页图
-          date: Utils.formatDate(new Date()), // 创建时间
-          update: Utils.formatDate(new Date()), // 修改时间
-          author: this.config.author // 文章作者
+          date: new Date(), // 创建时间
+          updated: new Date(), // 修改时间
+          author: '' // 文章作者
         }
       },
       // a标签在浏览器中打开
@@ -205,50 +242,27 @@
       },
       getFrontMatter () {
         let post = this.post
-        let keys = Object.keys(post)
-        for (let i = 0; i < keys.length; i++) {
-          switch (keys[i]) {
-            case 'title':
-              this.postForm.title = post.title.trim()
-              break
-            case '_content':
-              this.postForm.content = post._content.trim()
-              break
-            case 'tags':
-              this.postForm.tags = []
-              post.tags.forEach(tag => {
-                this.postForm.tags.push(tag.name)
-              })
-              break
-            case 'categories':
-              this.postForm.categories = []
-              post.categories.forEach(cat => {
-                this.postForm.categories.push(cat.name)
-              })
-              break
-            case 'date':
-              this.postForm.date = post.date.format('YYYY-MM-DD HH:mm:ss')
-              break
-            case 'update':
-              this.postForm.update = post.update
-              break
-            case 'toc':
-              this.postForm.toc = post.toc
-              break
-            case 'top':
-              this.postForm.top = post.top
-              break
-            case 'cover':
-              this.postForm.cover = post.cover
-              break
-            case 'img':
-              this.postForm.img = post.img
-              break
-            default:
-              break
-          }
+        this.postForm = {
+          title: post.title, // 文章标题
+          content: post._content, // 修改后文
+          tags: [], // 标签
+          categories: [], // 分类
+          toc: post.toc, // 开启toc
+          top: post.top, // 置顶
+          cover: post.cover, // 首页轮播
+          img:  post.img, // 文章首页图
+          date: post.date, // 创建时间
+          updated: post.updated, // 修改时间
+          author: post.author // 文章作者
         }
+        post.categories.forEach(cat => {
+          this.postForm.categories.push(cat.name)
+        })
+        post.tags.forEach(tag => {
+          this.postForm.tags.push(tag.name)
+        })
         // frontMatter
+        this.frontMatters = []
         let frontMatter = Utils.frontMatter(post.raw)
         Object.keys(frontMatter).forEach(key => {
           this.frontMatters.push({
@@ -282,7 +296,7 @@
       },
 
       /**
-      * @func 保存弹框的表单信息
+      * @func 保存的表单信息
       */
       async submitForm () {
         let action = 'Hexo/createPost'
@@ -297,10 +311,17 @@
           return
         }
         try {
+          if (this.frontMatters && this.frontMatters.length > 0) {
+            for (let i = 0; i < this.frontMatters.length; i++) {
+              let item = this.frontMatters[i]
+              this.postForm[item.title] = item.value
+            }
+          }
           let submitForm = Object.assign({}, this.postForm)
           if (this.type === 'edit') {
-            submitForm.update = Utils.formatDate(new Date()) // 修改时间
+            submitForm.updated = new Date()// 修改时间
           }
+          console.log(action, submitForm)
           await this.$store.dispatch(action, submitForm)
           this.formChanged = false
           this.$message(`${text}成功`)
@@ -308,10 +329,19 @@
           this.$message.error(`${text}失败`)
         }
       },
+      valideFrontTitle ({row}) {
+        let filters = this.frontMatters.filter(v => v.title === row.title)
+        if (filters && filters.length > 1) {
+          this.$message.error(`${row.title}已使用，请更换...`)
+          return
+        }       
+      },
+      deleteFrontMatter ({$index}) {
+        this.frontMatters.splice($index, 1)
+      }
     },
     computed: {
       ...mapGetters({
-        config: 'Hexo/config',
         tags: 'Hexo/tags',
         type: 'Article/type',
         categories: 'Hexo/categories'

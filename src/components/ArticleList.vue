@@ -7,7 +7,6 @@
         v-for="(item, index) in getDisplayList"
         :key="index"
         ref="post"
-        @dblclick="handleDBClick(item, index)"
         @click="handleItem(item, index)">
         <div class="article-list-item">
           <i class="article-icon" :class="getListItemIcon"/>
@@ -60,18 +59,13 @@
       * @param {Object} item 当前点击项
       */
       handleItem (item, index) {
-        this.selectIndex = index
-        if (this.type !== 'recentArticle') return
-        this.changeType('preview')
-        this.$store.dispatch('Hexo/selectPost', item.id)
-      },
-      /**
-      * @func 处理双击事件
-      * @param {Object} item 当前双击项
-      * @param {Number} index 当前下标
-      */
-      handleDBClick (item, index) {
-        if (this.type === 'recentArticle') return
+        if (this.type === 'recentArticle') {
+          this.selectIndex = index
+          if (this.type !== 'recentArticle') return
+          this.changeType('preview')
+          this.$store.dispatch('Hexo/selectPost', item.id)    
+          return
+        }
         this.selectIndex = index
         let query = {}
         if (this.type === 'articleCategories') {
@@ -159,7 +153,7 @@
       top: -5px;
       right: -5px;
       border: 6px solid transparent;
-      border-top-color: #e8eaf4;
+      border-top-color: #5576BD;
       transform: rotate(220deg);
     }
     .article-list-item {

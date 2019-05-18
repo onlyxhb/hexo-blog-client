@@ -35,13 +35,19 @@
       async downLoad () {
         let loading = this.$loading({
           lock: true,
-          text: '与云端同步中...',
+          text: '云端同步中...',
           spinner: 'el-icon-loading',
           background: 'rgba(0, 0, 0, 0.7)'
         })
-        await this.git.pull()
-        this.$message('同步成功')
-        loading.close()
+        try {
+          await this.git.pull()
+          this.$message('同步成功')
+        } catch (error) {
+          this.$message.error('同步出错，请检查本地是否环境是否正确')
+          console.log(error)
+        } finally {
+          loading.close()
+        }
       },
       async simpleStatus () {
         let status = {modified: false, branch: 'master'}
