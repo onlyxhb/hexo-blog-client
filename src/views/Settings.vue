@@ -12,6 +12,9 @@
           <el-option :label="$t('english')" value="en"></el-option>
         </el-select>
       </el-form-item>
+      <el-form-item :label="$t('settingTitleUrl')">
+        <el-input v-model="configForm.url" style="width:100%" clearable />
+      </el-form-item>
       <el-form-item :label="$t('settingTitleImageServer')">
         <el-select v-model="configForm.uploadType" default-first-option :placeholder="$t('settingImageServerPlaceholder')"
                    style="width:100%">
@@ -79,6 +82,7 @@
         fileList: [],
         configForm: {
           base: '',
+          url: '',
           language: '',
           uploadType: '',
           qiniuZone: '',

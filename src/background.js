@@ -3,6 +3,9 @@
 import { app, BrowserWindow, Menu, protocol, ipcMain, Tray, shell, screen  } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import path from 'path'
+import Config from './config'
+const blogUrl = Config.get('url')
+
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -141,52 +144,7 @@ function createWindow () {
   if (process.platform !== 'darwin') {
     app.dock && app.dock.hide()
   } else {
-    const menu = Menu.buildFromTemplate([
-      {
-        label: 'HexoBlogClient',
-        submenu: [
-          { label: '关于HexoBlogClient', role: 'about' },
-          { type: 'separator' },
-          { label: '服务', role: 'services' },
-          { type: 'separator' },
-          { label: '隐藏HexoBlogClient', role: 'hide' },
-          { label: '隐藏其他', role: 'hideothers' },
-          { label: '全部显示', role: 'unhide' },
-          { type: 'separator' },
-          { label: '退出HexoBlogClient', role: 'quit' }
-        ]
-      },
-      {
-        label: '编辑',
-        submenu: [
-          { label: '撤销', role: 'undo' },
-          { label: '恢复', role: 'redo' },
-          { type: 'separator' },
-          { label: '剪切', role: 'cut' },
-          { label: '复制', role: 'copy' },
-          { label: '粘贴', role: 'paste' },
-          { label: '粘贴并匹配样式', role: 'pasteandmatchstyle' },
-          { label: '删除', role: 'delete' },
-          { label: '全选', role: 'selectall' }
-        ]
-      },
-      {
-        label: '窗口',
-        submenu: [
-          { label: '最小化', role: 'minimize' },
-          { label: '重载', role: 'reload' },
-          { label: '关闭', role: 'close' },
-          { label: '退出', role: 'quit' }
-        ]
-      },
-      {
-        label: '帮助',
-        submenu: [
-          // { label: '关于', role: 'about' },
-          { label: '检查更新', click: () => { checkVersion() } }
-        ]
-      }
-    ])
+    const menu = Menu.buildFromTemplate(getMacMenu())
     Menu.setApplicationMenu(menu)
   }
 }
@@ -195,37 +153,7 @@ function createWindow () {
 function initTrayIcon () {
   /* eslint-disable-next-line */
   tray = new Tray(getNoMessageTrayIcon())
-  const trayContextMenu = Menu.buildFromTemplate([
-    {
-      label: '显示主窗口',
-      click: () => {
-        win.show()
-      }
-    },
-    {
-      label: '打开博客',
-      click: () => {
-        shell.openExternal('https://blog.onlystar.site')
-      }
-    },
-    {
-      label: '设置',
-      click: () => {
-        win.webContents.send('jumping', 'settings')
-        win.show()
-      }
-    },
-    {
-      label: '检查更新',
-      click: () => { checkVersion()}
-    },
-    {
-      label: '退出',
-      click: () => {
-        app.quit()
-      }
-    }
-  ])
+  const trayContextMenu = Menu.buildFromTemplate(getTrayDockMenu())
   tray.setToolTip('Hexo客户端')  
   tray.setContextMenu(trayContextMenu)
 
@@ -245,26 +173,98 @@ function initTrayIcon () {
 
 // 创建docker菜单
 function initDockMenu () {
-  const dockMenu = Menu.buildFromTemplate([
+  const dockMenu = Menu.buildFromTemplate(getTrayDockMenu())
+  app.dock.setMenu(dockMenu)
+}
+
+// 获取Mac的Menu菜单
+function getMacMenu () {
+  return [
+    {
+      label: 'HexoBlogClient',
+      submenu: [
+        { label: '关于HexoBlogClient', role: 'about' },
+        { type: 'separator' },
+        { label: '服务', role: 'services' },
+        { type: 'separator' },
+        { label: '隐藏HexoBlogClient', role: 'hide' },
+        { label: '隐藏其他', role: 'hideothers' },
+        { label: '全部显示', role: 'unhide' },
+        { type: 'separator' },
+        { label: '退出HexoBlogClient', role: 'quit' }
+      ]
+    },
+    {
+      label: '编辑',
+      submenu: [
+        { label: '撤销', role: 'undo' },
+        { label: '恢复', role: 'redo' },
+        { type: 'separator' },
+        { label: '剪切', role: 'cut' },
+        { label: '复制', role: 'copy' },
+        { label: '粘贴', role: 'paste' },
+        { label: '粘贴并匹配样式', role: 'pasteandmatchstyle' },
+        { label: '删除', role: 'delete' },
+        { label: '全选', role: 'selectall' }
+      ]
+    },
+    {
+      label: '窗口',
+      submenu: [
+        { label: '最小化', role: 'minimize' },
+        { label: '重载', role: 'reload' },
+        { label: '关闭', role: 'close' },
+        { label: '退出', role: 'quit' }
+      ]
+    },
+    {
+      label: '帮助',
+      submenu: [
+        // { label: '关于', role: 'about' },
+        { label: '检查更新', click: () => { checkVersion() } }
+      ]
+    }
+  ]
+}
+
+// 获取Tary和Dock下的menu
+function getTrayDockMenu () {
+  return [
     {
       label: '显示主窗口',
-      click () { 
+      click: () => {
         win.show()
       }
-    }, {
+    },
+    {
+      label: '打开博客',
+      click: () => {
+        if (blogUrl) {
+          shell.openExternal(blogUrl)
+        } else {
+          win.webContents.send('jumping', 'settings')
+        }
+        win.show()
+      }
+    },
+    {
       label: '设置',
-      click () { 
+      click: () => {
         win.webContents.send('jumping', 'settings')
         win.show()
       }
-    }, {
+    },
+    {
+      label: '检查更新',
+      click: () => { checkVersion()}
+    },
+    {
       label: '退出',
-      click () {
+      click: () => {
         app.quit()
       }
     }
-  ])
-  app.dock.setMenu(dockMenu)
+  ] 
 }
 
 // 统一获取任务栏图标

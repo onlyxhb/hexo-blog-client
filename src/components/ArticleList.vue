@@ -113,11 +113,11 @@
         let keyword = this.keyword
         let result = ''
         if (this.type === 'recentArticle') {
-          result = keyword ? this.posts.filter(v => v.title.indexOf(keyword) > -1) : this.posts
+          result = keyword ? this.posts.filter(v => v.title.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) > -1) : this.posts
         } else if (this.type === 'articleCategories') {
-          result = keyword ? this.categories.filter(v => v.indexOf(keyword) > -1) : this.categories
+          result = keyword ? this.categories.filter(v => v.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) > -1) : this.categories
         } else if (this.type === 'articleTags') {
-          result = keyword ? this.tags.filter(v => v.indexOf(keyword) > -1) : this.tags
+          result = keyword ? this.tags.filter(v => v.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) > -1) : this.tags
         }
         return result
       },

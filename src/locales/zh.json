@@ -46,6 +46,7 @@
   "save": "保存",
   "openToc": "开启目录",
   "settingTitlePath": "Hexo路径",
+  "settingTitleUrl": "博客链接",
   "settingTitleLanguage": "语言",
   "settingLanguagePlaceholder": "请选择语言",
   "chinese": "中文",

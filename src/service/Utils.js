@@ -122,6 +122,7 @@ class Utils {
         Message('暂无新版本...')
       }
     }).catch(err => {
+      Message.error('请求超时，请稍后再试...')
       loading.close()
     })
   }
