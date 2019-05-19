@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, BrowserWindow, Menu, protocol, ipcMain, Tray, shell  } from 'electron'
+import { app, BrowserWindow, Menu, protocol, ipcMain, Tray, shell, screen  } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import path from 'path'
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -30,11 +30,10 @@ app.on('activate', () => {
   // dock icon is clicked and there are no other windows open.
   if (win === null) {
     createWindow()
-    if (process.platform === 'win32') {
-      initTrayIcon()
-    }
     if (process.platform === 'darwin') {
       initDockMenu()
+    } else {
+      initTrayIcon()
     }
   } else {
     win.show()
@@ -73,20 +72,17 @@ app.on('ready', async () => {
   if (isDevelopment && !process.env.IS_TEST) {
     // Install Vue Devtools
     try {
-      // await installVueDevtools()
-      BrowserWindow.addDevToolsExtension('/Users/onlystar/Documents/blog/hexo-blog-client/tools/vue_devtools_4.1.5_0')
-      // BrowserWindow.addDevToolsExtension('E:\\hexo-blog-client\\tools\\vue_devtools_4.1.5_0')
+      BrowserWindow.addDevToolsExtension(path.join(__dirname, '../tools/vue_devtools_4.1.5_0'))
     } catch (e) {
       /* eslint-disable-next-line */
       console.log(e)
     }
   }
   createWindow()
-  if (process.platform === 'win32') {
-    initTrayIcon()
-  }
   if (process.platform === 'darwin') {
     initDockMenu()
+  } else {
+    initTrayIcon()
   }
 })
 
@@ -113,7 +109,8 @@ function createWindow () {
     useContentSize: true,
     width: 965,
     height: 650,
-    frame: false
+    frame: false,
+    icon: path.join(__static, 'icons/icon.png')
   })
   
   // win.maximize()
@@ -196,7 +193,7 @@ function createWindow () {
 // 创建通知栏图标
 function initTrayIcon () {
   /* eslint-disable-next-line */
-  tray = new Tray(path.join(__static, 'icons/icon.ico'))
+  tray = new Tray(getNoMessageTrayIcon())
   const trayContextMenu = Menu.buildFromTemplate([
     {
       label: '显示主窗口',
@@ -218,16 +215,21 @@ function initTrayIcon () {
       }
     },
     {
+      label: '更新',
+      click: () => { checkUpdateVersion()}
+    },
+    {
       label: '退出',
       click: () => {
         app.quit()
       }
     }
   ])
-
-  tray.setToolTip('Hexo客户端')
+  tray.setToolTip('Hexo客户端')  
+  tray.setContextMenu(trayContextMenu)
 
   tray.on('click', () => {
+    console.log(1)
     if (win.isVisible() && !win.isMinimized()) {
       win.hide()
     } else {
@@ -235,6 +237,7 @@ function initTrayIcon () {
     }
   })
   tray.on('right-click', () => {
+    console.log(2)
     tray.popUpContextMenu(trayContextMenu)
   })
 }
@@ -261,4 +264,22 @@ function initDockMenu () {
     }
   ])
   app.dock.setMenu(dockMenu)
+}
+
+// 统一获取任务栏图标
+function getNoMessageTrayIcon () {
+  if (process.platform === 'darwin') {
+    return path.join(__static, 'icons/16x16.png')
+  } else if (process.platform === 'win32') {
+    return path.join(__static, 'icons/64x64.png')
+  } else if (screen.getPrimaryDisplay().scaleFactor > 1) {
+    return path.join(__static, 'icons/64x64.png')
+  } else {
+    return path.join(__static, 'icons/24x24.png')
+  }
+}
+
+//检测更新
+function checkUpdateVersion () {
+  console.log(1)
 }
