@@ -183,6 +183,7 @@ function createWindow () {
         label: '帮助',
         submenu: [
           { label: '关于', role: 'about' },
+          { label: '更新', click: () => { checkUpdateVersion() } }
         ]
       }
     ])
