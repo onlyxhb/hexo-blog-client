@@ -59,7 +59,8 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="saveConfig">{{$t('save')}}</el-button>
-        <el-button type="primary" @click="OpenDevTool">打开开发者工具</el-button>
+        <el-button type="warning" @click="OpenDevTool">打开开发者工具</el-button>
+        <el-button type="primary" @click="checkVersion">检查更新</el-button>
       </el-form-item>
     </el-form>
   </el-main>
@@ -70,6 +71,7 @@
   import githubUploader from '@/service/GithubUploader'
   import photoPic from '@/mixins/photoPic'
   import { mapActions } from 'vuex'
+  import Utils from '@/service/Utils'
   const { ipcRenderer } = require('electron')
   export default {
     data () {
@@ -101,6 +103,7 @@
       ...mapActions({
         'setConfig': "Config/setConfig"
       }),
+      checkVersion: Utils.checkVersion,
       async saveConfig () {
         let message = '保存成功'
         if (this.config.language !== this.configForm.language) {

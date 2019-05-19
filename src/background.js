@@ -182,8 +182,8 @@ function createWindow () {
       {
         label: '帮助',
         submenu: [
-          { label: '关于', role: 'about' },
-          { label: '更新', click: () => { checkUpdateVersion() } }
+          // { label: '关于', role: 'about' },
+          { label: '检查更新', click: () => { checkVersion() } }
         ]
       }
     ])
@@ -216,8 +216,8 @@ function initTrayIcon () {
       }
     },
     {
-      label: '更新',
-      click: () => { checkUpdateVersion()}
+      label: '检查更新',
+      click: () => { checkVersion()}
     },
     {
       label: '退出',
@@ -281,6 +281,6 @@ function getNoMessageTrayIcon () {
 }
 
 //检测更新
-function checkUpdateVersion () {
-  console.log(1)
+function checkVersion () {
+  win.webContents.send('jumping', 'checkVersion')
 }

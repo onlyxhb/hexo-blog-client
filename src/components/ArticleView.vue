@@ -86,6 +86,7 @@
         let name = event.target.getAttribute('name')
         switch(name) {
           case 'edit' : {
+            this.setCollapse(this.type === 'preview')
             this.$emit('editPost', this.type === 'preview' ? 'edit' : 'preview')
             break
           }

@@ -23,7 +23,7 @@
 <script>
   import MainMenu from '@/components/MainMenu'
   import ChoosePath from '@/components/ChoosePath'
-
+  import Utils from '@/service/Utils'
   export default {
     name: 'BlogClient',
     components: {ChoosePath, MainMenu},
@@ -37,7 +37,11 @@
       this.resize()
       this.init()
       require('electron').ipcRenderer.on('jumping', (event, message) => {
-        this.$router.push({ name: message })
+        if (message === 'checkVersion') {
+          Utils.checkVersion()
+        } else {
+          this.$router.push({ name: message })
+        }
       })
     },
 

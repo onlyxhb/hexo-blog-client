@@ -100,7 +100,6 @@
           class="table-front-matters"
           highlight-current-row
           :data="frontMatters"
-          height="350"
           border
           stripe>
           <el-table-column prop="title" label="名称" width="100">

@@ -1,5 +1,9 @@
 const hexoUtil = require('hexo-util')
 const yfm = require('hexo-front-matter')
+const electron = require('electron')
+const axios = require('axios')
+const { MessageBox, Message, Loading } = require('element-ui')
+const { version } = require('../../package.json')
 
 // 系统预订的front matters
 const SYSTEM_FRONT_MATTERS = [
@@ -94,6 +98,32 @@ class Utils {
       case 'YYYY-MM-DD HH:MM:SS' :
         return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second
     }
+  }
+
+  checkVersion () {
+    let loading = Loading.service({
+      lock: true,
+      text: '版本检测中...',
+      spinner: 'el-icon-loading',
+      background: 'rgba(0, 0, 0, 0.7)'
+    })
+    axios.get('https://api.github.com/repos/Xonlystar/hexo-blog-client/releases/latest', { timeout: 10000 }).then(({ data }) => {
+      // 检查版本号
+      loading.close()
+      if (data.name > version) {
+        MessageBox.confirm('已有新版本更新，是否立即前往下载最新安装包？', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'success'
+        }).then(() => {
+          electron.shell.openExternal('https://github.com/Xonlystar/hexo-blog-client/releases/latest')
+        })
+      } else {
+        Message('暂无新版本...')
+      }
+    }).catch(err => {
+      loading.close()
+    })
   }
 }
 

@@ -100,6 +100,10 @@ body {
   }
   .custom-dialog-frontmater {
     .table-front-matters {
+      .el-table__body-wrapper {
+        overflow-y: auto;
+        max-height: 350px;
+      }
       .el-input {
         display: none
       } 
