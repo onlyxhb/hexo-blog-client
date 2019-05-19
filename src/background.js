@@ -153,13 +153,17 @@ function createWindow () {
 
 // Mac下的touchbar
 function initMacTouchBar () {
-  let list = getTrayDockMenu().slice(1, 4)
+  let list = getTrayDockMenu().slice(1)
   list.splice(0, 0, {
-    label: '新增文章',
+    label: '✚',
     click: () => {
       win.webContents.send('jumping', 'addArticle')
     }
   },)
+  list[1].label = '↗'
+  list[2].label = '☰'
+  list[3].label = '↻'
+  list[4].label = '✖'
   let touchList = []
   list.map(item => {
     touchList.push(new TouchBarButton(item))

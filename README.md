@@ -70,7 +70,7 @@ npm install --save-dev electron-icon-builder
 
 
 ## 版本更新记录
-### v1.2.7 (2019-06-01)
+### v1.2.7 (2019-05-20)
 - 新增Front-Matters编辑功能
 - 新增同步git仓库文章功能
 - 优化文章搜索功能，大小写字母皆可模糊搜索
@@ -81,7 +81,7 @@ npm install --save-dev electron-icon-builder
 - 修复linux下系统托盘显示异常的问题
 - Mac新增Touchbar功能(试验性功能)
 
-### v1.2.6 (2019-05-18)
+### v1.2.6 (2019-05-16)
 - 新增markdown编辑器快捷键(ctrl + s)保存功能
 - 升级markdown编辑器版本
 - 修复https://sm.ms图床设置不生效的问题
