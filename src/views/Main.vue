@@ -38,21 +38,21 @@
       <el-dialog
         center
         class="custom-dialog-form"
-        title="文章设置"
+        :title="$t('postForm.dialog.title')"
         :show-close="false"
         :visible.sync="visible"
         :before-close="handleDialogCancel"
         width="600px">
         <el-form :model="postForm" :rules="postFormRules" label-width="100px"  ref="postForm" :show-message="false">
           <img v-if="postForm.img" :src="postForm.img" class="article-home-img"/>
-          <el-form-item label="文章标题" prop="title">
-            <el-input v-model="postForm.title" placeholder="请输入文章标题" :disabled="type === 'edit'" clearable></el-input>
+          <el-form-item :label="$t('postForm.title.label')" prop="title">
+            <el-input v-model="postForm.title" :placeholder="$t('postForm.title.placeholder')" :disabled="type === 'edit'" clearable></el-input>
           </el-form-item>
-          <el-form-item label="文章作者" prop="author">
-            <el-input v-model="postForm.author" placeholder="请输入文章作者" clearable></el-input>
+          <el-form-item :label="$t('postForm.author.label')" prop="author">
+            <el-input v-model="postForm.author" :placeholder="$t('postForm.author.placeholder')" clearable></el-input>
           </el-form-item>
-          <el-form-item label="文章分类" prop="categories">
-            <el-select v-model="postForm.categories" placeholder="请选择分类" style="width: 100%" multiple filterable allow-create default-first-option>
+          <el-form-item :label="$t('postForm.categories.label')" prop="categories">
+            <el-select v-model="postForm.categories" :placeholder="$t('postForm.categories.placeholder')" style="width: 100%" multiple filterable allow-create default-first-option>
               <el-option
                 v-for="category in categories"
                 :key="category"
@@ -61,8 +61,8 @@
               </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="文章标签" prop="tags">
-            <el-select v-model="postForm.tags" placeholder="请选择标签"  style="width: 100%"  multiple filterable allow-create default-first-option>
+          <el-form-item :label="$t('postForm.tags.label')" prop="tags">
+            <el-select v-model="postForm.tags" :placeholder="$t('postForm.tags.placeholder')"  style="width: 100%"  multiple filterable allow-create default-first-option>
               <el-option
                 v-for="tag in tags"
                 :key="tag"
@@ -71,21 +71,21 @@
               </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="首页图片">
-            <el-input v-model="postForm.img" placeholder="请输入首页图片" clearable />
+          <el-form-item :label="$t('postForm.img.label')">
+            <el-input v-model="postForm.img" :placeholder="$t('postForm.img.placeholder')" clearable />
           </el-form-item>
-          <el-form-item label="开启目录">
+          <el-form-item :label="$t('postForm.toc.label')">
             <el-switch v-model="postForm.toc"></el-switch>
           </el-form-item>
-          <el-form-item label="文章置顶">
+          <el-form-item :label="$t('postForm.top.label')">
             <el-switch v-model="postForm.top"></el-switch>
           </el-form-item>
-          <el-form-item label="首页轮播">
+          <el-form-item :label="$t('postForm.cover.label')">
             <el-switch v-model="postForm.cover"></el-switch>
           </el-form-item>
           <el-form-item style="text-align: center">
-            <el-button type="primary" @click="handleDialogConfirm">确定</el-button>
-            <el-button @click="handleDialogCancel">取消</el-button>
+            <el-button type="primary" @click="handleDialogConfirm">{{$t('confirmButtonText')}}</el-button>
+            <el-button @click="handleDialogCancel">{{$t('cancelButtonText')}}</el-button>
           </el-form-item>
         </el-form>
       </el-dialog>
@@ -93,33 +93,34 @@
       <el-dialog
         center
         class="custom-dialog-frontmater"
-        title="frontMatters设置(点击行可编辑)"
+        :title="$t('postForm.frontmatters.title')"
         :visible.sync="frontMattersVisible"
         width="600px">
         <el-table
           class="table-front-matters"
+          :empty-text="$t('postForm.frontmatters.noData')"
           highlight-current-row
           :data="frontMatters"
           border
           stripe>
-          <el-table-column prop="title" label="名称" width="100">
+          <el-table-column prop="title" :label="$t('postForm.frontmatters.key')" width="100">
             <template scope="scope">
-              <el-input size="small" v-model="scope.row.title" @blur="valideFrontTitle(scope)" placeholder="键名"></el-input> 
+              <el-input size="small" v-model="scope.row.title" @blur="valideFrontTitle(scope)"></el-input> 
               <span>{{scope.row.title}}</span>
             </template>
           </el-table-column>
-          <el-table-column prop="value" label="值">
+          <el-table-column prop="value" :label="$t('postForm.frontmatters.value')">
             <template scope="scope">
-              <el-input size="small" v-model="scope.row.value" placeholder="请输入内容"></el-input>
+              <el-input size="small" v-model="scope.row.value"></el-input>
               <span>{{scope.row.value}}</span>
             </template>
           </el-table-column>
           <el-table-column width="80" align="center">
-            <template slot="header" slot-scope="scope">
-              <el-button size="mini" type="primary" @click="frontMatters = [...frontMatters, {}]">新增</el-button>
+            <template slot="header">
+              <el-button size="mini" type="primary" @click="frontMatters = [...frontMatters, {}]">{{$t('postForm.frontmatters.add')}}</el-button>
             </template>
             <template slot-scope="scope">
-              <el-button size="mini" type="danger" @click="deleteFrontMatter(scope)">删除</el-button>
+              <el-button size="mini" type="danger" @click="deleteFrontMatter(scope)">{{$t('postForm.frontmatters.del')}}</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -275,7 +276,10 @@
       },
       deletePost () {
         let id = this.post._id
-        this.$confirm(this.$t('deleteArticleConfirmMsg'), '提示').then(async () => {
+        this.$confirm(this.$t('deleteArticleConfirmMsg'), this.$t('confirmTips'), {
+          confirmButtonText: this.$t('confirmButtonText'),
+          cancelButtonText: this.$t('cancelButtonText'),
+        }).then(async () => {
           await this.$store.dispatch('Hexo/deletePost', id)
           this.$message(this.$t('deleteSuccessMsg'))
         })
@@ -299,10 +303,10 @@
       */
       async submitForm () {
         let action = 'Hexo/createPost'
-        let text = '保存'
+        let text = 'submit.save'
         if (this.type === 'edit') {
           action = 'Hexo/editPost'
-          text = '修改'
+          text = 'submit.edit'
         }
         let valid = this.$refs.postForm ? await this.$store.dispatch('Hexo/validatePostForm', this.$refs.postForm) : true
         if (!valid || !this.postForm.title) {
@@ -320,18 +324,18 @@
           if (this.type === 'edit') {
             submitForm.updated = new Date()// 修改时间
           }
-          console.log(action, submitForm)
+          // console.log(action, submitForm)
           await this.$store.dispatch(action, submitForm)
           this.formChanged = false
-          this.$message(`${text}成功`)
+          this.$message(this.$t(`${text}.success`))
         } catch (err) {
-          this.$message.error(`${text}失败`)
+          this.$message.error(this.$t(`${text}.fail`))
         }
       },
       valideFrontTitle ({row}) {
         let filters = this.frontMatters.filter(v => v.title === row.title)
         if (filters && filters.length > 1) {
-          this.$message.error(`${row.title}已使用，请更换...`)
+          this.$message.error(`${row.title}` + this.$t('haveUsing'))
           return
         }       
       },

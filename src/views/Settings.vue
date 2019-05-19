@@ -62,8 +62,8 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="saveConfig">{{$t('save')}}</el-button>
-        <el-button type="warning" @click="OpenDevTool">打开开发者工具</el-button>
-        <el-button type="primary" @click="checkVersion">检查更新</el-button>
+        <el-button type="warning" @click="OpenDevTool">{{$t('devTools')}}</el-button>
+        <el-button type="primary" @click="checkVersion">{{$t('checkUpdate')}}</el-button>
       </el-form-item>
     </el-form>
   </el-main>
@@ -109,12 +109,21 @@
       }),
       checkVersion: Utils.checkVersion,
       async saveConfig () {
-        let message = '保存成功'
-        if (this.config.language !== this.configForm.language) {
-          message = '保存成功，变更语言需要重启后生效。'
-        }
+        let message = this.$t('submit.save.success')
+        let changeLanguage = this.config.language !== this.configForm.language
         await this.setConfig(this.configForm)
-        this.$message.success(message)
+        if (changeLanguage) {
+          this.$confirm(this.$t('saveAndRestart'), this.$t('confirmTips'), {
+            confirmButtonText: this.$t('confirmButtonText'),
+            cancelButtonText: this.$t('cancelButtonText'),
+            type: 'success'
+          }).then(() => {
+            ipcRenderer.send('restartWin')
+          })
+          message = this.$t('save success and need restart')
+        } else {
+          this.$message.success(message)
+        }
       },
       customUpload (file) {
         githubUploader.upload(file, this.config).then(url => {

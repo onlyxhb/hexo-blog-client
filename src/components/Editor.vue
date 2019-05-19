@@ -49,7 +49,7 @@
     data () {
       return {
         uploading: false,
-        uploadingText: 'loading...', // 没显示上传文案
+        uploadingText: this.$t('editor.loading'), // 没显示上传文案
         contentHeight: this.height,
         fullScreenStatus: false,
         toolbars: {
@@ -109,7 +109,7 @@
       async imgAdd (pos, file) {
         let me = this
         me.uploading = true
-        me.uploadingText = '正在上传 ' + file.name
+        me.uploadingText = this.$t('editor.uploading') + file.name
         let sysConfig = me.$store.state.Config.config
 
         if (sysConfig.uploadType === 'qiniu') {
@@ -117,7 +117,7 @@
             me.$refs.editor.$img2Url(pos, url)
             me.uploading = false
           }, () => {
-            me.$message.error('图片上传失败：')
+            me.$message.error(this.$t('editor.uploaderror'))
             me.uploading = false
           })
         } else if (sysConfig.uploadType === 'sm.ms') {
@@ -125,7 +125,7 @@
             me.$refs.editor.$img2Url(pos, url)
             me.uploading = false
           }, () => {
-            me.$message.error('图片上传失败：')
+            me.$message.error(this.$t('editor.uploaderror'))
             me.uploading = false
           })
         } else {
@@ -133,7 +133,7 @@
             me.$refs.editor.$img2Url(pos, url)
             me.uploading = false
           }, () => {
-            me.$message.error('图片上传失败：')
+            me.$message.error(this.$t('editor.uploaderror'))
             me.uploading = false
           })
         }

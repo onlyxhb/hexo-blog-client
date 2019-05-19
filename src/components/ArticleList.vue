@@ -18,7 +18,7 @@
     </div>
     <div class="article-none-panel" v-if="getDisplayList.length === 0">
       <p>{{$t('noArticleMsg')}}</p>
-      <el-button round @click="handleAddArticle">新建笔记</el-button>
+      <el-button round @click="handleAddArticle">{{$t('newNote')}}</el-button>
     </div>
   </div>
 

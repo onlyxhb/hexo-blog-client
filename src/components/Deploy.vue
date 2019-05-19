@@ -29,21 +29,22 @@
         if (simpleStatus.modified) {
           this.commit(simpleStatus.branch, 'Commit at ' + Utils.formatDate(new Date()))
         } else {
-          this.$message.warning('资料库无变更')
+          this.$message.warning(this.$t('deploy.nochange'))
         }
       },
       async downLoad () {
         let loading = this.$loading({
           lock: true,
-          text: '云端同步中...',
+          text: this.$t('download.loading'),
           spinner: 'el-icon-loading',
           background: 'rgba(0, 0, 0, 0.7)'
         })
         try {
           await this.git.pull()
-          this.$message('同步成功')
+          this.$message(this.$t('download.success'))
         } catch (error) {
-          this.$message.error('同步出错，请检查本地是否环境是否正确')
+          this.$message.error(this.$t('download.loading'))
+          // eslint-disable-next-line
           console.log(error)
         } finally {
           loading.close()
@@ -67,7 +68,7 @@
       async commit (branch, msg) {
         let loading = this.$loading({
           lock: true,
-          text: '发布中...',
+          text: this.$t('deploy.loading'),
           spinner: 'el-icon-loading',
           background: 'rgba(0, 0, 0, 0.7)'
         })
@@ -75,9 +76,9 @@
           await this.git.add('./*')
           await this.git.commit(msg)
           await this.git.push('origin', branch)
-          this.$message('发布成功')
+          this.$message(this.$t('deploy.success'))
         } catch (e) {
-          this.$message.error('发布失败')
+          this.$message.error(this.$t('deploy.error'))
         } finally {
           loading.close()
         }

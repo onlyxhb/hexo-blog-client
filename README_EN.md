@@ -8,57 +8,57 @@
 [![GitHub forks](https://img.shields.io/github/forks/Xonlystar/hexo-blog-client.svg)](https://github.com/Xonlystar/hexo-blog-client/network) 
 [![GitHub stars](https://img.shields.io/github/stars/Xonlystar/hexo-blog-client.svg)](https://github.com/Xonlystar/hexo-blog-client/stargazers)
 
- [English Document](./README_EN.md) | [个人博客](https://blog.onlystar.site) | QQ 交流群: `212388109`
-> HexoBlogClient是一个采用`Electron + Vue`开发的Hexo博客管理客户端，基于[HexoClient](https://github.com/gaoyoubo/hexo-client.git)二次开发
+ [中文说明](./README.md) | [personal blog](https://blog.onlystar.site) | QQ communication group of: `212388109`
+> HexoBlogClient is a blog management client developed by `Electron + Vue`, based on [HexoClient](https://github.com/gaoyoubo/hexo-client.git) secondary development
 
-## 特性
-  - 简单漂亮，文章易读易修改
-  - 支持文章置顶显示
-  - 博客文章的增删改查
-  - 文章支持七牛图片上传
-  - 支持hexo generate
-  - 支持hexo deploy
+## features
+  - simple and beautiful, the article is easy to read and modify
+  - support article top display
+  - the addition of blog article delete change check
+  - article support seven cattle picture upload
+  - support hexo generate
+  - support hexo deploy
 
-## 后续开发计划
-- [x] 搜索文章, 分类以及标签搜索
-- [x] 软件设置
-- [x] 一键编译、发布博客
-- [x] 检查软件更新
-- [ ] 将文章保存为草稿
-- [ ] 优化关键词交互
-- [ ] 本地预览博客
-- [ ] 自动保存文章
-- [ ] 软件消息提示
-- [ ] 操作日志记录
+## the next development plan
+- [x] search articles, categories, and tag search
+- [x] the software settings
+- [x] compile and publish blog with one click
+- [x] check software updates
+- [ ] save the article as a draft
+- [ ] optimize keyword interaction
+- [ ] local preview blog
+- [ ] autosave
+- [ ] software message prompt
+- [ ] operation logging
 
-## 开发
-使用`git clone`下载到本地开发
+## development
+Using ` git clone ` downloaded to the local development
 ```bash
 git clone https://github.com/Xonlystar/hexo-blog-client.git
 ```
-安装依赖并运行
+Install dependencies and run
 ```bash
-# 使用npm 安装依赖
+# use npm to install dependencies
 npm install
 
-# 开发模式
+# development mode
 npm start
 
-# 打包
+# building
 npm run build
 ```
 
-更换icon图标
+replace icon
 ```bash
-# 安装
+# install
 npm install --save-dev electron-icon-builder
 
-# scripts中添加
+# add in scripts
 "generate-icons": "electron-icon-builder --input=./public/icon.png --output=build --flatten"
 ```
-## [配置](https://blog.onlystar.site/2018/10/21/hexoblogclient-shi-yong-zhi-nan/)
+## [configuration](https://blog.onlystar.site/2018/10/21/hexoblogclient-shi-yong-zhi-nan/)
 
-## 效果截图
+## effect of screenshots
 
 ![列表页](https://user-images.githubusercontent.com/19361551/57982641-93749280-7a7a-11e9-9dd8-485943d71f78.png)
 ![列表页-伸展](https://user-images.githubusercontent.com/19361551/57982663-054cdc00-7a7b-11e9-8251-48c94fddc6be.png)
@@ -71,29 +71,29 @@ npm install --save-dev electron-icon-builder
 ![文章配置](https://user-images.githubusercontent.com/19361551/57982991-362f1000-7a7f-11e9-9800-eb49309584a4.png)
 ![修改文章页](https://user-images.githubusercontent.com/19361551/57982954-c3259980-7a7e-11e9-9689-729b3f519a44.png)
 
-## 版本更新记录
+## version update record
 ### v1.2.7 (2019-05-20)
-- 新增Front-Matters编辑功能
-- 新增同步git仓库文章功能
-- 优化文章搜索功能，大小写字母皆可模糊搜索
-- 新增检查更新功能
-- 新增博客链接地址配置，可打开博客
-- 修复左侧文章列表宽度显示偶尔变动的问题
-- 修复linux下图标缺失的问题
-- 修复linux下系统托盘显示异常的问题
-- Mac新增Touchbar功能(试验性功能)
+- added a front-matters editing feature
+- new git repository articles synchronization function
+- optimize article search function, upper and lower case letters can be fuzzy search
+- new check and update function
+- added blog link address configuration, can open the blog
+- fixed an issue where the width of the list of articles on the left showed occasional changes
+- fix missing ICONS under Linux
+- fixed system tray display problem under Linux
+- new Touchbar function for Mac (experimental function)
 
 ### v1.2.6 (2019-05-16)
-- 新增markdown编辑器快捷键(ctrl + s)保存功能
-- 升级markdown编辑器版本
-- 修复https://sm.ms图床设置不生效的问题
-- 支持常用快捷键操作
-- 修复部分情况预览文章空白的问题
-- 修复偶尔发布博客失败的问题
+- added markdown editor shortcut (CTRL + s) save function
+- update the markdown editor version
+- fixed an issue where the https://sm.ms chart bed Settings did not take effect
+- support common keyboard shortcuts
+- fixed part of the situation preview article blank problem
+- fix occasional blog posts that fail
 
 ### v1.2.5 (2019-04-24)
-- 更新界面，参考有道云笔记
-- 支持更换头像，可以自定义上传daogit
-- 支持最小化到系统任务栏
-- 支持分类和标签搜索
-- 支持分类和标签的列表展示以及各自对应的文章条数
+- update the interface, refer to youdao cloud notes
+- support to change the avatar, can be customized upload daogit
+- supports minimization to the system taskbar
+- support category and label search
+- support the display of lists of categories and tags and the number of articles corresponding to each

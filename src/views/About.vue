@@ -3,13 +3,15 @@
     <operation/>
     <div class="about-content main-scrollbar">
       <div>
-        <h3>说明</h3>
+        <h3>{{$t('about.declare')}}</h3>
         <p>
-            这个项目纯粹为了自用，个人hexo博客新增文章一直使用命令然后再发布，这种命令行的方式很烦而且还不方便。本项目基于<a @click="openUrl('https://github.com/gaoyoubo/hexo-client.git')" href="#">https://github.com/gaoyoubo/hexo-client.git</a>项目二次开发，欢迎各位同仁加入一起完善。
+          {{$t('about.declarepre')}}
+          <a @click="openUrl('https://github.com/gaoyoubo/hexo-client.git')" href="#">https://github.com/gaoyoubo/hexo-client.git</a>
+          {{$t('about.declaresuf')}}
         </p>
       </div>
       <div>
-        <h3>项目地址</h3>
+        <h3>{{$t('about.address')}}</h3>
         <ul>
           <li>
             Github
@@ -19,14 +21,14 @@
         </ul>
       </div>
       <div>
-        <h3>使用帮助</h3>
+        <h3>{{$t('usinghelp')}}</h3>
         <ul>
-          <li>帮助文档：<a @click="openUrl('https://blog.onlystar.site/2018/10/21/hexoblogclient-shi-yong-zhi-nan/')" href="#">点击查看帮助文档</a></li>
-          <li>提交问题：<a @click="openUrl('https://github.com/Xonlystar/hexo-blog-client/issues/new')" href="#">点击提交问题</a></li>
+          <li>{{$t('helpdocument')}}：<a @click="openUrl('https://blog.onlystar.site/2018/10/21/hexoblogclient-shi-yong-zhi-nan/')" href="#">{{$t('tohelpdocument')}}</a></li>
+          <li>{{$t('submitissue')}}：<a @click="openUrl('https://github.com/Xonlystar/hexo-blog-client/issues/new')" href="#">{{$t('tosubmitissue')}}</a></li>
         </ul>
       </div>
       <div>
-        <h3>站在巨人肩上</h3>
+        <h3>{{$t('standHum')}}</h3>
         <ul>
           <li><a @click="openUrl('https://github.com/electron/electron')" href="#">electron</a></li>
           <li><a @click="openUrl('https://cn.vuejs.org')" href="#">Vue.js</a></li>
@@ -37,17 +39,17 @@
         </ul>
       </div>
       <div>
-        <h3>捐赠</h3>
+        <h3>{{$t('donate')}}</h3>
         <div class="juanzeng">
           <img src="../assets/images/alipay.jpg">
           <div class="txt">
-            <span>支付宝</span>
+            <span>{{$t('alipay')}}</span>
           </div>
         </div>
         <div class="juanzeng">
           <img src="../assets/images/wechat.png">
           <div class="txt">
-            <span>微信</span>
+            <span>{{$t('wechat')}}</span>
           </div>
         </div>
       </div>

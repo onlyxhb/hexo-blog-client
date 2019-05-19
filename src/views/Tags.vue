@@ -5,7 +5,7 @@
       <operation/>
       <div class="no-data-content">
         <i class="iconfont icon-tags"/>
-        <p>无内容</p>
+        <p>{{$t('noArticleMsg')}}</p>
       </div>
     </div>
   </articleMain>

@@ -1,11 +1,13 @@
 'use strict'
 
 import { app, BrowserWindow, Menu, protocol, ipcMain, Tray, shell, screen, TouchBar  } from 'electron'
-const { TouchBarLabel, TouchBarButton, TouchBarSpacer } = TouchBar
+const { TouchBarButton, TouchBarSpacer } = TouchBar
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import path from 'path'
 import Config from './config'
 const blogUrl = Config.get('url')
+const language = Config.get('language', 'zh')
+const $t = require(`./locales/${language}.json`)
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -47,6 +49,12 @@ app.on('activate', () => {
 // 打开控制台
 ipcMain.on('openDevTool', () => {
   BrowserWindow.getFocusedWindow().webContents.openDevTools()
+})
+
+// 重启
+ipcMain.on('restartWin', () => {
+  app.relaunch()
+  app.quit()
 })
 
 // 屏幕最小化
@@ -114,6 +122,7 @@ function createWindow () {
     width: 965,
     height: 650,
     frame: false,
+    /* eslint-disable-next-line */
     icon: path.join(__static, 'icons/icon.png')
   })
   
@@ -178,11 +187,10 @@ function initTrayIcon () {
   /* eslint-disable-next-line */
   tray = new Tray(getNoMessageTrayIcon())
   const trayContextMenu = Menu.buildFromTemplate(getTrayDockMenu())
-  tray.setToolTip('Hexo客户端')  
+  tray.setToolTip($t['window.tooltip'])  
   tray.setContextMenu(trayContextMenu)
 
   tray.on('click', () => {
-    console.log(1)
     if (win.isVisible() && !win.isMinimized()) {
       win.hide()
     } else {
@@ -190,7 +198,6 @@ function initTrayIcon () {
     }
   })
   tray.on('right-click', () => {
-    console.log(2)
     tray.popUpContextMenu(trayContextMenu)
   })
 }
@@ -207,45 +214,45 @@ function getMacMenu () {
     {
       label: 'HexoBlogClient',
       submenu: [
-        { label: '关于HexoBlogClient', role: 'about' },
+        { label: $t['window.menu.about'], role: 'about' },
         { type: 'separator' },
-        { label: '服务', role: 'services' },
+        { label: $t['window.menu.srvices'], role: 'services' },
         { type: 'separator' },
-        { label: '隐藏HexoBlogClient', role: 'hide' },
-        { label: '隐藏其他', role: 'hideothers' },
-        { label: '全部显示', role: 'unhide' },
+        { label: $t['window.menu.hide'], role: 'hide' },
+        { label: $t['window.menu.hideothers'], role: 'hideothers' },
+        { label: $t['window.menu.unhide'], role: 'unhide' },
         { type: 'separator' },
-        { label: '退出HexoBlogClient', role: 'quit' }
+        { label: $t['window.menu.quit'], role: 'quit' }
       ]
     },
     {
-      label: '编辑',
+      label: $t['window.menu.edit'],
       submenu: [
-        { label: '撤销', role: 'undo' },
-        { label: '恢复', role: 'redo' },
+        { label: $t['window.menu.undo'], role: 'undo' },
+        { label: $t['window.menu.redo'], role: 'redo' },
         { type: 'separator' },
-        { label: '剪切', role: 'cut' },
-        { label: '复制', role: 'copy' },
-        { label: '粘贴', role: 'paste' },
-        { label: '粘贴并匹配样式', role: 'pasteandmatchstyle' },
-        { label: '删除', role: 'delete' },
-        { label: '全选', role: 'selectall' }
+        { label: $t['window.menu.cut'], role: 'cut' },
+        { label: $t['window.menu.copy'], role: 'copy' },
+        { label: $t['window.menu.paste'], role: 'paste' },
+        { label: $t['window.menu.pasteandmatchstyle'], role: 'pasteandmatchstyle' },
+        { label: $t['window.menu.delete'], role: 'delete' },
+        { label: $t['window.menu.selectall'], role: 'selectall' }
       ]
     },
     {
-      label: '窗口',
+      label: $t['window.menu.window'],
       submenu: [
-        { label: '最小化', role: 'minimize' },
-        { label: '重载', role: 'reload' },
-        { label: '关闭', role: 'close' },
-        { label: '退出', role: 'quit' }
+        { label: $t['window.menu.minimize'], role: 'minimize' },
+        { label: $t['window.menu.reload'], role: 'reload' },
+        { label: $t['window.menu.close'], role: 'close' },
+        { label: $t['window.tray.quit'], role: 'quit' }
       ]
     },
     {
-      label: '帮助',
+      label: $t['window.menu.help'],
       submenu: [
         // { label: '关于', role: 'about' },
-        { label: '检查更新', click: () => { checkVersion() } }
+        { label: $t['checkUpdate'], click: () => { checkVersion() } }
       ]
     }
   ]
@@ -255,13 +262,13 @@ function getMacMenu () {
 function getTrayDockMenu () {
   return [
     {
-      label: '显示主窗口',
+      label: $t['window.tray.showMain'],
       click: () => {
         win.show()
       }
     },
     {
-      label: '打开博客',
+      label: $t['window.tray.openBlog'],
       click: () => {
         if (blogUrl) {
           shell.openExternal(blogUrl)
@@ -272,18 +279,18 @@ function getTrayDockMenu () {
       }
     },
     {
-      label: '设置',
+      label: $t['window.tray.setting'],
       click: () => {
         win.webContents.send('jumping', 'settings')
         win.show()
       }
     },
     {
-      label: '检查更新',
+      label: $t['checkUpdate'],
       click: () => { checkVersion()}
     },
     {
-      label: '退出',
+      label: $t['window.tray.quit'],
       click: () => {
         app.quit()
       }
@@ -294,12 +301,16 @@ function getTrayDockMenu () {
 // 统一获取任务栏图标
 function getNoMessageTrayIcon () {
   if (process.platform === 'darwin') {
+    /* eslint-disable-next-line */
     return path.join(__static, 'icons/16x16.png')
   } else if (process.platform === 'win32') {
+     /* eslint-disable-next-line */
     return path.join(__static, 'icons/64x64.png')
   } else if (screen.getPrimaryDisplay().scaleFactor > 1) {
+     /* eslint-disable-next-line */
     return path.join(__static, 'icons/64x64.png')
   } else {
+     /* eslint-disable-next-line */
     return path.join(__static, 'icons/24x24.png')
   }
 }

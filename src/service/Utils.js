@@ -4,7 +4,9 @@ const electron = require('electron')
 const axios = require('axios')
 const { MessageBox, Message, Loading } = require('element-ui')
 const { version } = require('../../package.json')
-
+import Config from '../config'
+const language = Config.get('language', 'zh')
+const $t = require(`../locales/${language}.json`)
 // 系统预订的front matters
 const SYSTEM_FRONT_MATTERS = [
   // https://hexo.io/zh-cn/docs/front-matter.html
@@ -61,8 +63,10 @@ class Utils {
         _content: post._content, // 文章的markdown
       }
     } catch (error) {
+      /* eslint-disable-next-line */
       console.log(error)
     } finally {
+      /* eslint-disable-next-line */
       return result
     }
   }
@@ -103,7 +107,7 @@ class Utils {
   checkVersion () {
     let loading = Loading.service({
       lock: true,
-      text: '版本检测中...',
+      text: $t['version.loading'],
       spinner: 'el-icon-loading',
       background: 'rgba(0, 0, 0, 0.7)'
     })
@@ -111,18 +115,18 @@ class Utils {
       // 检查版本号
       loading.close()
       if (data.name > version) {
-        MessageBox.confirm('已有新版本更新，是否立即前往下载最新安装包？', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
+        MessageBox.confirm($t['version.msg'], $t['confirmTips'], {
+          confirmButtonText: $t['confirmButtonText'],
+          cancelButtonText: $t['cancelButtonText'],
           type: 'success'
         }).then(() => {
           electron.shell.openExternal('https://github.com/Xonlystar/hexo-blog-client/releases/latest')
         })
       } else {
-        Message('暂无新版本...')
+        Message($t['version.no'])
       }
-    }).catch(err => {
-      Message.error('请求超时，请稍后再试...')
+    }).catch(() => {
+      Message.error($t['timeout'])
       loading.close()
     })
   }
