@@ -1,6 +1,7 @@
 'use strict'
 
-import { app, BrowserWindow, Menu, protocol, ipcMain, Tray, shell, screen  } from 'electron'
+import { app, BrowserWindow, Menu, protocol, ipcMain, Tray, shell, screen, TouchBar  } from 'electron'
+const { TouchBarLabel, TouchBarButton, TouchBarSpacer } = TouchBar
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import path from 'path'
 import Config from './config'
@@ -146,7 +147,26 @@ function createWindow () {
   } else {
     const menu = Menu.buildFromTemplate(getMacMenu())
     Menu.setApplicationMenu(menu)
+    initMacTouchBar()
   }
+}
+
+// Mac下的touchbar
+function initMacTouchBar () {
+  let list = getTrayDockMenu().slice(1, 4)
+  list.splice(0, 0, {
+    label: '新增文章',
+    click: () => {
+      win.webContents.send('jumping', 'addArticle')
+    }
+  },)
+  let touchList = []
+  list.map(item => {
+    touchList.push(new TouchBarButton(item))
+    touchList.push(new TouchBarSpacer({ size: 'small' }))
+  })
+  const touchBar = new TouchBar(touchList)
+  win.setTouchBar(touchBar)
 }
 
 // 创建通知栏图标

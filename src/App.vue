@@ -24,6 +24,7 @@
   import MainMenu from '@/components/MainMenu'
   import ChoosePath from '@/components/ChoosePath'
   import Utils from '@/service/Utils'
+  import { mapMutations } from 'vuex'
   export default {
     name: 'BlogClient',
     components: {ChoosePath, MainMenu},
@@ -39,6 +40,9 @@
       require('electron').ipcRenderer.on('jumping', (event, message) => {
         if (message === 'checkVersion') {
           Utils.checkVersion()
+        } else if (message === 'addArticle') {
+          this.changeType('add')
+          this.$router.push({name: 'main'})
         } else {
           this.$router.push({ name: message })
         }
@@ -51,6 +55,9 @@
     },
 
     methods: {
+      ...mapMutations({
+        changeType: 'Article/changeType',
+      }),
       async init () {
         await this.$store.dispatch('Hexo/start')
       },
