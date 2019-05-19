@@ -21,14 +21,14 @@
         </ul>
       </div>
       <div>
-        <h3>{{$t('usinghelp')}}</h3>
+        <h3>{{$t('about.usinghelp')}}</h3>
         <ul>
-          <li>{{$t('helpdocument')}}：<a @click="openUrl('https://blog.onlystar.site/2018/10/21/hexoblogclient-shi-yong-zhi-nan/')" href="#">{{$t('tohelpdocument')}}</a></li>
-          <li>{{$t('submitissue')}}：<a @click="openUrl('https://github.com/Xonlystar/hexo-blog-client/issues/new')" href="#">{{$t('tosubmitissue')}}</a></li>
+          <li>{{$t('about.helpdocument')}}：<a @click="openUrl('https://blog.onlystar.site/2018/10/21/hexoblogclient-shi-yong-zhi-nan/')" href="#">{{$t('about.tohelpdocument')}}</a></li>
+          <li>{{$t('about.submitissue')}}：<a @click="openUrl('https://github.com/Xonlystar/hexo-blog-client/issues/new')" href="#">{{$t('about.tosubmitissue')}}</a></li>
         </ul>
       </div>
       <div>
-        <h3>{{$t('standHum')}}</h3>
+        <h3>{{$t('about.standHum')}}</h3>
         <ul>
           <li><a @click="openUrl('https://github.com/electron/electron')" href="#">electron</a></li>
           <li><a @click="openUrl('https://cn.vuejs.org')" href="#">Vue.js</a></li>
@@ -43,13 +43,13 @@
         <div class="juanzeng">
           <img src="../assets/images/alipay.jpg">
           <div class="txt">
-            <span>{{$t('alipay')}}</span>
+            <span>{{$t('about.alipay')}}</span>
           </div>
         </div>
         <div class="juanzeng">
           <img src="../assets/images/wechat.png">
           <div class="txt">
-            <span>{{$t('wechat')}}</span>
+            <span>{{$t('about.wechat')}}</span>
           </div>
         </div>
       </div>

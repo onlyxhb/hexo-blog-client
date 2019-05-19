@@ -82,6 +82,7 @@ npm install --save-dev electron-icon-builder
 - fix missing ICONS under Linux
 - fixed system tray display problem under Linux
 - new Touchbar function for Mac (experimental function)
+- support two languages: Chinese and English
 
 ### v1.2.6 (2019-05-16)
 - added markdown editor shortcut (CTRL + s) save function

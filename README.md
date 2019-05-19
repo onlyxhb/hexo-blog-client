@@ -82,6 +82,7 @@ npm install --save-dev electron-icon-builder
 - 修复linux下图标缺失的问题
 - 修复linux下系统托盘显示异常的问题
 - Mac新增Touchbar功能(试验性功能)
+- 支持两种语言：中文和英文
 
 ### v1.2.6 (2019-05-16)
 - 新增markdown编辑器快捷键(ctrl + s)保存功能
