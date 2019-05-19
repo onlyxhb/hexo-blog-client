@@ -26,7 +26,6 @@
 
 <script>
   import { mapGetters, mapMutations } from 'vuex'
-  import Utils from '@/service/Utils'
   export default {
     name: 'ArticleList',
     data () {
@@ -46,7 +45,6 @@
     },
 
     methods: {
-      formatDate: Utils.formatDate,
       ...mapMutations({
         changeType: 'Article/changeType'
       }),

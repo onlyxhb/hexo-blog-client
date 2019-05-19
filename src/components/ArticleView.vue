@@ -7,7 +7,7 @@
           <div class="artile-title-box"><label class="article-title">{{ post.title }}</label></div>
           <div class="article-sub">
             <div>
-              <label class="article-time">{{ post.date }}</label>
+              <label class="article-time">{{ type === 'add' ? formatDate(post.date) : post.date }}</label>
               <label class="article-cat" v-for="(category, index) in post.categories" :key="index + (category.name || category)">
                 <el-tag size="small">{{ category.name || category }}</el-tag>
               </label>
@@ -52,6 +52,7 @@
 <script>
   import Operation from '@/components/Operation'
   import { mapGetters, mapMutations } from 'vuex'
+  import Utils from '@/service/Utils'
   export default {
     components: {Operation},
     props: {
@@ -80,6 +81,7 @@
       ...mapMutations({
         setCollapse: 'Article/setCollapse'
       }),
+      formatDate: Utils.formatDate,
       handleArticle (event) {
         let name = event.target.getAttribute('name')
         switch(name) {
