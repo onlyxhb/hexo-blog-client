@@ -33,6 +33,11 @@
         }
       },
       async downLoad () {
+        let simpleStatus = await this.simpleStatus()
+        if (simpleStatus.modified) {
+          this.$message.error(this.$t('download.hasModified'))
+          return
+        }
         let loading = this.$loading({
           lock: true,
           text: this.$t('download.loading'),

@@ -126,7 +126,7 @@
         if (this.type === 'recentArticle') {
           result = 'el-icon-menu'
         } else if (this.type === 'articleCategories') {
-          result = 'iconfont icon-categories'
+          result = 'iconfont icon-folder'
         } else if (this.type === 'articleTags') {
           result = 'iconfont icon-tags'
         }

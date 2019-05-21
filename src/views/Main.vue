@@ -48,6 +48,9 @@
           <el-form-item :label="$t('postForm.title.label')" prop="title">
             <el-input v-model="postForm.title" :placeholder="$t('postForm.title.placeholder')" :disabled="type === 'edit'" clearable></el-input>
           </el-form-item>
+          <el-form-item :label="$t('postForm.path.label')" prop="path">
+            <el-input v-model="postForm.path" :placeholder="$t('postForm.path.placeholder')" :disabled="type === 'edit'" clearable></el-input>
+          </el-form-item>
           <el-form-item :label="$t('postForm.author.label')" prop="author">
             <el-input v-model="postForm.author" :placeholder="$t('postForm.author.placeholder')" clearable></el-input>
           </el-form-item>
@@ -77,13 +80,7 @@
           <el-form-item :label="$t('postForm.toc.label')">
             <el-switch v-model="postForm.toc"></el-switch>
           </el-form-item>
-          <el-form-item :label="$t('postForm.top.label')">
-            <el-switch v-model="postForm.top"></el-switch>
-          </el-form-item>
-          <el-form-item :label="$t('postForm.cover.label')">
-            <el-switch v-model="postForm.cover"></el-switch>
-          </el-form-item>
-          <el-form-item style="text-align: center">
+          <el-form-item style="text-align: left">
             <el-button type="primary" @click="handleDialogConfirm">{{$t('confirmButtonText')}}</el-button>
             <el-button @click="handleDialogCancel">{{$t('cancelButtonText')}}</el-button>
           </el-form-item>
@@ -149,12 +146,11 @@
         formChanged: false, // 表单是否发生了变化
         postForm: {
           title: '', // 文章标题
+          path: '', // 文章路径
           content: '', // 修改后文
           tags: [], // 标签
           categories: [], // 分类
           toc: false, // 开启toc
-          top: false, // 置顶
-          cover: false, // 首页轮播
           img:  '', // 文章首页图
           date: new Date(), // 创建时间
           updated: new Date(), // 修改时间
@@ -208,7 +204,8 @@
     },
     methods: {
       ...mapMutations({
-        changeType: 'Article/changeType'
+        changeType: 'Article/changeType',
+        setCollapse: 'Article/setCollapse'
       }),
       clearData () {
         this.postForm = {
@@ -234,8 +231,9 @@
             event.preventDefault()
             event.stopPropagation()
             let href = event.target.getAttribute('href')
-            if (href) {
-              electron.shell.openExternal(href)
+            let inner = event.target.innerHTML
+            if (href || inner) {
+              electron.shell.openExternal(href || inner)
             }
           }
         }
@@ -248,12 +246,11 @@
           tags: [], // 标签
           categories: [], // 分类
           toc: post.toc, // 开启toc
-          top: post.top, // 置顶
-          cover: post.cover, // 首页轮播
           img:  post.img, // 文章首页图
           date: post.date, // 创建时间
           updated: post.updated, // 修改时间
-          author: post.author // 文章作者
+          author: post.author, // 文章作者
+          path: post.path
         }
         post.categories.forEach(cat => {
           this.postForm.categories.push(cat.name)
@@ -288,6 +285,7 @@
         electron.shell.openExternal(this.post.permalink)
       },
       handleDialogConfirm () {
+        this.setCollapse(true)
         this.$refs.postForm.validate(err => {
           if (!err) return false
           this.visible = false
@@ -296,6 +294,9 @@
       },
       handleDialogCancel () {
         this.visible = false
+        if (this.type === 'add') {
+          this.changeType('preview')
+        }
       },
 
       /**
@@ -324,10 +325,17 @@
           if (this.type === 'edit') {
             submitForm.updated = new Date()// 修改时间
           }
-          // console.log(action, submitForm)
+          console.log(action, submitForm)
           await this.$store.dispatch(action, submitForm)
           this.formChanged = false
-          this.$message(this.$t(`${text}.success`))
+          setTimeout(() => {
+            // 选中当前
+            let filterCurrent = this.allPost.filter(v => v.title === submitForm.title)[0]
+            if (filterCurrent) {
+              this.$store.dispatch('Hexo/selectPost', filterCurrent.id)
+            }
+            this.$message(this.$t(`${text}.success`))
+          }, 500)
         } catch (err) {
           this.$message.error(this.$t(`${text}.fail`))
         }
@@ -345,6 +353,7 @@
     },
     computed: {
       ...mapGetters({
+        allPost: 'Hexo/posts',
         tags: 'Hexo/tags',
         type: 'Article/type',
         categories: 'Hexo/categories'

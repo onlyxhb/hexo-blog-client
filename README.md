@@ -58,6 +58,9 @@ npm install --save-dev electron-icon-builder
 ```
 ## [配置](https://blog.onlystar.site/2018/10/21/hexoblogclient-shi-yong-zhi-nan/)
 
+## 下载地址
+[https://github.com/Xonlystar/hexo-blog-client/releases/latest](https://github.com/Xonlystar/hexo-blog-client/releases/latest)
+
 ## 效果截图
 
 ![列表页](https://user-images.githubusercontent.com/19361551/57982641-93749280-7a7a-11e9-9dd8-485943d71f78.png)
@@ -72,19 +75,27 @@ npm install --save-dev electron-icon-builder
 ![修改文章页](https://user-images.githubusercontent.com/19361551/57982954-c3259980-7a7e-11e9-9689-729b3f519a44.png)
 
 ## 版本更新记录
-### v1.2.7 (2019-05-20)
+### 1.2.8 (2019-06-01)
+- 修复新增文章后会默认选中列表第一个而不是新增项的bug
+- 修复新增文章弹框点击取消按钮后显示的问题
+- 修复部分不规则的link链接无法跳转打开的问题。
+- 修复小屏文章的菜单按钮显示不全的问题
+- 修复编辑文章偶尔会变成新增，造成文章列表存在重复文章的bug
+- antd组件库该为按需引入，减小包体积
+
+### 1.2.7 (2019-05-20)
 - 新增Front-Matters编辑功能
 - 新增同步git仓库文章功能
 - 优化文章搜索功能，大小写字母皆可模糊搜索
 - 新增检查更新功能
 - 新增博客链接地址配置，可打开博客
 - 修复左侧文章列表宽度显示偶尔变动的问题
-- 修复linux下图标缺失的问题
+- 修复linux下图标缺失的问题·
 - 修复linux下系统托盘显示异常的问题
 - Mac新增Touchbar功能(试验性功能)
 - 支持两种语言：中文和英文
 
-### v1.2.6 (2019-05-16)
+### 1.2.6 (2019-05-16)
 - 新增markdown编辑器快捷键(ctrl + s)保存功能
 - 升级markdown编辑器版本
 - 修复https://sm.ms图床设置不生效的问题
@@ -92,7 +103,7 @@ npm install --save-dev electron-icon-builder
 - 修复部分情况预览文章空白的问题
 - 修复偶尔发布博客失败的问题
 
-### v1.2.5 (2019-04-24)
+### 1.2.5 (2019-04-24)
 - 更新界面，参考有道云笔记
 - 支持更换头像，可以自定义上传daogit
 - 支持最小化到系统任务栏

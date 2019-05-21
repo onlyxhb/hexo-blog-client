@@ -14,7 +14,7 @@ const SYSTEM_FRONT_MATTERS = [
   // 为了兼容之前的错误
   '_content', 'originContent',
   // 已经处理了的
-  'toc', 'id', "author", "top", "cover", "img", "content", "raw", "summary", "permalink"
+  'toc', 'id', 'author', 'img', 'content', 'raw', 'summary', 'permalink'
 ]
 
 class Utils {
@@ -61,6 +61,14 @@ class Utils {
         summary: this.getPostSummary(post.content), // 摘要
         content: post.content, // 文章内容
         _content: post._content, // 文章的markdown
+      }
+      let source = post.source.trim()
+      if (source) {
+        let start = source.indexOf('/')
+        let end = source.lastIndexOf('.md')
+        if (start !== -1 && end !== -1 && start !== end) {
+          result.path = source.substring(start + 1, end)
+        }
       }
     } catch (error) {
       /* eslint-disable-next-line */

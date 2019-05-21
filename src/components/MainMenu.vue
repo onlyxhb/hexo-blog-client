@@ -15,19 +15,19 @@
       text-color="#fff"
       active-text-color="#fff">
       <el-menu-item index="main" :title="$t('recentArticle')">
-        <i class="el-icon-menu"></i>
+        <i class="iconfont icon-main"></i>
       </el-menu-item>
       <el-menu-item index="cates" :title="$t('articleCategories')">
-        <i class="iconfont icon-categories"></i>
+        <i class="iconfont icon-folder"></i>
       </el-menu-item>
       <el-menu-item index="tags" :title="$t('articleTags')">
         <i class="iconfont icon-tags"></i>
       </el-menu-item>
       <el-menu-item index="about" :title="$t('menuAbout')">
-        <i class="el-icon-info"></i>
+        <i class="iconfont icon-info"></i>
       </el-menu-item>
       <el-menu-item index="settings" :title="$t('menuSettings')">
-        <i class="el-icon-setting"></i>
+        <i class="iconfont icon-setting"></i>
       </el-menu-item>
     </el-menu>
   </div>
@@ -134,6 +134,10 @@
       [class^='el-icon-'] {
         color: #fff;
         font-size: 15px;
+        &.icon-tags,
+        &.icon-info {
+          font-size: 18px;
+        }
       }
       &.is-active {
         border-left-color: #7ebbed;

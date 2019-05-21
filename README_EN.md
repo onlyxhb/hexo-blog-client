@@ -58,6 +58,9 @@ npm install --save-dev electron-icon-builder
 ```
 ## [configuration](https://blog.onlystar.site/2018/10/21/hexoblogclient-shi-yong-zhi-nan/)
 
+## 下载地址
+[https://github.com/Xonlystar/hexo-blog-client/releases/latest](https://github.com/Xonlystar/hexo-blog-client/releases/latest)
+
 ## effect of screenshots
 
 ![列表页](https://user-images.githubusercontent.com/19361551/57982641-93749280-7a7a-11e9-9dd8-485943d71f78.png)
@@ -72,6 +75,14 @@ npm install --save-dev electron-icon-builder
 ![修改文章页](https://user-images.githubusercontent.com/19361551/57982954-c3259980-7a7e-11e9-9689-729b3f519a44.png)
 
 ## version update record
+### 1.2.8 (2019-06-01)
+- fixed bug where the first item in the list was selected instead of the new item by default after a new article was added
+- fixed an issue that appeared after clicking the cancel button in the popup box of a newly added article
+- fixed an issue where some irregular link links could not be opened.
+- fixed an issue where the menu buttons of articles on small screens were not fully displayed
+- fixed a bug where editing articles occasionally became new, resulting in duplicate articles in the articles list
+- antd component library is introduced on demand to reduce package size
+
 ### v1.2.7 (2019-05-20)
 - added a front-matters editing feature
 - new git repository articles synchronization function

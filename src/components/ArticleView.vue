@@ -6,7 +6,7 @@
           <operation class="window-operation"/>
           <div class="artile-title-box"><label class="article-title">{{ post.title }}</label></div>
           <div class="article-sub">
-            <div>
+            <div class="article-sub-box">
               <label class="article-time">{{ type === 'add' ? formatDate(post.date) : post.date }}</label>
               <label class="article-cat" v-for="(category, index) in post.categories" :key="index + (category.name || category)">
                 <el-tag size="small">{{ category.name || category }}</el-tag>
@@ -15,32 +15,15 @@
                 <el-tag type="info" size="small">{{ tag.name || tag }}</el-tag>
               </label>
             </div>
-            <label class="article-opa" @click="handleArticle">
-              <i class="click-back" :class="type === 'preview' ? 'el-icon-edit' : 'el-icon-tickets'" name="edit"/>
-              <i v-if="type === 'preview'" class="el-icon-delete click-back" name="delete"/>
-              <i v-if="type === 'preview'" class="el-icon-share click-back" name="share"/>
-              <i v-if="type !== 'preview'" class="el-icon-check click-back" name="save"/>
-              <i v-if="type !== 'preview'" class="el-icon-setting click-back" name="setting"/>
-              <i v-if="type !== 'preview'" class="el-icon-more click-back" name="more"/>
-              <i class="click-back" :class="collapse ? 'el-icon-s-unfold' : 'el-icon-s-fold'" name="collapse"/>
-              <!-- <i v-if="type !== 'preview'" class="el-icon-more click-back" name="more"/> -->
-              <!-- <el-popover
-                popper-class="custom-popover-more"
-                :visible-arrow="false"
-                placement="bottom"
-                width="165px"
-                trigger="click">
-                <i class="el-icon-more click-back" name="more" slot="reference"/>
-                <el-table :data="popoverData">
-                  <el-table-column width="35" align="right" property="icon">
-                    <template slot-scope="scope">
-                      <i :class="scope.row.icon"/>
-                    </template>
-                  </el-table-column>
-                  <el-table-column width="130" align="left" property="text"></el-table-column>
-                </el-table>
-              </el-popover> -->
-            </label>
+          </div>
+          <div class="article-opa" @click="handleArticle">
+            <i class="click-back" :class="type === 'preview' ? 'el-icon-edit' : 'iconfont icon-read'" name="edit"/>
+            <i v-if="type === 'preview'" class="el-icon-delete click-back" name="delete"/>
+            <i v-if="type === 'preview'" class="el-icon-share click-back" name="share"/>
+            <i v-if="type !== 'preview'" class="iconfont icon-save click-back" name="save"/>
+            <i v-if="type !== 'preview'" class="el-icon-setting click-back" name="setting"/>
+            <i v-if="type !== 'preview'" class="el-icon-more click-back" name="more"/>
+            <i class="click-back" :class="collapse ? 'el-icon-s-unfold' : 'el-icon-s-fold'" name="collapse"/>
           </div>
         </header>
         <slot name="right-item-main"/>
@@ -170,6 +153,13 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        overflow: hidden;
+        margin-right: 160px;
+        &-box {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          -webkit-app-region: no-drag;
+        }
       }
       .article-tag,
       .article-cat,
@@ -182,7 +172,10 @@
       }
       .article-opa {
         z-index: 100;
-        position: relative;
+        position: absolute;
+        top: 40px;
+        right: 0;
+        width: 160px;
         margin-right: 5px;
         font-size: 20px;
         cursor: pointer;
@@ -194,6 +187,9 @@
           margin-left: 10px;
           line-height: 30px;
           text-align: center;
+          &.icon-read {
+            font-size: 18px;
+          }
         }
       }
     }

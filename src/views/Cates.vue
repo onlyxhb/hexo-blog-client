@@ -4,7 +4,7 @@
     <div class="no-data" slot="right-item">
       <operation/>
       <div class="no-data-content">
-        <i class="iconfont icon-categories"/>
+        <i class="iconfont icon-folder"/>
         <p>{{$t('noArticleMsg')}}</p>
       </div>
     </div>
