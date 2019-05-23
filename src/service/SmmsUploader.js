@@ -9,7 +9,7 @@ class SmmsUploader {
     formData.append('format', 'json')
 
     let config = {
-      headers: {'Content-Type': 'multipart/form-data'}
+      headers: { 'Content-Type': 'multipart/form-data' }
     }
 
     let deferred = when.defer()

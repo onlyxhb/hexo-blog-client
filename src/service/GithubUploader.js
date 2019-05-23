@@ -19,7 +19,7 @@ class GithubUploader {
       // 判断如果父目录不存在，那么创建
       mkdirsSync(path.resolve(filepath, '..'))
 
-      fs.writeFile(filepath, buffer, {'flag': 'w'}, function (err) {
+      fs.writeFile(filepath, buffer, { 'flag': 'w' }, function (err) {
         if (err) {
           deferred.reject(err)
         } else {
@@ -50,7 +50,7 @@ class GithubUploader {
             }
             if (startWith(src, profile.match)) {
               if (width && height) {
-                profile.params = Object.assign({}, profile.params, {w: width, h: height})
+                profile.params = Object.assign({}, profile.params, { w: width, h: height })
               }
               token.attrs[srcIndex][1] = getImageBase64(profile.prefix, src)
             }

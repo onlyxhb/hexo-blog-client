@@ -1,10 +1,10 @@
+import Config from '../config'
 const hexoUtil = require('hexo-util')
 const yfm = require('hexo-front-matter')
 const electron = require('electron')
 const axios = require('axios')
 const { MessageBox, Message, Loading } = require('element-ui')
 const { version } = require('../../package.json')
-import Config from '../config'
 const language = Config.get('language', 'zh')
 const $t = require(`../locales/${language}.json`)
 // 系统预订的front matters
@@ -18,7 +18,6 @@ const SYSTEM_FRONT_MATTERS = [
 ]
 
 class Utils {
-
   /**
    * 获取文章摘要，截取前100个字符
    * @param {String} content 文章内容
@@ -60,7 +59,7 @@ class Utils {
         categories: post.categories.data, // 分类
         summary: this.getPostSummary(post.content), // 摘要
         content: post.content, // 文章内容
-        _content: post._content, // 文章的markdown
+        _content: post._content // 文章的markdown
       }
       let source = post.source.trim()
       if (source) {
@@ -96,7 +95,7 @@ class Utils {
    * @param {String} type  格式
    */
   formatDate (datetime, type = 'YYYY-MM-DD HH:MM:SS') {
-    // 返回规定格式的字符串 
+    // 返回规定格式的字符串
     let date = new Date(datetime)
     const year = date.getFullYear()
     const month = ('0' + (date.getMonth() + 1)).slice(-2)

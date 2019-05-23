@@ -35,9 +35,9 @@ const actions = {
    * @returns {Promise<void>}
    */
   async start (context) {
-    let loading = this._vm.$loading({lock: true, text: 'Loading...', spinner: 'el-icon-loading'})
+    let loading = this._vm.$loading({ lock: true, text: 'Loading...', spinner: 'el-icon-loading' })
     try {
-      await context.dispatch('Config/initConfig', null, {root: true})
+      await context.dispatch('Config/initConfig', null, { root: true })
       await context.dispatch('init')
     } finally {
       loading.close()
@@ -52,7 +52,7 @@ const actions = {
   async init (context) {
     let config = context.rootState.Config.config
     if (!config || !config.path) {
-      context.dispatch('UiStatus/setDialogFormVisible', true, {root: true})
+      context.dispatch('UiStatus/setDialogFormVisible', true, { root: true })
     } else {
       let hexo = new Hexo(config.path, {
         debug: false,
@@ -63,7 +63,7 @@ const actions = {
       // await hexo.load()
       await hexo.watch()
 
-      context.dispatch('UiStatus/setDialogFormVisible', false, {root: true})
+      context.dispatch('UiStatus/setDialogFormVisible', false, { root: true })
       context.commit('setInstance', hexo)
       context.commit('setInited')
     }
@@ -93,7 +93,7 @@ const actions = {
    */
   getPost (context, postId) {
     if (!context.state.instance || !context.state.instance.locals) return {}
-    return context.state.instance.locals.get('posts').findOne({_id: postId})
+    return context.state.instance.locals.get('posts').findOne({ _id: postId })
   },
 
   /**
@@ -357,7 +357,7 @@ const getters = {
     if (!selectedPostId) {
       return null
     }
-    let post = posts.findOne({_id: selectedPostId}).toObject()
+    let post = posts.findOne({ _id: selectedPostId }).toObject()
     return utils.formatPost(post)
   }
 }

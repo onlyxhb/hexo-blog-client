@@ -58,20 +58,20 @@
 </template>
 
 <script>
-  import Operation from '@/components/Operation'
-  export default {
-    data () {
-      return {}
-    },
-    components: { Operation },
-    created () {
-    },
-    methods: {
-      openUrl (url) {
-        require('electron').shell.openExternal(url)
-      }
+import Operation from '@/components/Operation'
+export default {
+  data () {
+    return {}
+  },
+  components: { Operation },
+  created () {
+  },
+  methods: {
+    openUrl (url) {
+      require('electron').shell.openExternal(url)
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

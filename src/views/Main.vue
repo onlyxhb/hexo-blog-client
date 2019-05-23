@@ -102,7 +102,7 @@
           stripe>
           <el-table-column prop="title" :label="$t('postForm.frontmatters.key')" width="100">
             <template scope="scope">
-              <el-input size="small" v-model="scope.row.title" @blur="valideFrontTitle(scope)"></el-input> 
+              <el-input size="small" v-model="scope.row.title" @blur="valideFrontTitle(scope)"></el-input>
               <span>{{scope.row.title}}</span>
             </template>
           </el-table-column>
@@ -128,251 +128,250 @@
 </template>
 
 <script>
-  import ArticleMain from '@/layout/Main'
-  import ArticleView from '@/components/ArticleView'
-  import MarkdownEditor from '@/components/Editor'
-  import { mapGetters, mapMutations } from 'vuex'
-  import Utils from '@/service/Utils'
-  const electron = require('electron')
-  export default {
-    name: 'MainPage',
-    components: {ArticleMain, ArticleView , MarkdownEditor},
-    data () {
-      return {
-        visible: this.type === 'add', // 是否弹出dialog
-        hasParentKey: false, // 从分类和标签页带条件过来
-        inited: false,
-        formLabelWidth: 100,
-        formChanged: false, // 表单是否发生了变化
-        postForm: {
-          title: '', // 文章标题
-          path: '', // 文章路径
-          content: '', // 修改后文
-          tags: [], // 标签
-          categories: [], // 分类
-          toc: false, // 开启toc
-          img:  '', // 文章首页图
-          date: new Date(), // 创建时间
-          updated: new Date(), // 修改时间
-          author: '' // 文章作者
-        },
-        postFormRules: {
-          title: [{required: true, trigger: 'blur'}],
-          author: [{required: true, trigger: 'blur'}],
-          categories: [{required: true, trigger: 'blur'}],
-          tags: [{required: true, trigger: 'blur'}],
-          content: [{required: true, trigger: 'blur'}]
-        },
-        frontMatters: [], // 文章的font-matter
-        frontMattersVisible: false
-      }
-    },
-    beforeRouteEnter (to, from, next) {
-      let key = to.query.key
-      next(vm => {
-        if (key) vm.hasParentKey = true
-        vm.$store.dispatch('Hexo/selectByKey', to.query.key)
-      })
-    },
-    mounted () {
-      if (this.type !== 'preview') {
-        this.getFrontMatter()
-      }
-      this.renderLink()
-      this.inited = true
-      if (this.type === 'add') {
+import ArticleMain from '@/layout/Main'
+import ArticleView from '@/components/ArticleView'
+import MarkdownEditor from '@/components/Editor'
+import { mapGetters, mapMutations } from 'vuex'
+import Utils from '@/service/Utils'
+const electron = require('electron')
+export default {
+  name: 'MainPage',
+  components: { ArticleMain, ArticleView, MarkdownEditor },
+  data () {
+    return {
+      visible: this.type === 'add', // 是否弹出dialog
+      hasParentKey: false, // 从分类和标签页带条件过来
+      inited: false,
+      formLabelWidth: 100,
+      formChanged: false, // 表单是否发生了变化
+      postForm: {
+        title: '', // 文章标题
+        path: '', // 文章路径
+        content: '', // 修改后文
+        tags: [], // 标签
+        categories: [], // 分类
+        toc: false, // 开启toc
+        img: '', // 文章首页图
+        date: new Date(), // 创建时间
+        updated: new Date(), // 修改时间
+        author: '' // 文章作者
+      },
+      postFormRules: {
+        title: [{ required: true, trigger: 'blur' }],
+        author: [{ required: true, trigger: 'blur' }],
+        categories: [{ required: true, trigger: 'blur' }],
+        tags: [{ required: true, trigger: 'blur' }],
+        content: [{ required: true, trigger: 'blur' }]
+      },
+      frontMatters: [], // 文章的font-matter
+      frontMattersVisible: false
+    }
+  },
+  beforeRouteEnter (to, from, next) {
+    let key = to.query.key
+    next(vm => {
+      if (key) vm.hasParentKey = true
+      vm.$store.dispatch('Hexo/selectByKey', to.query.key)
+    })
+  },
+  mounted () {
+    if (this.type !== 'preview') {
+      this.getFrontMatter()
+    }
+    this.renderLink()
+    this.inited = true
+    if (this.type === 'add') {
+      this.clearData()
+      this.visible = true
+    }
+  },
+  updated () {
+    // 预览模式需要滚动到最上方
+    if (this.type === 'preview' && this.$refs && this.$refs.mdEditor) {
+      let targetEl = this.$refs.mdEditor.$el.querySelector('.v-show-content.scroll-style')
+      targetEl.scrollTo(0, 0)
+    }
+  },
+  watch: {
+    type (val) {
+      if (val === 'add') {
         this.clearData()
         this.visible = true
-      }
-    },
-    updated () {
-      // 预览模式需要滚动到最上方
-      if (this.type === 'preview' && this.$refs && this.$refs.mdEditor) {
-        let targetEl = this.$refs.mdEditor.$el.querySelector('.v-show-content.scroll-style')
-        targetEl.scrollTo(0, 0)
-      }
-    },
-    watch: {
-      type (val) {
-        if (val === 'add') {
-          this.clearData()
-          this.visible = true
-        }  else if (val === 'edit') {
-          this.getFrontMatter()
-        }
-      }
-    },
-    methods: {
-      ...mapMutations({
-        changeType: 'Article/changeType',
-        setCollapse: 'Article/setCollapse'
-      }),
-      clearData () {
-        this.postForm = {
-          title: '', // 文章标题
-          content: '', // 修改后文
-          tags: [], // 标签
-          categories: [], // 分类
-          toc: false, // 开启toc
-          top: false, // 置顶
-          cover: false, // 首页轮播
-          img:  '', // 文章首页图
-          date: new Date(), // 创建时间
-          updated: new Date(), // 修改时间
-          author: '' // 文章作者
-        }
-      },
-      // a标签在浏览器中打开
-      renderLink () {
-        let markdownBody = document.querySelector('.markdown-body.custom-markdown-editor')
-        markdownBody.onclick = event => {
-          let target = event.target || event.srcElement
-          if(target.nodeName.toLowerCase() == 'a') {
-            event.preventDefault()
-            event.stopPropagation()
-            let href = event.target.getAttribute('href')
-            let inner = event.target.innerHTML
-            if (href || inner) {
-              electron.shell.openExternal(href || inner)
-            }
-          }
-        }
-      },
-      getFrontMatter () {
-        let post = this.post
-        this.postForm = {
-          title: post.title, // 文章标题
-          content: post._content, // 修改后文
-          tags: [], // 标签
-          categories: [], // 分类
-          toc: post.toc, // 开启toc
-          img:  post.img, // 文章首页图
-          date: post.date, // 创建时间
-          updated: post.updated, // 修改时间
-          author: post.author, // 文章作者
-          path: post.path
-        }
-        post.categories.forEach(cat => {
-          this.postForm.categories.push(cat.name)
-        })
-        post.tags.forEach(tag => {
-          this.postForm.tags.push(tag.name)
-        })
-        // frontMatter
-        this.frontMatters = []
-        let frontMatter = Utils.frontMatter(post.raw)
-        Object.keys(frontMatter).forEach(key => {
-          this.frontMatters.push({
-            title: key,
-            value: frontMatter[key]
-          })
-        })
-      },
-      editPost (type) {
-        this.changeType(type)
-      },
-      deletePost () {
-        let id = this.post._id
-        this.$confirm(this.$t('deleteArticleConfirmMsg'), this.$t('confirmTips'), {
-          confirmButtonText: this.$t('confirmButtonText'),
-          cancelButtonText: this.$t('cancelButtonText'),
-        }).then(async () => {
-          await this.$store.dispatch('Hexo/deletePost', id)
-          this.$message(this.$t('deleteSuccessMsg'))
-        })
-      },
-      sharePost () {
-        electron.shell.openExternal(this.post.permalink)
-      },
-      handleDialogConfirm () {
-        this.setCollapse(true)
-        this.$refs.postForm.validate(err => {
-          if (!err) return false
-          this.visible = false
-          this.formChanged = true
-        })
-      },
-      handleDialogCancel () {
-        this.visible = false
-        if (this.type === 'add') {
-          this.changeType('preview')
-        }
-      },
-
-      /**
-      * @func 保存的表单信息
-      */
-      async submitForm () {
-        let action = 'Hexo/createPost'
-        let text = 'submit.save'
-        if (this.type === 'edit') {
-          action = 'Hexo/editPost'
-          text = 'submit.edit'
-        }
-        let valid = this.$refs.postForm ? await this.$store.dispatch('Hexo/validatePostForm', this.$refs.postForm) : true
-        if (!valid || !this.postForm.title) {
-          this.visible = true
-          return
-        }
-        try {
-          if (this.frontMatters && this.frontMatters.length > 0) {
-            for (let i = 0; i < this.frontMatters.length; i++) {
-              let item = this.frontMatters[i]
-              this.postForm[item.title] = item.value
-            }
-          }
-          let submitForm = Object.assign({}, this.postForm)
-          if (this.type === 'edit') {
-            submitForm.updated = new Date()// 修改时间
-          }
-          console.log(action, submitForm)
-          await this.$store.dispatch(action, submitForm)
-          this.formChanged = false
-          setTimeout(() => {
-            // 选中当前
-            let filterCurrent = this.allPost.filter(v => v.title === submitForm.title)[0]
-            if (filterCurrent) {
-              this.$store.dispatch('Hexo/selectPost', filterCurrent.id)
-            }
-            this.$message(this.$t(`${text}.success`))
-          }, 500)
-        } catch (err) {
-          this.$message.error(this.$t(`${text}.fail`))
-        }
-      },
-      valideFrontTitle ({row}) {
-        let filters = this.frontMatters.filter(v => v.title === row.title)
-        if (filters && filters.length > 1) {
-          this.$message.error(`${row.title}` + this.$t('haveUsing'))
-          return
-        }       
-      },
-      deleteFrontMatter ({$index}) {
-        this.frontMatters.splice($index, 1)
-      }
-    },
-    computed: {
-      ...mapGetters({
-        allPost: 'Hexo/posts',
-        tags: 'Hexo/tags',
-        type: 'Article/type',
-        categories: 'Hexo/categories'
-      }),
-      post () {
-        return this.$store.getters['Hexo/selectedPost']
-      },
-      mdConfig () {
-        if (this.type === 'preview') {
-          return { showToolbars: false, defaultOpen: 'preview', subfield: false}
-        } else {
-          return { showToolbars: true, defaultOpen: '', subfield: true}
-        }
-      },
-      headerPost () {
-        return this.type === 'preview' ? this.post : this.postForm
+      } else if (val === 'edit') {
+        this.getFrontMatter()
       }
     }
+  },
+  methods: {
+    ...mapMutations({
+      changeType: 'Article/changeType',
+      setCollapse: 'Article/setCollapse'
+    }),
+    clearData () {
+      this.postForm = {
+        title: '', // 文章标题
+        content: '', // 修改后文
+        tags: [], // 标签
+        categories: [], // 分类
+        toc: false, // 开启toc
+        top: false, // 置顶
+        cover: false, // 首页轮播
+        img: '', // 文章首页图
+        date: new Date(), // 创建时间
+        updated: new Date(), // 修改时间
+        author: '' // 文章作者
+      }
+    },
+    // a标签在浏览器中打开
+    renderLink () {
+      let markdownBody = document.querySelector('.markdown-body.custom-markdown-editor')
+      markdownBody.onclick = event => {
+        let target = event.target || event.srcElement
+        if (target.nodeName.toLowerCase() === 'a') {
+          event.preventDefault()
+          event.stopPropagation()
+          let href = event.target.getAttribute('href')
+          let inner = event.target.innerHTML
+          if (href || inner) {
+            electron.shell.openExternal(href || inner)
+          }
+        }
+      }
+    },
+    getFrontMatter () {
+      let post = this.post
+      this.postForm = {
+        title: post.title, // 文章标题
+        content: post._content, // 修改后文
+        tags: [], // 标签
+        categories: [], // 分类
+        toc: post.toc, // 开启toc
+        img: post.img, // 文章首页图
+        date: post.date, // 创建时间
+        updated: post.updated, // 修改时间
+        author: post.author, // 文章作者
+        path: post.path
+      }
+      post.categories.forEach(cat => {
+        this.postForm.categories.push(cat.name)
+      })
+      post.tags.forEach(tag => {
+        this.postForm.tags.push(tag.name)
+      })
+      // frontMatter
+      this.frontMatters = []
+      let frontMatter = Utils.frontMatter(post.raw)
+      Object.keys(frontMatter).forEach(key => {
+        this.frontMatters.push({
+          title: key,
+          value: frontMatter[key]
+        })
+      })
+    },
+    editPost (type) {
+      this.changeType(type)
+    },
+    deletePost () {
+      let id = this.post._id
+      this.$confirm(this.$t('deleteArticleConfirmMsg'), this.$t('confirmTips'), {
+        confirmButtonText: this.$t('confirmButtonText'),
+        cancelButtonText: this.$t('cancelButtonText')
+      }).then(async () => {
+        await this.$store.dispatch('Hexo/deletePost', id)
+        this.$message(this.$t('deleteSuccessMsg'))
+      })
+    },
+    sharePost () {
+      electron.shell.openExternal(this.post.permalink)
+    },
+    handleDialogConfirm () {
+      this.setCollapse(true)
+      this.$refs.postForm.validate(err => {
+        if (!err) return false
+        this.visible = false
+        this.formChanged = true
+      })
+    },
+    handleDialogCancel () {
+      this.visible = false
+      if (this.type === 'add') {
+        this.changeType('preview')
+      }
+    },
+
+    /**
+      * @func 保存的表单信息
+      */
+    async submitForm () {
+      let action = 'Hexo/createPost'
+      let text = 'submit.save'
+      if (this.type === 'edit') {
+        action = 'Hexo/editPost'
+        text = 'submit.edit'
+      }
+      let valid = this.$refs.postForm ? await this.$store.dispatch('Hexo/validatePostForm', this.$refs.postForm) : true
+      if (!valid || !this.postForm.title) {
+        this.visible = true
+        return
+      }
+      try {
+        if (this.frontMatters && this.frontMatters.length > 0) {
+          for (let i = 0; i < this.frontMatters.length; i++) {
+            let item = this.frontMatters[i]
+            this.postForm[item.title] = item.value
+          }
+        }
+        let submitForm = Object.assign({}, this.postForm)
+        if (this.type === 'edit') {
+          submitForm.updated = new Date()// 修改时间
+        }
+        console.log(action, submitForm)
+        await this.$store.dispatch(action, submitForm)
+        this.formChanged = false
+        setTimeout(() => {
+          // 选中当前
+          let filterCurrent = this.allPost.filter(v => v.title === submitForm.title)[0]
+          if (filterCurrent) {
+            this.$store.dispatch('Hexo/selectPost', filterCurrent.id)
+          }
+          this.$message(this.$t(`${text}.success`))
+        }, 500)
+      } catch (err) {
+        this.$message.error(this.$t(`${text}.fail`))
+      }
+    },
+    valideFrontTitle ({ row }) {
+      let filters = this.frontMatters.filter(v => v.title === row.title)
+      if (filters && filters.length > 1) {
+        this.$message.error(`${row.title}` + this.$t('haveUsing'))
+      }
+    },
+    deleteFrontMatter ({ $index }) {
+      this.frontMatters.splice($index, 1)
+    }
+  },
+  computed: {
+    ...mapGetters({
+      allPost: 'Hexo/posts',
+      tags: 'Hexo/tags',
+      type: 'Article/type',
+      categories: 'Hexo/categories'
+    }),
+    post () {
+      return this.$store.getters['Hexo/selectedPost']
+    },
+    mdConfig () {
+      if (this.type === 'preview') {
+        return { showToolbars: false, defaultOpen: 'preview', subfield: false }
+      } else {
+        return { showToolbars: true, defaultOpen: '', subfield: true }
+      }
+    },
+    headerPost () {
+      return this.type === 'preview' ? this.post : this.postForm
+    }
   }
+}
 </script>
 
 <style lang="scss" scoped>

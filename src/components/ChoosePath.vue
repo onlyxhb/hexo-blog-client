@@ -18,36 +18,36 @@
 </template>
 
 <script>
-  export default {
-    name: 'ChoosePath',
-    data () {
-      return {
-        path: ''
-      }
+export default {
+  name: 'ChoosePath',
+  data () {
+    return {
+      path: ''
+    }
+  },
+  methods: {
+    showFileDialog () {
+      var me = this
+      const dialog = require('electron').remote.dialog
+      dialog.showOpenDialog({ properties: ['openDirectory'] }, (filename) => {
+        if (filename.length === 1) {
+          me.path = filename[0]
+        }
+      })
     },
-    methods: {
-      showFileDialog () {
-        var me = this
-        const dialog = require('electron').remote.dialog
-        dialog.showOpenDialog({properties: ['openDirectory']}, (filename) => {
-          if (filename.length === 1) {
-            me.path = filename[0]
-          }
-        })
-      },
-      async setConfig () {
-        let config = this.$store.state.Config.config
-        config.path = this.path
-        await this.$store.dispatch('Config/setConfig', config)
-        await this.$store.dispatch('Hexo/start')
-      }
-    },
-    computed: {
-      dialogFormVisible () {
-        return this.$store.state.UiStatus.dialogFormVisible
-      }
+    async setConfig () {
+      let config = this.$store.state.Config.config
+      config.path = this.path
+      await this.$store.dispatch('Config/setConfig', config)
+      await this.$store.dispatch('Hexo/start')
+    }
+  },
+  computed: {
+    dialogFormVisible () {
+      return this.$store.state.UiStatus.dialogFormVisible
     }
   }
+}
 </script>
 
 <style scoped>

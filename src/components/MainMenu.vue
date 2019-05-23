@@ -34,45 +34,45 @@
 </template>
 
 <script>
-  const { ipcRenderer } = require('electron')
-  import Deploy from '@/components/Deploy'
-  import photoPic from '@/mixins/photoPic'
-  import { mapMutations } from 'vuex'
-  export default {
-    data () {
-      return {}
-    },
-    components: {Deploy},
-    mixins: [photoPic],
-    methods: {
-      ...mapMutations({
-        changeType: 'Article/changeType',
-        setCollapse: 'Article/setCollapse'
-      }),
-      handle: ipcRenderer.send,
-      dispatch (index) {
-        switch (index) {
-          case 'main':
-          case 'cates':
-          case 'tags':
-          case 'settings':
-          case 'about':
-            this.changeType('preview')
-            this.setCollapse(false)
-            this.$router.push({name: index})
-            break
-          default:
-        }
-      },
-      handleAddArticle () {
-        this.changeType('add')
-        this.$router.push({name: 'main'})
-      },
-      reload () {
-        window.location.reload()
+import Deploy from '@/components/Deploy'
+import photoPic from '@/mixins/photoPic'
+import { mapMutations } from 'vuex'
+const { ipcRenderer } = require('electron')
+export default {
+  data () {
+    return {}
+  },
+  components: { Deploy },
+  mixins: [photoPic],
+  methods: {
+    ...mapMutations({
+      changeType: 'Article/changeType',
+      setCollapse: 'Article/setCollapse'
+    }),
+    handle: ipcRenderer.send,
+    dispatch (index) {
+      switch (index) {
+        case 'main':
+        case 'cates':
+        case 'tags':
+        case 'settings':
+        case 'about':
+          this.changeType('preview')
+          this.setCollapse(false)
+          this.$router.push({ name: index })
+          break
+        default:
       }
+    },
+    handleAddArticle () {
+      this.changeType('add')
+      this.$router.push({ name: 'main' })
+    },
+    reload () {
+      window.location.reload()
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

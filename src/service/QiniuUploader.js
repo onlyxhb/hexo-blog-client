@@ -68,7 +68,7 @@ function getUpConfig (sysConfig) {
       expires: 7200
     })
     let upToken = putPolicy.uploadToken(mac)
-    return {upToken: upToken, host: host}
+    return { upToken: upToken, host: host }
   }
 }
 

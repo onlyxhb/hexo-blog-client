@@ -12,12 +12,12 @@
 </template>
 
 <script>
-  import ArticleMain from '@/layout/Main'
-  import Operation from '@/components/Operation'
-  export default {
-    name: 'cates-page',
-    components: {ArticleMain, Operation}
-  }
+import ArticleMain from '@/layout/Main'
+import Operation from '@/components/Operation'
+export default {
+  name: 'cates-page',
+  components: { ArticleMain, Operation }
+}
 </script>
 
 <style lang="scss" scoped>

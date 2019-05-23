@@ -18,47 +18,47 @@
 </template>
 
 <script>
-  import ArticleList from '@/components/ArticleList'
-  import { mapGetters } from 'vuex'
+import ArticleList from '@/components/ArticleList'
+import { mapGetters } from 'vuex'
 
-  export default {
-    components: {ArticleList},
-    props: {
-      type: {
-        type: String,
-        default: 'recentArticle' // articleCategories articleTags
-      },
-      hasParentKey: {
-        type: Boolean,
-        default: false
-      }
+export default {
+  components: { ArticleList },
+  props: {
+    type: {
+      type: String,
+      default: 'recentArticle' // articleCategories articleTags
     },
-    data () {
-      return {
-        keyword: '',
-        filterType: 2 // 1摘要  2 列表
-      }
-    },
+    hasParentKey: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data () {
+    return {
+      keyword: '',
+      filterType: 2 // 1摘要  2 列表
+    }
+  },
 
-    computed: {
-      ...mapGetters({
-        collapse: 'Article/collapse'
-      }),
-      getBackStatus () {
-        return this.type === 'recentArticle' && this.hasParentKey
-      }
+  computed: {
+    ...mapGetters({
+      collapse: 'Article/collapse'
+    }),
+    getBackStatus () {
+      return this.type === 'recentArticle' && this.hasParentKey
+    }
+  },
+  methods: {
+    handleDropdown (command) {
+      this.filterType = command
     },
-    methods: {
-      handleDropdown (command) {
-        this.filterType = command
-      },
-      handleBack () {
-        if (this.getBackStatus) {
-          this.$router.back()
-        }
+    handleBack () {
+      if (this.getBackStatus) {
+        this.$router.back()
       }
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

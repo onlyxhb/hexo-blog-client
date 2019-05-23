@@ -33,74 +33,74 @@
 </template>
 
 <script>
-  import Operation from '@/components/Operation'
-  import { mapGetters, mapMutations } from 'vuex'
-  import Utils from '@/service/Utils'
-  export default {
-    components: {Operation},
-    props: {
-      post: {
-        type: Object,
-        default: () => {}
-      }
-    },
-    data () {
-      return {
-        popoverData: [
-          {
-            icon: 'el-icon-rank',
-            text: 'Front-Matter'
-          }
-        ]
-      }
-    },
-    computed: {
-      ...mapGetters({
-        type: 'Article/type',
-        collapse: 'Article/collapse'
-      })
-    },
-    methods: {
-      ...mapMutations({
-        setCollapse: 'Article/setCollapse'
-      }),
-      formatDate: Utils.formatDate,
-      handleArticle (event) {
-        let name = event.target.getAttribute('name')
-        switch(name) {
-          case 'edit' : {
-            this.setCollapse(this.type === 'preview')
-            this.$emit('editPost', this.type === 'preview' ? 'edit' : 'preview')
-            break
-          }
-          case 'delete' : {
-            this.$emit('deletePost')
-            break
-          }
-          case 'share' : {
-            this.$emit('sharePost')
-            break
-          }
-          case 'save' : {
-            this.$emit('savePost')
-            break
-          }
-          case 'setting' : {
-            this.$emit('setPost')
-            break
-          }
-          case 'more' : {
-            this.$emit('setMore')
-            break
-          }
-          case 'collapse' : {
-            this.setCollapse(!this.collapse)
-            break
-          }
+import Operation from '@/components/Operation'
+import { mapGetters, mapMutations } from 'vuex'
+import Utils from '@/service/Utils'
+export default {
+  components: { Operation },
+  props: {
+    post: {
+      type: Object,
+      default: () => {}
+    }
+  },
+  data () {
+    return {
+      popoverData: [
+        {
+          icon: 'el-icon-rank',
+          text: 'Front-Matter'
+        }
+      ]
+    }
+  },
+  computed: {
+    ...mapGetters({
+      type: 'Article/type',
+      collapse: 'Article/collapse'
+    })
+  },
+  methods: {
+    ...mapMutations({
+      setCollapse: 'Article/setCollapse'
+    }),
+    formatDate: Utils.formatDate,
+    handleArticle (event) {
+      let name = event.target.getAttribute('name')
+      switch (name) {
+        case 'edit' : {
+          this.setCollapse(this.type === 'preview')
+          this.$emit('editPost', this.type === 'preview' ? 'edit' : 'preview')
+          break
+        }
+        case 'delete' : {
+          this.$emit('deletePost')
+          break
+        }
+        case 'share' : {
+          this.$emit('sharePost')
+          break
+        }
+        case 'save' : {
+          this.$emit('savePost')
+          break
+        }
+        case 'setting' : {
+          this.$emit('setPost')
+          break
+        }
+        case 'more' : {
+          this.$emit('setMore')
+          break
+        }
+        case 'collapse' : {
+          this.setCollapse(!this.collapse)
+          break
         }
       }
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -196,5 +196,3 @@
   }
 }
 </style>
-
-

@@ -5,4 +5,4 @@ import 'mavon-editor/dist/css/index.css'
 Vue.use(mavonEditor)
 
 // 禁用渲染html，修复一个漏洞
-mavonEditor.markdownIt.set({html: false})
+mavonEditor.markdownIt.set({ html: false })

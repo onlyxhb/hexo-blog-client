@@ -1,7 +1,6 @@
 const Store = require('electron-store')
 const os = require('os')
 
-
 class Config {
   constructor () {
     this.store = new Store({

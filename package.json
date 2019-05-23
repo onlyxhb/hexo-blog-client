@@ -40,13 +40,16 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.0",
-    "@vue/cli-plugin-eslint": "^3.4.0",
+    "@vue/cli-plugin-eslint": "^3.0.4",
     "@vue/cli-service": "^3.4.0",
+    "@vue/eslint-config-standard": "^3.0.5",
     "aws-sdk": "^2.414.0",
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^8.2.1",
+    "babel-plugin-component": "^1.1.1",
+    "babel-preset-env": "^1.7.0",
     "electron": "^4.0.0",
-    "eslint": "^5.8.0",
-    "eslint-plugin-vue": "^5.0.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.2.2",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
     "vue-cli-plugin-electron-builder": "^1.0.2",
@@ -59,12 +62,19 @@
     "env": {
       "node": true
     },
+    "plugins": [
+      "vue"
+    ],
     "extends": [
       "plugin:vue/essential",
-      "eslint:recommended"
+      "@vue/standard"
     ],
     "parserOptions": {
       "parser": "babel-eslint"
+    },
+    "rules": {
+      "no-console": "off",
+      "no-debugger": "off"
     }
   },
   "postcss": {

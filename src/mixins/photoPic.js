@@ -3,7 +3,7 @@ const fs = require('fs')
 export default {
   computed: {
     ...mapGetters({
-      'config': "Config/config"
+      'config': 'Config/config'
     }),
     getPhoto () {
       let { photoPic, path } = this.config

@@ -25,115 +25,115 @@
 </template>
 
 <script>
-  import { mapGetters, mapMutations } from 'vuex'
-  export default {
-    name: 'ArticleList',
-    data () {
-      return {
-        selectIndex: 0 // 当前选中下标  只对分类和标签有效
-      }
+import { mapGetters, mapMutations } from 'vuex'
+export default {
+  name: 'ArticleList',
+  data () {
+    return {
+      selectIndex: 0 // 当前选中下标  只对分类和标签有效
+    }
+  },
+  props: {
+    type: {
+      type: String,
+      default: 'recentArticle' // articleCategories articleTags
     },
-    props: {
-      type: {
-        type: String,
-        default: 'recentArticle' // articleCategories articleTags
-      },
-      keyword: {
-        type: String,
-        default: '' //关键字
-      }
-    },
+    keyword: {
+      type: String,
+      default: '' // 关键字
+    }
+  },
 
-    methods: {
-      ...mapMutations({
-        changeType: 'Article/changeType'
-      }),
-      handleAddArticle () {
-        this.changeType('add')
-        this.$router.push({name: 'main'})
-      },
-      /**
+  methods: {
+    ...mapMutations({
+      changeType: 'Article/changeType'
+    }),
+    handleAddArticle () {
+      this.changeType('add')
+      this.$router.push({ name: 'main' })
+    },
+    /**
       * @func  处理单击事件
       * @param {Object} item 当前点击项
       */
-      handleItem (item, index) {
-        if (this.type === 'recentArticle') {
-          this.selectIndex = index
-          if (this.type !== 'recentArticle') return
-          this.changeType('preview')
-          this.$store.dispatch('Hexo/selectPost', item.id)    
-          return
-        }
+    handleItem (item, index) {
+      if (this.type === 'recentArticle') {
         this.selectIndex = index
-        let query = {}
-        if (this.type === 'articleCategories') {
-          query.key = 'cat#' + item
-        } else if (this.type === 'articleTags') {
-          query.key = 'tag#' + item
-        }
-        this.$router.push({
-          name: 'main',
-          query
-        })
-      },
-      getCateTagNum (name) {
-        let key = this.type === 'articleCategories' ? 'categories' : 'tags'
-        let num = 0
-        this.allPost.some(post => {
-          if (num) return true
-          post[key].some(item => {
-            if (item.name === name) {
-              num = item.length
-              return true
-            }
-          })
-        })
-        return num
+        if (this.type !== 'recentArticle') return
+        this.changeType('preview')
+        this.$store.dispatch('Hexo/selectPost', item.id)
+        return
       }
-    },
-    watch: {
-      getDisplayList (newValue) {
-        if (newValue && newValue.length) {
-          this.$store.dispatch('Hexo/selectPost', newValue[0].id)
-        }
+      this.selectIndex = index
+      let query = {}
+      if (this.type === 'articleCategories') {
+        query.key = 'cat#' + item
+      } else if (this.type === 'articleTags') {
+        query.key = 'tag#' + item
       }
+      this.$router.push({
+        name: 'main',
+        query
+      })
     },
-    computed: {
-      ...mapGetters({
-        allPost: 'Hexo/posts',
-        posts: 'Hexo/filteredPosts',
-        tags: 'Hexo/tags',
-        categories: 'Hexo/categories'
-      }),
-      selectedPostId () {
-        let selectedPost = this.$store.getters['Hexo/selectedPost']
-        return selectedPost ? selectedPost._id : null
-      },
-      getDisplayList () {
-        let keyword = this.keyword
-        let result = ''
-        if (this.type === 'recentArticle') {
-          result = keyword ? this.posts.filter(v => v.title.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) > -1) : this.posts
-        } else if (this.type === 'articleCategories') {
-          result = keyword ? this.categories.filter(v => v.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) > -1) : this.categories
-        } else if (this.type === 'articleTags') {
-          result = keyword ? this.tags.filter(v => v.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) > -1) : this.tags
-        }
-        return result
-      },
-      getListItemIcon () {
-        let result = 'el-icon-menu'
-        if (this.type === 'recentArticle') {
-          result = 'el-icon-menu'
-        } else if (this.type === 'articleCategories') {
-          result = 'iconfont icon-folder'
-        } else if (this.type === 'articleTags') {
-          result = 'iconfont icon-tags'
-        }
-        return result
+    getCateTagNum (name) {
+      let key = this.type === 'articleCategories' ? 'categories' : 'tags'
+      let num = 0
+      this.allPost.some(post => {
+        if (num) return true
+        post[key].some(item => {
+          if (item.name === name) {
+            num = item.length
+            return true
+          }
+        })
+      })
+      return num
+    }
+  },
+  watch: {
+    getDisplayList (newValue) {
+      if (newValue && newValue.length) {
+        this.$store.dispatch('Hexo/selectPost', newValue[0].id)
       }
     }
+  },
+  computed: {
+    ...mapGetters({
+      allPost: 'Hexo/posts',
+      posts: 'Hexo/filteredPosts',
+      tags: 'Hexo/tags',
+      categories: 'Hexo/categories'
+    }),
+    selectedPostId () {
+      let selectedPost = this.$store.getters['Hexo/selectedPost']
+      return selectedPost ? selectedPost._id : null
+    },
+    getDisplayList () {
+      let keyword = this.keyword
+      let result = ''
+      if (this.type === 'recentArticle') {
+        result = keyword ? this.posts.filter(v => v.title.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) > -1) : this.posts
+      } else if (this.type === 'articleCategories') {
+        result = keyword ? this.categories.filter(v => v.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) > -1) : this.categories
+      } else if (this.type === 'articleTags') {
+        result = keyword ? this.tags.filter(v => v.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) > -1) : this.tags
+      }
+      return result
+    },
+    getListItemIcon () {
+      let result = 'el-icon-menu'
+      if (this.type === 'recentArticle') {
+        result = 'el-icon-menu'
+      } else if (this.type === 'articleCategories') {
+        result = 'iconfont icon-folder'
+      } else if (this.type === 'articleTags') {
+        result = 'iconfont icon-tags'
+      }
+      return result
+    }
   }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -218,4 +218,3 @@
     }
   }
 </style>
-

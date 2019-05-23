@@ -1,10 +1,10 @@
 'use strict'
 
-import { app, BrowserWindow, Menu, protocol, ipcMain, Tray, shell, screen, TouchBar  } from 'electron'
-const { TouchBarButton, TouchBarSpacer } = TouchBar
+import { app, BrowserWindow, Menu, protocol, ipcMain, Tray, shell, screen, TouchBar } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import path from 'path'
 import Config from './config'
+const { TouchBarButton, TouchBarSpacer } = TouchBar
 const blogUrl = Config.get('url')
 const language = Config.get('language', 'zh')
 const $t = require(`./locales/${language}.json`)
@@ -17,8 +17,7 @@ let win
 let tray
 
 // Standard scheme must be registered before the app is ready
-protocol.registerStandardSchemes(['app'], {secure: true})
-
+protocol.registerStandardSchemes(['app'], { secure: true })
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
@@ -125,7 +124,7 @@ function createWindow () {
     /* eslint-disable-next-line */
     icon: path.join(__static, 'icons/icon.png')
   })
-  
+
   // win.maximize()
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
@@ -168,7 +167,7 @@ function initMacTouchBar () {
     click: () => {
       win.webContents.send('jumping', 'addArticle')
     }
-  },)
+  })
   list[1].label = '↗'
   list[2].label = '☰'
   list[3].label = '↻'
@@ -187,7 +186,7 @@ function initTrayIcon () {
   /* eslint-disable-next-line */
   tray = new Tray(getNoMessageTrayIcon())
   const trayContextMenu = Menu.buildFromTemplate(getTrayDockMenu())
-  tray.setToolTip($t['window.tooltip'])  
+  tray.setToolTip($t['window.tooltip'])
   tray.setContextMenu(trayContextMenu)
 
   tray.on('click', () => {
@@ -287,7 +286,7 @@ function getTrayDockMenu () {
     },
     {
       label: $t['checkUpdate'],
-      click: () => { checkVersion()}
+      click: () => { checkVersion() }
     },
     {
       label: $t['window.tray.quit'],
@@ -295,7 +294,7 @@ function getTrayDockMenu () {
         app.quit()
       }
     }
-  ] 
+  ]
 }
 
 // 统一获取任务栏图标
@@ -304,18 +303,18 @@ function getNoMessageTrayIcon () {
     /* eslint-disable-next-line */
     return path.join(__static, 'icons/16x16.png')
   } else if (process.platform === 'win32') {
-     /* eslint-disable-next-line */
+    /* eslint-disable-next-line */
     return path.join(__static, 'icons/64x64.png')
   } else if (screen.getPrimaryDisplay().scaleFactor > 1) {
-     /* eslint-disable-next-line */
+    /* eslint-disable-next-line */
     return path.join(__static, 'icons/64x64.png')
   } else {
-     /* eslint-disable-next-line */
+    /* eslint-disable-next-line */
     return path.join(__static, 'icons/24x24.png')
   }
 }
 
-//检测更新
+// 检测更新
 function checkVersion () {
   win.webContents.send('jumping', 'checkVersion')
 }

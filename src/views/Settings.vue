@@ -70,75 +70,75 @@
 </template>
 
 <script>
-  import Operation from '@/components/Operation'
-  import githubUploader from '@/service/GithubUploader'
-  import photoPic from '@/mixins/photoPic'
-  import { mapActions } from 'vuex'
-  import Utils from '@/service/Utils'
-  const { ipcRenderer } = require('electron')
-  export default {
-    data () {
-      return {
-        fileList: [],
-        configForm: {
-          base: '',
-          url: '',
-          language: '',
-          uploadType: '',
-          qiniuZone: '',
-          qiniuAccessKey: '',
-          qiniuSecretKey: '',
-          qiniuBucket: '',
-          qiniuHost: ''
-        }
-      }
-    },
-    components: { Operation },
-    mixins: [photoPic],
-    created () {
-      this.configForm = {...this.configForm, ...this.config}
-    },
-    computed: {
-      getDisplayPic () {
-        return this.config.photoPic ? this.getPhoto : ''
-      }
-    },
-    methods: {
-      ...mapActions({
-        'setConfig': "Config/setConfig"
-      }),
-      checkVersion: Utils.checkVersion,
-      async saveConfig () {
-        let message = this.$t('submit.save.success')
-        let changeLanguage = this.config.language !== this.configForm.language
-        await this.setConfig(this.configForm)
-        if (changeLanguage) {
-          this.$confirm(this.$t('saveAndRestart'), this.$t('confirmTips'), {
-            confirmButtonText: this.$t('confirmButtonText'),
-            cancelButtonText: this.$t('cancelButtonText'),
-            type: 'success'
-          }).then(() => {
-            ipcRenderer.send('restartWin')
-          })
-          message = this.$t('save success and need restart')
-        } else {
-          this.$message.success(message)
-        }
-      },
-      customUpload (file) {
-        githubUploader.upload(file, this.config).then(url => {
-          this.setConfig({...this.config, photoPic: url})
-        })
-        return false
-      },
-      handleRemove () {
-        this.setConfig({...this.config, photoPic: ''})
-      },
-      OpenDevTool () {
-        ipcRenderer.send('openDevTool')
+import Operation from '@/components/Operation'
+import githubUploader from '@/service/GithubUploader'
+import photoPic from '@/mixins/photoPic'
+import { mapActions } from 'vuex'
+import Utils from '@/service/Utils'
+const { ipcRenderer } = require('electron')
+export default {
+  data () {
+    return {
+      fileList: [],
+      configForm: {
+        base: '',
+        url: '',
+        language: '',
+        uploadType: '',
+        qiniuZone: '',
+        qiniuAccessKey: '',
+        qiniuSecretKey: '',
+        qiniuBucket: '',
+        qiniuHost: ''
       }
     }
+  },
+  components: { Operation },
+  mixins: [photoPic],
+  created () {
+    this.configForm = { ...this.configForm, ...this.config }
+  },
+  computed: {
+    getDisplayPic () {
+      return this.config.photoPic ? this.getPhoto : ''
+    }
+  },
+  methods: {
+    ...mapActions({
+      'setConfig': 'Config/setConfig'
+    }),
+    checkVersion: Utils.checkVersion,
+    async saveConfig () {
+      let message = this.$t('submit.save.success')
+      let changeLanguage = this.config.language !== this.configForm.language
+      await this.setConfig(this.configForm)
+      if (changeLanguage) {
+        this.$confirm(this.$t('saveAndRestart'), this.$t('confirmTips'), {
+          confirmButtonText: this.$t('confirmButtonText'),
+          cancelButtonText: this.$t('cancelButtonText'),
+          type: 'success'
+        }).then(() => {
+          ipcRenderer.send('restartWin')
+        })
+        message = this.$t('save success and need restart')
+      } else {
+        this.$message.success(message)
+      }
+    },
+    customUpload (file) {
+      githubUploader.upload(file, this.config).then(url => {
+        this.setConfig({ ...this.config, photoPic: url })
+      })
+      return false
+    },
+    handleRemove () {
+      this.setConfig({ ...this.config, photoPic: '' })
+    },
+    OpenDevTool () {
+      ipcRenderer.send('openDevTool')
+    }
   }
+}
 </script>
 
 <style lang="scss" scoped>
