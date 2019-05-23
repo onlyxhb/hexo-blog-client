@@ -114,5 +114,6 @@
   "window.tray.showMain": "显示主窗口",
   "window.tray.openBlog": "打开博客",
   "window.tray.setting": "设置",
-  "window.tray.quit": "退出"
+  "window.tray.quit": "退出",
+  "projects": "项目"
 }

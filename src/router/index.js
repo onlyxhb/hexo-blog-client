@@ -25,6 +25,11 @@ export default new Router({
       component: () => import('@/views/Tags.vue')
     },
     {
+      path: '/projects',
+      name: 'projects',
+      component: () => import('@/views/Projects.vue')
+    },
+    {
       path: '/settings',
       name: 'settings',
       component: () => import('@/views/Settings.vue')

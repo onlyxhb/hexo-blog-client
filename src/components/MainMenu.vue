@@ -4,9 +4,9 @@
     <ul class="custom-opeartor">
       <li :title="$t('deploy')"><deploy/></li>
       <li :title="$t('download')"><deploy type="download"/></li>
-      <li :title="$t('refresh')" @click="reload"><i class="el-icon-refresh"></i></li>
+      <li :title="$t('refresh')" @click="reload"><i class="el-icon-refresh"/></li>
     </ul>
-    <p class="add-article" :title="$t('new')" @click="handleAddArticle"><i class="el-icon-plus"></i></p>
+    <p class="add-article" :title="$t('new')" @click="handleAddArticle"><i class="el-icon-plus"/></p>
     <el-menu
       :collapse="true"
       @select="dispatch"
@@ -15,19 +15,22 @@
       text-color="#fff"
       active-text-color="#fff">
       <el-menu-item index="main" :title="$t('recentArticle')">
-        <i class="iconfont icon-main"></i>
+        <i class="iconfont icon-main"/>
       </el-menu-item>
       <el-menu-item index="cates" :title="$t('articleCategories')">
-        <i class="iconfont icon-folder"></i>
+        <i class="iconfont icon-folder"/>
       </el-menu-item>
       <el-menu-item index="tags" :title="$t('articleTags')">
-        <i class="iconfont icon-tags"></i>
+        <i class="iconfont icon-tags"/>
+      </el-menu-item>
+      <el-menu-item index="projects" :title="$t('projects')">
+        <i class="iconfont icon-projects"/>
       </el-menu-item>
       <el-menu-item index="about" :title="$t('menuAbout')">
-        <i class="iconfont icon-info"></i>
+        <i class="iconfont icon-info"/>
       </el-menu-item>
       <el-menu-item index="settings" :title="$t('menuSettings')">
-        <i class="iconfont icon-setting"></i>
+        <i class="iconfont icon-setting"/>
       </el-menu-item>
     </el-menu>
   </div>
@@ -55,6 +58,7 @@ export default {
         case 'main':
         case 'cates':
         case 'tags':
+        case 'projects':
         case 'settings':
         case 'about':
           this.changeType('preview')

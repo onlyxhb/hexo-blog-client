@@ -114,5 +114,6 @@
   "window.tray.showMain": "showMain",
   "window.tray.openBlog": "openBlog",
   "window.tray.setting": "setting",
-  "window.tray.quit": "quit"
+  "window.tray.quit": "quit",
+  "projects": "project"
 }

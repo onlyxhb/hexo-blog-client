@@ -124,7 +124,7 @@ export default {
     getListItemIcon () {
       let result = 'el-icon-menu'
       if (this.type === 'recentArticle') {
-        result = 'el-icon-menu'
+        result = 'iconfont icon-markdown'
       } else if (this.type === 'articleCategories') {
         result = 'iconfont icon-folder'
       } else if (this.type === 'articleTags') {
@@ -164,13 +164,13 @@ export default {
       .article-icon {
         display: inline-block;
         margin-right: 8px;
-        &.el-icon-menu {
-          color: #4E7999;
+        &.icon-markdown {
+          color: rgb(233,142,54);
         }
-        &.icon-categories {
+        &.icon-folder {
           color: #E8A653;
         }
-        &.el-icon-menu {
+        &.el-icon-tags {
           color: #4E7999;
         }
       }
