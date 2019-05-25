@@ -59,9 +59,8 @@ const actions = {
         silent: true // 开启安静模式。不在终端中显示任何信息。
       })
       await hexo.init()
-
-      // await hexo.load()
-      await hexo.watch()
+      await hexo.call('server', {})
+      // await hexo.watch()
 
       context.dispatch('UiStatus/setDialogFormVisible', false, { root: true })
       context.commit('setInstance', hexo)

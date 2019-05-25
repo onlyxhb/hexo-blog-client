@@ -20,6 +20,7 @@
             <i class="click-back" :class="type === 'preview' ? 'el-icon-edit' : 'iconfont icon-read'" name="edit"/>
             <i v-if="type === 'preview'" class="el-icon-delete click-back" name="delete"/>
             <i v-if="type === 'preview'" class="el-icon-share click-back" name="share"/>
+            <i v-if="type !== 'add'" class="iconfont icon-localview click-back" name="localview"/>
             <i v-if="type !== 'preview'" class="iconfont icon-save click-back" name="save"/>
             <i v-if="type !== 'preview'" class="el-icon-setting click-back" name="setting"/>
             <i v-if="type !== 'preview'" class="el-icon-more click-back" name="more"/>
@@ -75,6 +76,10 @@ export default {
         }
         case 'delete' : {
           this.$emit('deletePost')
+          break
+        }
+        case 'localview': {
+          this.$emit('localviewPost')
           break
         }
         case 'share' : {
@@ -154,7 +159,7 @@ export default {
         justify-content: space-between;
         align-items: center;
         overflow: hidden;
-        margin-right: 160px;
+        margin-right: 200px;
         &-box {
           text-overflow: ellipsis;
           white-space: nowrap;
@@ -175,7 +180,7 @@ export default {
         position: absolute;
         top: 40px;
         right: 0;
-        width: 160px;
+        width: 200px;
         margin-right: 5px;
         font-size: 20px;
         cursor: pointer;

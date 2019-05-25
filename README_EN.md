@@ -24,11 +24,11 @@
 - [x] the software settings
 - [x] compile and publish blog with one click
 - [x] check software updates
+- [x] software message prompt
+- [x] optimize keyword interaction
+- [x] local preview blog
 - [ ] save the article as a draft
-- [ ] optimize keyword interaction
-- [ ] local preview blog
 - [ ] autosave
-- [ ] software message prompt
 - [ ] operation logging
 
 ## development
@@ -82,6 +82,8 @@ npm install --save-dev electron-icon-builder
 - fixed an issue where the menu buttons of articles on small screens were not fully displayed
 - fixed a bug where editing articles occasionally became new, resulting in duplicate articles in the articles list
 - antd component library is introduced on demand to reduce package size
+- new local article preview function (open port 4000, please do not occupy)
+- new automatic check update option in Settings
 
 ### v1.2.7 (2019-05-20)
 - added a front-matters editing feature

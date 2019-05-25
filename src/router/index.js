@@ -25,9 +25,9 @@ export default new Router({
       component: () => import('@/views/Tags.vue')
     },
     {
-      path: '/projects',
-      name: 'projects',
-      component: () => import('@/views/Projects.vue')
+      path: '/localview',
+      name: 'localview',
+      component: () => import('@/views/LocalView.vue')
     },
     {
       path: '/settings',

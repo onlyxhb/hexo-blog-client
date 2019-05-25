@@ -23,8 +23,8 @@
       <el-menu-item index="tags" :title="$t('articleTags')">
         <i class="iconfont icon-tags"/>
       </el-menu-item>
-      <el-menu-item index="projects" :title="$t('projects')">
-        <i class="iconfont icon-projects"/>
+      <el-menu-item index="localview" :title="$t('localview')">
+        <i class="iconfont icon-localview"/>
       </el-menu-item>
       <el-menu-item index="about" :title="$t('menuAbout')">
         <i class="iconfont icon-info"/>
@@ -58,7 +58,7 @@ export default {
         case 'main':
         case 'cates':
         case 'tags':
-        case 'projects':
+        case 'localview':
         case 'settings':
         case 'about':
           this.changeType('preview')

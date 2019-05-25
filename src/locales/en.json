@@ -115,5 +115,6 @@
   "window.tray.openBlog": "openBlog",
   "window.tray.setting": "setting",
   "window.tray.quit": "quit",
-  "projects": "project"
+  "localview": "localview",
+  "autoUpdate": "auto check update"
 }

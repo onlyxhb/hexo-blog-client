@@ -111,16 +111,19 @@ class Utils {
     }
   }
 
-  checkVersion () {
-    let loading = Loading.service({
-      lock: true,
-      text: $t['version.loading'],
-      spinner: 'el-icon-loading',
-      background: 'rgba(0, 0, 0, 0.7)'
-    })
+  checkVersion (autoUpdate = false) {
+    let loading = null
+    if (!autoUpdate) {
+      loading = Loading.service({
+        lock: true,
+        text: $t['version.loading'],
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      })
+    }
     axios.get('https://api.github.com/repos/Xonlystar/hexo-blog-client/releases/latest', { timeout: 10000 }).then(({ data }) => {
       // 检查版本号
-      loading.close()
+      loading && loading.close()
       if (data.name > version) {
         MessageBox.confirm($t['version.msg'], $t['confirmTips'], {
           confirmButtonText: $t['confirmButtonText'],
@@ -130,11 +133,11 @@ class Utils {
           electron.shell.openExternal('https://github.com/Xonlystar/hexo-blog-client/releases/latest')
         })
       } else {
-        Message($t['version.no'])
+        !autoUpdate && Message($t['version.no'])
       }
     }).catch(() => {
-      Message.error($t['timeout'])
-      loading.close()
+      !autoUpdate && Message.error($t['timeout'])
+      loading && loading.close()
     })
   }
 }

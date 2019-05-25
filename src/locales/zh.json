@@ -115,5 +115,6 @@
   "window.tray.openBlog": "打开博客",
   "window.tray.setting": "设置",
   "window.tray.quit": "退出",
-  "projects": "项目"
+  "localview": "本地预览",
+  "autoUpdate": "自动检查更新"
 }

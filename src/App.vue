@@ -25,6 +25,8 @@ import MainMenu from '@/components/MainMenu'
 import ChoosePath from '@/components/ChoosePath'
 import Utils from '@/service/Utils'
 import { mapMutations } from 'vuex'
+import Config from '@/config'
+const autoUpdate = Config.get('autoUpdate', true)
 export default {
   name: 'BlogClient',
   components: { ChoosePath, MainMenu },
@@ -60,6 +62,9 @@ export default {
     }),
     async init () {
       await this.$store.dispatch('Hexo/start')
+      if (autoUpdate) {
+        Utils.checkVersion(true)
+      }
     },
 
     resize () {

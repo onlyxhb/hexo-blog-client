@@ -7,6 +7,7 @@
       @editPost="editPost"
       @deletePost="deletePost"
       @sharePost="sharePost"
+      @localviewPost="localviewPost"
       @setPost="visible = !visible"
       @savePost="submitForm"
       @setMore="frontMattersVisible = !frontMattersVisible">
@@ -284,12 +285,16 @@ export default {
     sharePost () {
       electron.shell.openExternal(this.post.permalink)
     },
+    localviewPost () {
+      electron.shell.openExternal(`http://localhost:4000/${this.post.canonical_path}`)
+    },
     handleDialogConfirm () {
       this.setCollapse(true)
       this.$refs.postForm.validate(err => {
-        if (!err) return false
-        this.visible = false
-        this.formChanged = true
+        if (err) {
+          this.visible = false
+          this.formChanged = true
+        }
       })
     },
     handleDialogCancel () {
@@ -333,6 +338,8 @@ export default {
           let filterCurrent = this.allPost.filter(v => v.title === submitForm.title)[0]
           if (filterCurrent) {
             this.$store.dispatch('Hexo/selectPost', filterCurrent.id)
+            this.getFrontMatter()
+            this.changeType('edit')
           }
           this.$message(this.$t(`${text}.success`))
         }, 500)

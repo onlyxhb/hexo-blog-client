@@ -47,6 +47,9 @@
           </el-form-item>
         </div>
       </transition>
+      <el-form-item :label="$t('autoUpdate')">
+        <el-switch v-model="configForm.autoUpdate" style="width:100%" />
+      </el-form-item>
       <el-form-item :label="$t('settingPhoto')">
         <div class="photo-upload" :class="{hasPic: getDisplayPic}">
           <img :src="getPhoto" v-if="getDisplayPic"/>
@@ -89,7 +92,8 @@ export default {
         qiniuAccessKey: '',
         qiniuSecretKey: '',
         qiniuBucket: '',
-        qiniuHost: ''
+        qiniuHost: '',
+        autoUpdate: true
       }
     }
   },

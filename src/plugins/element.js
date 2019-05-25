@@ -3,6 +3,7 @@ import {
   Dialog,
   Upload,
   Menu,
+  Switch,
   Submenu,
   MenuItem,
   MenuItemGroup,
@@ -49,6 +50,7 @@ import {
 Vue.use(Dialog)
 Vue.use(Upload)
 Vue.use(Menu)
+Vue.use(Switch)
 Vue.use(Submenu)
 Vue.use(MenuItem)
 Vue.use(MenuItemGroup)
