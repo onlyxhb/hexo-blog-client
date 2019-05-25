@@ -3,21 +3,21 @@
     <operation/>
     <el-form label-width="120px" label-position="left" :model="configForm">
       <el-form-item :label="$t('settingTitlePath')">
-        <el-input v-model="configForm.path" style="width:100%" clearable />
+        <el-input v-model="configForm.path" style="width: 100%;" clearable />
       </el-form-item>
       <el-form-item :label="$t('settingTitleLanguage')">
         <el-select v-model="configForm.language" default-first-option :placeholder="$t('settingLanguagePlaceholder')"
-                   style="width:100%">
+                   style="width: 100%;">
           <el-option :label="$t('chinese')" value="zh"></el-option>
           <el-option :label="$t('english')" value="en"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item :label="$t('settingTitleUrl')">
-        <el-input v-model="configForm.url" style="width:100%" clearable />
+        <el-input v-model="configForm.url" style="width: 100%;" clearable />
       </el-form-item>
       <el-form-item :label="$t('settingTitleImageServer')">
         <el-select v-model="configForm.uploadType" default-first-option :placeholder="$t('settingImageServerPlaceholder')"
-                   style="width:100%">
+                   style="width: 100%;">
           <el-option label="GitHub" value="github"></el-option>
           <el-option label="sm.ms" value="sm.ms"></el-option>
           <el-option label="七牛" value="qiniu"></el-option>
@@ -26,7 +26,7 @@
       <transition name="el-zoom-in-top">
         <div v-show="configForm.uploadType==='qiniu'">
           <el-form-item label="七牛存储区域">
-            <el-select v-model="configForm.qiniuZone" default-first-option placeholder="请选择机房" style="width:100%">
+            <el-select v-model="configForm.qiniuZone" default-first-option placeholder="请选择机房" style="width: 100%;">
               <el-option label="华东" value="huadong"></el-option>
               <el-option label="华北" value="huabei"></el-option>
               <el-option label="华南" value="huanan"></el-option>
@@ -34,21 +34,21 @@
             </el-select>
           </el-form-item>
           <el-form-item label="七牛AK">
-            <el-input v-model="configForm.qiniuAccessKey" style="width:100%"/>
+            <el-input v-model="configForm.qiniuAccessKey" style="width: 100%;"/>
           </el-form-item>
           <el-form-item label="七牛SK">
-            <el-input v-model="configForm.qiniuSecretKey" style="width:100%"/>
+            <el-input v-model="configForm.qiniuSecretKey" style="width: 100%;"/>
           </el-form-item>
           <el-form-item label="七牛Bucket">
-            <el-input v-model="configForm.qiniuBucket" style="width:100%"/>
+            <el-input v-model="configForm.qiniuBucket" style="width: 100%;"/>
           </el-form-item>
           <el-form-item label="七牛域名">
-            <el-input v-model="configForm.qiniuHost" style="width:100%"/>
+            <el-input v-model="configForm.qiniuHost" style="width: 100%;"/>
           </el-form-item>
         </div>
       </transition>
       <el-form-item :label="$t('autoUpdate')">
-        <el-switch v-model="configForm.autoUpdate" style="width:100%" />
+        <el-switch v-model="configForm.autoUpdate" style="width: 100%;" />
       </el-form-item>
       <el-form-item :label="$t('settingPhoto')">
         <div class="photo-upload" :class="{hasPic: getDisplayPic}">
@@ -148,10 +148,11 @@ export default {
 <style lang="scss" scoped>
   .setting-main {
     height: 100%;
-     .el-form {
-      padding: 0 20px 20px;
+    .el-form {
       width: 650px;
+      padding: 0 20px 20px;
     }
+
     padding: 0;
     .photo-upload {
       position: relative;
@@ -186,8 +187,8 @@ export default {
           left: 50%;
           color: #fff;
           font-size: 24px;
-          transform: translate(-50%, -50%);
           cursor: pointer;
+          transform: translate(-50%,-50%);
         }
       }
     }

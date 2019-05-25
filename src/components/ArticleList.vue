@@ -151,7 +151,7 @@ export default {
       top: -5px;
       right: -5px;
       border: 6px solid transparent;
-      border-top-color: #5576BD;
+      border-top-color: #5576bd;
       transform: rotate(220deg);
     }
     .article-list-item {
@@ -168,10 +168,10 @@ export default {
           color: rgb(233,142,54);
         }
         &.icon-folder {
-          color: #E8A653;
+          color: #e8a653;
         }
         &.el-icon-tags {
-          color: #4E7999;
+          color: #4e7999;
         }
       }
       .article-title {
@@ -197,24 +197,23 @@ export default {
       .article-num {
         padding: 0 8px;
         border-radius: 20px;
-        background-color: #5576BD;
+        background-color: #5576bd;
         color: #fff;
         opacity: .7;
         font-size: 12px;
       }
     }
   }
-
   .article-none-panel {
-    color: #727272;
-    text-align: center;
     margin-top: 50%;
+    text-align: center;
+    color: #727272;
     p {
       color: #666;
       font-size: 14px;
     }
     .el-button {
-      color: #5576BD;
+      color: #5576bd;
     }
   }
 </style>

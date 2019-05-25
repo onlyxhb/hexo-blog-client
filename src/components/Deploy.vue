@@ -49,8 +49,7 @@ export default {
         this.$message(this.$t('download.success'))
       } catch (error) {
         this.$message.error(this.$t('download.loading'))
-        // eslint-disable-next-line
-          console.log(error)
+        console.log(error)
       } finally {
         loading.close()
       }
@@ -92,7 +91,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

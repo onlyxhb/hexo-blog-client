@@ -56,7 +56,7 @@
             <el-input v-model="postForm.author" :placeholder="$t('postForm.author.placeholder')" clearable></el-input>
           </el-form-item>
           <el-form-item :label="$t('postForm.categories.label')" prop="categories">
-            <el-select v-model="postForm.categories" :placeholder="$t('postForm.categories.placeholder')" style="width: 100%" multiple filterable allow-create default-first-option>
+            <el-select v-model="postForm.categories" :placeholder="$t('postForm.categories.placeholder')" style="width: 100%;" multiple filterable allow-create default-first-option>
               <el-option
                 v-for="category in categories"
                 :key="category"
@@ -66,7 +66,7 @@
             </el-select>
           </el-form-item>
           <el-form-item :label="$t('postForm.tags.label')" prop="tags">
-            <el-select v-model="postForm.tags" :placeholder="$t('postForm.tags.placeholder')"  style="width: 100%"  multiple filterable allow-create default-first-option>
+            <el-select v-model="postForm.tags" :placeholder="$t('postForm.tags.placeholder')"  style="width: 100%;"  multiple filterable allow-create default-first-option>
               <el-option
                 v-for="tag in tags"
                 :key="tag"
@@ -81,7 +81,7 @@
           <el-form-item :label="$t('postForm.toc.label')">
             <el-switch v-model="postForm.toc"></el-switch>
           </el-form-item>
-          <el-form-item style="text-align: left">
+          <el-form-item style="text-align: left;">
             <el-button type="primary" @click="handleDialogConfirm">{{$t('confirmButtonText')}}</el-button>
             <el-button @click="handleDialogCancel">{{$t('cancelButtonText')}}</el-button>
           </el-form-item>
@@ -380,7 +380,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

@@ -1,5 +1,8 @@
 import when from 'when'
 import utils from '@/service/Utils'
+import Config from '@/config'
+const language = Config.get('language', 'zh')
+const $t = require(`@/locales/${language}.json`)
 
 const Hexo = require('hexo')
 const fs = require('fs')
@@ -35,7 +38,7 @@ const actions = {
    * @returns {Promise<void>}
    */
   async start (context) {
-    let loading = this._vm.$loading({ lock: true, text: 'Loading...', spinner: 'el-icon-loading' })
+    let loading = this._vm.$loading({ lock: true, text: $t['editor.loading'], spinner: 'el-icon-loading' })
     try {
       await context.dispatch('Config/initConfig', null, { root: true })
       await context.dispatch('init')

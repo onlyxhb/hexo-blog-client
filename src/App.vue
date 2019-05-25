@@ -84,8 +84,8 @@ export default {
 // 整体样式
 #app {
   display: flex;
-  flex-direction: row;
   flex: 1;
+  flex-direction: row;
   min-width: 0;
   box-sizing: border-box;
   // 左侧sidebar样式
@@ -93,21 +93,21 @@ export default {
     overflow: hidden;
     width: 80px !important;
     text-align: center;
-    background-color: #5576BD;
+    background-color: #5576bd;
     cursor: pointer;
     -webkit-app-region: drag;
   }
   // 右侧内容区域样式
   .app-main {
     height: 100%;
-    padding: 0px;
+    padding: 0;
     .app-container {
       width: 100%;
       height: 100%;
-      padding: 0px;
+      padding: 0;
       .main {
         height: 100%;
-        padding: 0px;
+        padding: 0;
       }
     }
   }

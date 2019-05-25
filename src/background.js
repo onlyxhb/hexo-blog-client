@@ -85,7 +85,6 @@ app.on('ready', async () => {
     try {
       BrowserWindow.addDevToolsExtension(path.join(__dirname, '../tools/vue_devtools_4.1.5_0'))
     } catch (e) {
-      /* eslint-disable-next-line */
       console.log(e)
     }
   }
@@ -121,7 +120,6 @@ function createWindow () {
     width: 965,
     height: 650,
     frame: false,
-    /* eslint-disable-next-line */
     icon: path.join(__static, 'icons/icon.png')
   })
 
@@ -130,7 +128,7 @@ function createWindow () {
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
     win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
-    // if (!process.env.IS_TEST) win.webContents.openDevTools()
+    if (!process.env.IS_TEST) win.webContents.openDevTools()
   } else {
     createProtocol('app')
     // Load the index.html when not in development
@@ -183,7 +181,6 @@ function initMacTouchBar () {
 
 // 创建通知栏图标
 function initTrayIcon () {
-  /* eslint-disable-next-line */
   tray = new Tray(getNoMessageTrayIcon())
   const trayContextMenu = Menu.buildFromTemplate(getTrayDockMenu())
   tray.setToolTip($t['window.tooltip'])
@@ -300,16 +297,12 @@ function getTrayDockMenu () {
 // 统一获取任务栏图标
 function getNoMessageTrayIcon () {
   if (process.platform === 'darwin') {
-    /* eslint-disable-next-line */
     return path.join(__static, 'icons/16x16.png')
   } else if (process.platform === 'win32') {
-    /* eslint-disable-next-line */
     return path.join(__static, 'icons/64x64.png')
   } else if (screen.getPrimaryDisplay().scaleFactor > 1) {
-    /* eslint-disable-next-line */
     return path.join(__static, 'icons/64x64.png')
   } else {
-    /* eslint-disable-next-line */
     return path.join(__static, 'icons/24x24.png')
   }
 }

@@ -1,4 +1,4 @@
-import Config from '../config'
+import Config from '@/config'
 const hexoUtil = require('hexo-util')
 const yfm = require('hexo-front-matter')
 const electron = require('electron')
@@ -6,7 +6,7 @@ const axios = require('axios')
 const { MessageBox, Message, Loading } = require('element-ui')
 const { version } = require('../../package.json')
 const language = Config.get('language', 'zh')
-const $t = require(`../locales/${language}.json`)
+const $t = require(`@/locales/${language}.json`)
 // 系统预订的front matters
 const SYSTEM_FRONT_MATTERS = [
   // https://hexo.io/zh-cn/docs/front-matter.html
@@ -70,10 +70,8 @@ class Utils {
         }
       }
     } catch (error) {
-      /* eslint-disable-next-line */
       console.log(error)
     } finally {
-      /* eslint-disable-next-line */
       return result
     }
   }
@@ -131,12 +129,13 @@ class Utils {
           type: 'success'
         }).then(() => {
           electron.shell.openExternal('https://github.com/Xonlystar/hexo-blog-client/releases/latest')
-        })
+        }).catch(err => console.log(err))
       } else {
-        !autoUpdate && Message($t['version.no'])
+        loading && Message($t['version.no'])
       }
-    }).catch(() => {
-      !autoUpdate && Message.error($t['timeout'])
+    }).catch(err => {
+      console.log(err)
+      loading && Message.error($t['timeout'])
       loading && loading.close()
     })
   }

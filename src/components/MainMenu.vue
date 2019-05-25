@@ -85,7 +85,7 @@ export default {
     height: 50px;
     margin: 30px auto 0;
     padding: 3px;
-    border: 1px solid #6582C2;
+    border: 1px solid #6582c2;
     border-radius: 50%;
     opacity: .8;
     -webkit-app-region: no-drag;
@@ -103,8 +103,8 @@ export default {
       height: 40px;
       line-height: 40px;
       color: #fff;
-      font-size: 15px;
       opacity: .6;
+      font-size: 15px;
       &:hover {
         opacity: 1;
       }
@@ -114,17 +114,17 @@ export default {
     width: 50px;
     height: 50px;
     margin: 15px auto 25px;
+    border-radius: 50%;
     line-height: 54px;
     text-align: center;
-    border-radius: 50%;
-    background-color: #94A9D5;
+    background-color: #94a9d5;
     color: #fff;
-    font-size: 22px;
     font-weight: bold;
+    font-size: 22px;
     -webkit-app-region: no-drag;
     &:hover {
       background-color: #fff;
-      color: #5576BD;
+      color: #5576bd;
     }
   }
   /deep/ .el-menu--collapse {

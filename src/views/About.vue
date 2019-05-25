@@ -79,7 +79,6 @@ export default {
   position: relative;
   height: 100%;
   padding: 0;
-
   .about-content {
     padding: 0 50px;
     box-sizing: border-box;
@@ -88,21 +87,18 @@ export default {
       margin-top: 0;
     }
   }
-
   .juanzeng {
     display: inline-table;
     width: 210px;
     padding: 20px;
   }
-
   .juanzeng img {
     width: 210px;
     height: 210px;
   }
-
   .juanzeng .txt {
-    font-size: 18px;
     text-align: center;
+    font-size: 18px;
   }
 }
 </style>

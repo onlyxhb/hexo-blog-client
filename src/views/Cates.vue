@@ -35,11 +35,11 @@ export default {
     box-sizing: border-box;
     text-align: center;
     i {
-      color: #E7A44E;
+      color: #e7a44e;
       font-size: 60px;
     }
     p {
-      color: #C1CCD6;
+      color: #c1ccd6;
     }
   }
 }

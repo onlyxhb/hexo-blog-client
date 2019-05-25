@@ -68,6 +68,7 @@ npm install --save-dev electron-icon-builder
 ![分类页](https://user-images.githubusercontent.com/19361551/57982655-f5cd9300-7a7a-11e9-9566-5da49f1b3d77.png)
 ![标签页](https://user-images.githubusercontent.com/19361551/57982661-01b95500-7a7b-11e9-8b63-f4726d9a30d1.png)
 ![筛选页](https://user-images.githubusercontent.com/19361551/57982697-712f4480-7a7b-11e9-88c5-268f22bfccd2.png)
+![预览页](https://user-images.githubusercontent.com/19361551/58368118-12eedf80-7f1b-11e9-98c4-8dbf87d7fcfe.png)
 ![关于页](https://user-images.githubusercontent.com/19361551/57982878-9fae1f00-7a7d-11e9-9061-0d0a05b11844.png)
 ![配置页](https://user-images.githubusercontent.com/19361551/57982906-11866880-7a7e-11e9-9537-f0a42d4a0ab4.png)
 ![新增文章页](https://user-images.githubusercontent.com/19361551/57982917-1f3bee00-7a7e-11e9-8107-a8022116f0a0.png)

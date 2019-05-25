@@ -1,5 +1,5 @@
 <template>
-  <el-container style="height: 100%; position: relative">
+  <el-container style="position: relative; height: 100%;">
     <!-- 左侧部分 -->
     <div class="main-left-container" :class="{collapsed: collapse}">
       <el-form class="main-left-search">
@@ -116,16 +116,13 @@ export default {
         .el-icon-caret-bottom {
           line-height: 40px;
           color: #333;
-          font-size: 18px;
           opacity: .7;
+          font-size: 8px !important;
+          vertical-align: top;
           cursor: pointer;
           &:hover {
             opacity: 1;
           }
-        }
-        .el-icon-caret-bottom {
-          font-size: 8px !important;
-          vertical-align: top;
         }
       }
     }

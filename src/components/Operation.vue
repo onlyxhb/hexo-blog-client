@@ -25,7 +25,7 @@ export default {
 <style lang="scss" scoped>
 .operation {
   position: relative;
-  width:100%;
+  width: 100%;
   height: 60px;
   -webkit-app-region: drag;
   .btns {
@@ -38,21 +38,21 @@ export default {
       height: 40px;
       line-height: 40px;
       text-align: center;
-      color: #3B4D62;
+      color: #3b4d62;
       font-size: 17px;
       cursor: pointer;
       &.self-max {
         position: relative;
         &::before {
-        content: '';
+          content: '';
           position: absolute;
           top: 50%;
           left: 50%;
           display: block;
           width: 10px;
           height: 10px;
-          border: 1px solid #3B4D62;
-          transform: translate(-50%, -50%);
+          border: 1px solid #3b4d62;
+          transform: translate(-50%,-50%);
         }
       }
     }

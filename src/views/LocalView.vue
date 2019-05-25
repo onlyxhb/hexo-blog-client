@@ -4,14 +4,6 @@
   </el-main>
 </template>
 
-<script>
-import Operation from '@/components/Operation'
-const electron = require('electron')
-export default {
-  components: { Operation },
-}
-</script>
-
 <style lang="scss" scoped>
   .localview-main {
     position: relative;
@@ -19,7 +11,7 @@ export default {
     padding: 0;
     iframe {
       width: 100%;
-      height: 100%;      
+      height: 100%;
     }
   }
 </style>

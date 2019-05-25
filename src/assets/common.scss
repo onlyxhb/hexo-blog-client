@@ -1,38 +1,35 @@
 * {
   background: transparent;
-  font-family: system, -apple-system, 'Source Code Pro', 'Microsoft YaHei',
-    Menlo, Monaco, 'Courier New', monospace;
+  font-family: system, -apple-system, 'Source Code Pro', 'Microsoft YaHei', Menlo, Monaco, 'Courier New', monospace;
 }
-
 html,
 body {
   // overflow: hidden;
   height: 100%;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   background-color: #fff;
 }
-
 .el-aside {
   color: #333;
 }
 // 按钮的hover和active效果
 .click-back {
   &:hover {
-    background-color: #E8F0FF;
+    background-color: #e8f0ff;
   }
   &:active,
   &:focus {
-    background-color: #D2E2FF;
+    background-color: #d2e2ff;
   }
 }
 // 内容区域滚动跳样式
 .main-scrollbar {
-  overflow-x: hidden;
-  overflow-y: auto;
   position: absolute;
   top: 60px;
   bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
   width: 100%;
   &::-webkit-scrollbar {
     width: 10px;
@@ -44,45 +41,42 @@ body {
     background-color: transparent;
   }
   &:hover::-webkit-scrollbar-thumb {
-    background-color: #e8eaf4
+    background-color: #e8eaf4;
   }
 }
-
 // 文章页的popover样式
 .custom-popover-more {
-  margin-top: 0 !important;
   right: 35px !important;
   left: auto !important;
+  margin-top: 0 !important;
   padding: 0;
   .el-table__header-wrapper {
     display: none;
   }
   tr {
     cursor: pointer;
-    .el-table_1_column_1 .cell{
+    .el-table_1_column_1 .cell {
       padding: 0;
     }
   }
 }
-
 // 文章页的dialog弹框样式
 .article-dialog-input {
-
   .custom-dialog-form {
     overflow: hidden;
     .el-dialog {
       top: 50%;
       margin: 0 auto !important;
       border-radius: 8px;
-      transform: translate(0, -50%);
+      transform: translate(0,-50%);
       .el-dialog__body {
         padding: 0 25px 1px;
         .el-form {
           position: relative;
           .article-home-img {
             position: absolute;
-            bottom: -15px;
             right: 0;
+            bottom: -15px;
             height: 130px;
           }
         }
@@ -105,12 +99,12 @@ body {
         max-height: 350px;
       }
       .el-input {
-        display: none
-      } 
+        display: none;
+      }
       .current-row {
         .el-input {
           display: block;
-          &+span {
+          & + span {
             display: none;
           }
         }

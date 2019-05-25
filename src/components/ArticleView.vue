@@ -1,5 +1,5 @@
 <template>
-  <el-main style="padding-top: 0px;">
+  <el-main style="padding-top: 0;">
     <transition name="el-fade-in-linear">
       <article class="article">
         <header class="article-header">
@@ -145,20 +145,20 @@ export default {
           width: 130px;
         }
         .article-title {
+          overflow: hidden;
+          line-height: 32px;
           color: #000;
           font-size: 19px;
-          line-height: 32px;
-          overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
           -webkit-app-region: no-drag;
         }
       }
       .article-sub {
+        overflow: hidden;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        overflow: hidden;
         margin-right: 200px;
         &-box {
           text-overflow: ellipsis;
@@ -169,10 +169,10 @@ export default {
       .article-tag,
       .article-cat,
       .article-time {
-        margin: 0px 5px;
-        font-size: 12px;
+        margin: 0 5px;
         line-height: 1.5;
         color: #999;
+        font-size: 12px;
         -webkit-app-region: no-drag;
       }
       .article-opa {
