@@ -7,6 +7,7 @@
 <style lang="scss" scoped>
   .localview-main {
     position: relative;
+    overflow: hidden;
     height: 100%;
     padding: 0;
     iframe {

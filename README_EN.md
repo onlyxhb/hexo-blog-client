@@ -85,6 +85,7 @@ npm install --save-dev electron-icon-builder
 - antd component library is introduced on demand to reduce package size
 - new local article preview function (open port 4000, please do not occupy)
 - new automatic check update option in Settings
+- fixed the problem of blank lines after each edited article is saved
 
 ### v1.2.7 (2019-05-20)
 - added a front-matters editing feature

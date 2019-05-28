@@ -58,8 +58,8 @@ class Utils {
         tags: post.tags.data, // 标签
         categories: post.categories.data, // 分类
         summary: this.getPostSummary(post.content), // 摘要
-        content: post.content, // 文章内容
-        _content: post._content // 文章的markdown
+        content: post.content.trim(), // 文章内容
+        _content: post._content.trim() // 文章的markdown
       }
       let source = post.source.trim()
       if (source) {

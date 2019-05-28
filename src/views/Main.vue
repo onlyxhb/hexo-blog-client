@@ -330,7 +330,6 @@ export default {
         if (this.type === 'edit') {
           submitForm.updated = new Date()// 修改时间
         }
-        console.log(action, submitForm)
         await this.$store.dispatch(action, submitForm)
         this.formChanged = false
         setTimeout(() => {
