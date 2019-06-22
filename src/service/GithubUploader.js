@@ -112,7 +112,7 @@ function fileToBuffer (file, callback) {
 function getAbstractImgPath (file) {
   let name = uuid()
   let ext = getFileExt(file)
-  return '/images/' + moment().format('YYYY/MM/DD/') + name + ext
+  return '../images/' + moment().format('YYYY/MM/DD/') + name + ext
 }
 
 /**
@@ -123,7 +123,7 @@ function getAbstractImgPath (file) {
 function getSourceDir (sysConfig) {
   return path.format({
     dir: sysConfig.path,
-    base: 'source'
+    base: 'source/_posts/'
   })
 }
 

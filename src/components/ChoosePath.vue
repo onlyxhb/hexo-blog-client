@@ -1,8 +1,11 @@
 <template>
-  <el-dialog :title="$t('selectHexoPathTitle')" :visible.sync="dialogFormVisible" :modal="true"
-             :close-on-click-modal="false"
-             :close-on-press-escape="false"
-             :show-close="false">
+  <el-dialog
+    :title="$t('selectHexoPathTitle')"
+    :visible.sync="dialogFormVisible"
+    :modal="true"
+    :close-on-click-modal="false"
+    :close-on-press-escape="false"
+    :show-close="false">
     <el-form>
       <el-form-item>
         <el-button type="primary" @click="showFileDialog">{{$t('selectHexoPath')}}</el-button>
@@ -18,11 +21,17 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'ChoosePath',
   data () {
     return {
       path: ''
+    }
+  },
+  watch: {
+    "config.path": function (val) {
+      this.path = val
     }
   },
   methods: {
@@ -43,6 +52,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      'config': 'Config/config'
+    }),
     dialogFormVisible () {
       return this.$store.state.UiStatus.dialogFormVisible
     }

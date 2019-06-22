@@ -15,7 +15,7 @@
         <ul>
           <li>
             Github
-            <a @click="openUrl('https://github.com/Xonlystar/hexo-vue-client.git')" href="#">https://github.com/Xonlystar/hexo-vue-client.git</a>
+            <a @click="openUrl('https://github.com/Xonlystar/hexo-blog-client.git')" href="#">https://github.com/Xonlystar/hexo-blog-client.git</a>
           </li>
           <li>Blog：<a @click="openUrl('http://blog.onlystar.site')" href="#">http://blog.onlystar.site</a></li>
         </ul>

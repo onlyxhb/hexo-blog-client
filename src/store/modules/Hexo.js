@@ -43,7 +43,8 @@ const actions = {
       await context.dispatch('Config/initConfig', null, { root: true })
       await context.dispatch('init')
     } catch(err) {
-      console.log(error)
+      context.dispatch('UiStatus/setDialogFormVisible', true, { root: true })
+      console.log(err)
     } finally {
       loading.close()
     }

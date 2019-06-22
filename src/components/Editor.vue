@@ -94,8 +94,8 @@ export default {
   mounted () {
     let sysConfig = this.$store.state.Config.config
     this.$refs.editor.markdownIt.use(githubUploader.markdownItPlugin, {
-      match: '/images',
-      prefix: sysConfig.path + '/source'
+      match: '.',
+      prefix: sysConfig.path + '/source/_posts/'
     })
 
     this.resize()
@@ -109,6 +109,7 @@ export default {
        * 添加图片
        */
     async imgAdd (pos, file) {
+      console.log(pos, file)
       let me = this
       me.uploading = true
       me.uploadingText = this.$t('editor.uploading') + file.name

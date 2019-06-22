@@ -61,6 +61,13 @@ class Utils {
         content: post.content.trim(), // 文章内容
         _content: post._content.trim() // 文章的markdown
       }
+      /**
+       * 更改文章中图片的路径，绝对路径改为相对路径
+       */
+      if (result.content && result._content) {
+        result.content = result.content.replace(/"\/images\//g, `"..\/images\/`)
+        result._content = result._content.replace(/\(\/images\//g, `\(..\/images\/`)
+      }
       let source = post.source.trim()
       if (source) {
         let start = source.indexOf('/')
