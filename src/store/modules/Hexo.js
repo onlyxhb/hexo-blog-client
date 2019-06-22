@@ -42,6 +42,8 @@ const actions = {
     try {
       await context.dispatch('Config/initConfig', null, { root: true })
       await context.dispatch('init')
+    } catch(err) {
+      console.log(error)
     } finally {
       loading.close()
     }
