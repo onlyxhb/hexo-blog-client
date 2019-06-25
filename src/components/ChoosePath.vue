@@ -11,7 +11,7 @@
         <el-button type="primary" @click="showFileDialog">{{$t('selectHexoPath')}}</el-button>
       </el-form-item>
       <el-form-item>
-        <el-input v-model="path" :disabled="true" auto-complete="off" :placeholder="$t('selectHexoPathTitle')"></el-input>
+        <el-input v-model="path" auto-complete="off" :placeholder="$t('selectHexoPathTitle')"></el-input>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+// const { ipcRenderer } = require('electron')
 import { mapGetters } from 'vuex'
 export default {
   name: 'ChoosePath',
@@ -49,6 +50,9 @@ export default {
       config.path = this.path
       await this.$store.dispatch('Config/setConfig', config)
       await this.$store.dispatch('Hexo/start')
+      // 重启
+      // ipcRenderer.send('restartWin')
+      // window.location.reload()
     }
   },
   computed: {

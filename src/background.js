@@ -248,7 +248,8 @@ function getMacMenu () {
       label: $t['window.menu.help'],
       submenu: [
         // { label: '关于', role: 'about' },
-        { label: $t['checkUpdate'], click: () => { checkVersion() } }
+        { label: $t['checkUpdate'], click: () => { checkVersion() } },
+        { label: $t['devTools'], click: () => { BrowserWindow.getFocusedWindow().webContents.openDevTools() } }
       ]
     }
   ]
