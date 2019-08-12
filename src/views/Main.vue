@@ -79,7 +79,9 @@
             <el-input v-model="postForm.img" :placeholder="$t('postForm.img.placeholder')" clearable />
           </el-form-item>
           <el-form-item :label="$t('postForm.toc.label')">
-            <el-switch v-model="postForm.toc"></el-switch>
+            <el-switch v-model="postForm.toc" style="marginRight: 30px;"/>
+            <el-switch v-model="postForm.layout" active-value="draft" inactive-value="post"
+                              active-text="草稿" inactive-text="文章"></el-switch>
           </el-form-item>
           <el-form-item style="text-align: left;">
             <el-button type="primary" @click="handleDialogConfirm">{{$t('confirmButtonText')}}</el-button>
@@ -146,6 +148,7 @@ export default {
       inited: false,
       formLabelWidth: 100,
       formChanged: false, // 表单是否发生了变化
+      draft: false, // 是否是草稿
       postForm: {
         title: '', // 文章标题
         path: '', // 文章路径
@@ -156,7 +159,8 @@ export default {
         img: '', // 文章首页图
         date: new Date(), // 创建时间
         updated: new Date(), // 修改时间
-        author: '' // 文章作者
+        author: '', // 文章作者
+        layout: 'post', // 默认发表文章，还可取值draft表示发表草稿
       },
       postFormRules: {
         title: [{ required: true, trigger: 'blur' }],
@@ -176,16 +180,15 @@ export default {
       vm.$store.dispatch('Hexo/selectByKey', to.query.key)
     })
   },
+  beforeRouteUpdate (to, from, next) {
+    let key = to.query.key
+    if (key) this.hasParentKey = true
+    this.$store.dispatch('Hexo/selectByKey', to.query.key)
+    this.initData()
+    next()
+  },
   mounted () {
-    if (this.type !== 'preview') {
-      this.getFrontMatter()
-    }
-    this.renderLink()
-    this.inited = true
-    if (this.type === 'add') {
-      this.clearData()
-      this.visible = true
-    }
+    this.initData()
   },
   updated () {
     // 预览模式需要滚动到最上方
@@ -209,6 +212,17 @@ export default {
       changeType: 'Article/changeType',
       setCollapse: 'Article/setCollapse'
     }),
+    initData () {
+      if (this.type !== 'preview') {
+        this.getFrontMatter()
+      }
+      this.renderLink()
+      this.inited = true
+      if (this.type === 'add') {
+        this.clearData()
+        this.visible = true
+      }
+    },
     clearData () {
       this.postForm = {
         title: '', // 文章标题
@@ -221,7 +235,8 @@ export default {
         img: '', // 文章首页图
         date: new Date(), // 创建时间
         updated: new Date(), // 修改时间
-        author: '' // 文章作者
+        author: '', // 文章作者
+        layout: 'post', // 默认发表文章，还可取值draft表示发表草稿
       }
     },
     // a标签在浏览器中打开
@@ -254,6 +269,13 @@ export default {
         author: post.author, // 文章作者
         path: post.path
       }
+      if (!post.published) {
+        this.postForm.layout = 'draft'
+        this.draft = true
+      } else {
+        this.postForm.layout = 'post'
+        this.draft = false
+      }
       post.categories.forEach(cat => {
         this.postForm.categories.push(cat.name)
       })
@@ -266,7 +288,7 @@ export default {
       Object.keys(frontMatter).forEach(key => {
         this.frontMatters.push({
           title: key,
-          value: frontMatter[key]
+          value: frontMatter[key] + ''
         })
       })
     },

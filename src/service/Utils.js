@@ -14,7 +14,7 @@ const SYSTEM_FRONT_MATTERS = [
   // 为了兼容之前的错误
   '_content', 'originContent',
   // 已经处理了的
-  'toc', 'id', 'author', 'img', 'content', 'raw', 'summary', 'permalink'
+  'toc', 'draft', 'id', 'author', 'img', 'content', 'raw', 'summary', 'permalink'
 ]
 
 class Utils {
@@ -58,6 +58,8 @@ class Utils {
         tags: post.tags.data, // 标签
         categories: post.categories.data, // 分类
         summary: this.getPostSummary(post.content), // 摘要
+        layout: post.layout,
+        published: post.published,
         content: post.content.trim(), // 文章内容
         _content: post._content.trim() // 文章的markdown
       }

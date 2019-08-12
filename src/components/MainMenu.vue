@@ -23,6 +23,9 @@
       <el-menu-item index="tags" :title="$t('articleTags')">
         <i class="iconfont icon-tags"/>
       </el-menu-item>
+      <el-menu-item index="drafts" :title="$t('drafts')">
+        <i class="iconfont icon-main"/>
+      </el-menu-item>
       <el-menu-item index="localview" :title="$t('localview')">
         <i class="iconfont icon-localview"/>
       </el-menu-item>
@@ -65,6 +68,14 @@ export default {
           this.setCollapse(false)
           this.$router.push({ name: index })
           break
+        case 'drafts': 
+          this.$router.push({
+            name: 'main',
+            query: {
+              key: 'drafts'
+            }
+          })
+          break;
         default:
       }
     },
