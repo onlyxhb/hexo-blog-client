@@ -134,6 +134,7 @@ import ArticleView from '@/components/ArticleView'
 import MarkdownEditor from '@/components/Editor'
 import { mapGetters, mapMutations } from 'vuex'
 import Utils from '@/service/Utils'
+import ClientAnalytics from '@/plugins/analytics'
 const electron = require('electron')
 export default {
   name: 'MainPage',
@@ -328,7 +329,10 @@ export default {
         }
         let submitForm = Object.assign({}, this.postForm)
         if (this.type === 'edit') {
+          ClientAnalytics.event('article', 'editSubmit')
           submitForm.updated = new Date()// 修改时间
+        } else {
+          ClientAnalytics.event('article', 'createSubmit')
         }
         await this.$store.dispatch(action, submitForm)
         this.formChanged = false

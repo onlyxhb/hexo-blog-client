@@ -36,6 +36,7 @@
 <script>
 import Operation from '@/components/Operation'
 import { mapGetters, mapMutations } from 'vuex'
+import ClientAnalytics from '@/plugins/analytics'
 import Utils from '@/service/Utils'
 export default {
   components: { Operation },
@@ -75,6 +76,7 @@ export default {
           break
         }
         case 'delete' : {
+          ClientAnalytics.event('article', 'delete')
           this.$emit('deletePost')
           break
         }

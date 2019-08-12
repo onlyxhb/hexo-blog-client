@@ -22,6 +22,7 @@
 import qiniuUploader from '@/service/QiniuUploader'
 import smmsUploader from '@/service/SmmsUploader'
 import githubUploader from '@/service/GithubUploader'
+import aliyunOssUploader from '@/service/AliyunOssUploader'
 
 export default {
   name: 'Editor',
@@ -131,6 +132,15 @@ export default {
           me.$message.error(this.$t('editor.uploaderror'))
           me.uploading = false
         })
+      } else if (sysConfig.uploadType === 'aliyunOss') {
+        try {
+          let url = await aliyunOssUploader.upload(file, sysConfig)
+          me.$refs.editor.$img2Url(pos, url)
+          me.uploading = false
+        } catch (e) {
+          me.$notify.error({ message: '图片上传失败：' + e })
+          me.uploading = false
+        }
       } else {
         githubUploader.upload(file, sysConfig).then(url => {
           me.$refs.editor.$img2Url(pos, url)

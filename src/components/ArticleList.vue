@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import ClientAnalytics from '@/plugins/analytics'
 import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'ArticleList',
@@ -61,6 +62,7 @@ export default {
         this.selectIndex = index
         if (this.type !== 'recentArticle') return
         this.changeType('preview')
+        ClientAnalytics.event('article', 'view')
         this.$store.dispatch('Hexo/selectPost', item.id)
         return
       }

@@ -21,6 +21,7 @@
           <el-option label="GitHub" value="github"></el-option>
           <el-option label="sm.ms" value="sm.ms"></el-option>
           <el-option label="七牛" value="qiniu"></el-option>
+          <el-option label="AliyunOss" value="aliyunOss"></el-option>
         </el-select>
       </el-form-item>
       <transition name="el-zoom-in-top">
@@ -33,17 +34,37 @@
               <el-option label="北美" value="beimei"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="七牛AK">
-            <el-input v-model="configForm.qiniuAccessKey" style="width: 100%;"/>
+          <el-form-item label="AccessKey">
+            <el-input v-model="configForm.qiniuAccessKey" style="width:100%" placeholder="七牛AccessKey"/>
           </el-form-item>
-          <el-form-item label="七牛SK">
-            <el-input v-model="configForm.qiniuSecretKey" style="width: 100%;"/>
+          <el-form-item label="SecretKey">
+            <el-input v-model="configForm.qiniuSecretKey" style="width:100%" placeholder="七牛SecretKey"/>
           </el-form-item>
-          <el-form-item label="七牛Bucket">
-            <el-input v-model="configForm.qiniuBucket" style="width: 100%;"/>
+          <el-form-item label="Bucket">
+            <el-input v-model="configForm.qiniuBucket" style="width:100%" placeholder="七牛Bucket"/>
           </el-form-item>
-          <el-form-item label="七牛域名">
-            <el-input v-model="configForm.qiniuHost" style="width: 100%;"/>
+          <el-form-item label="Host">
+            <el-input v-model="configForm.qiniuHost" style="width:100%" placeholder="七牛Host"/>
+          </el-form-item>
+        </div>
+      </transition>
+      <transition name="el-zoom-in-top">
+        <div v-show="config.uploadType==='aliyunOss'">
+          <el-form-item label="Endpoint">
+            <el-input v-model="config.aliyunOssEndpoint" style="width:100%" placeholder="Aliyun oss endpoint"/>
+          </el-form-item>
+          <el-form-item label="AccessId">
+            <el-input v-model="config.aliyunOssAccessKeyId" style="width:100%" placeholder="Aliyun oss accessKeyId"/>
+          </el-form-item>
+          <el-form-item label="AccessSecret">
+            <el-input v-model="config.aliyunOssAccessKeySecret" style="width:100%"
+                      placeholder="Aliyun oss accessKeySecret"/>
+          </el-form-item>
+          <el-form-item label="Bucket">
+            <el-input v-model="config.aliyunOssBucket" style="width:100%" placeholder="Aliyun oss bucket"/>
+          </el-form-item>
+          <el-form-item label="Host">
+            <el-input v-model="config.aliyunOssHost" style="width:100%" placeholder="Aliyun oss host"/>
           </el-form-item>
         </div>
       </transition>
@@ -93,6 +114,11 @@ export default {
         qiniuSecretKey: '',
         qiniuBucket: '',
         qiniuHost: '',
+        aliyunOssEndpoint: '',
+        aliyunOssAccessKeyId: '',
+        aliyunOssAccessKeySecret: '',
+        aliyunOssBucket: '',
+        aliyunOssHost: '',
         autoUpdate: true
       }
     }
