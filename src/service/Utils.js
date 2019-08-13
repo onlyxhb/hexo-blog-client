@@ -67,7 +67,9 @@ class Utils {
        * 更改文章中图片的路径，绝对路径改为相对路径
        */
       if (result.content && result._content) {
+        /* eslint-disable-next-line */
         result.content = result.content.replace(/"\/images\//g, `"..\/images\/`)
+        /* eslint-disable-next-line */
         result._content = result._content.replace(/\(\/images\//g, `\(..\/images\/`)
       }
       let source = post.source.trim()
@@ -119,6 +121,7 @@ class Utils {
   }
 
   checkVersion (autoUpdate = false) {
+    console.log(autoUpdate)
     let loading = null
     if (!autoUpdate) {
       loading = Loading.service({

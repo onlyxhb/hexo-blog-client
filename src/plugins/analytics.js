@@ -3,10 +3,11 @@ import router from '@/router'
 import Analytics from 'electron-google-analytics'
 
 const analytics = new Analytics('UA-143962898-1')
-const macaddress = require('macaddress')
+const macAddress = require('macaddress')
 
 router.afterEach((to, from) => {
-  macaddress.one(function (err, mac) {
+  macAddress.one(function (err, mac) {
+    console.log(err)
     analytics.pageview('http://hexoclient.mspring.org', to.fullPath, to.name, 1, mac).then(response => {
       console.log('统计', response)
     }).catch(err => {
@@ -34,7 +35,8 @@ class ClientAnalytics {
     if (this.clientId) {
       callback(me.clientId)
     } else {
-      macaddress.one(function (err, mac) {
+      macAddress.one(function (err, mac) {
+        console.log(err)
         me.clientId = mac
         callback(mac)
       })

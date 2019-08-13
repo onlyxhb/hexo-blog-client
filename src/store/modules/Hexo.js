@@ -13,7 +13,7 @@ const state = {
   selectedPostId: null,
   selectedTag: null,
   selectedCat: null,
-  selectedDrafts: false,
+  selectedDrafts: false
 }
 const mutations = {
   setInstance (state, hexo) {
@@ -46,7 +46,7 @@ const actions = {
     try {
       await context.dispatch('Config/initConfig', null, { root: true })
       await context.dispatch('init')
-    } catch(err) {
+    } catch (err) {
       context.dispatch('UiStatus/setDialogFormVisible', true, { root: true })
       console.log(err)
     } finally {
@@ -66,6 +66,7 @@ const actions = {
     } else {
       let hexo = new Hexo(config.path, {
         debug: false,
+        // safe: true, // 安全模式，安全模式下不会加载第三方插件
         silent: true, // 开启安静模式。不在终端中显示任何信息。
         drafts: true // 显示草稿，详见hexo/index.js#_showDrafts
       })
@@ -144,7 +145,7 @@ const actions = {
       context.commit('setSelectedDrafts', false)
     } else if (str === 'drafts') {
       context.commit('setSelectedDrafts', true)
-    }  else {
+    } else {
       context.commit('setSelectedTag', '')
       context.commit('setSelectedCat', '')
       context.commit('setSelectedDrafts', false)
@@ -210,7 +211,29 @@ const actions = {
     })
     return deferred.promise
   },
-
+  /**
+   * 发布草稿
+   * @param context
+   * @param postForm
+   * @returns {Q.Promise<T>}
+   */
+  publishPost (context, postForm) {
+    let deferred = when.defer()
+    let hexo = context.state.instance
+    let suffix = '.md'
+    if (postForm.path && postForm.path.indexOf(suffix, this.length - suffix.length) === -1) { // 设置了path，并且path不以.md结尾
+      postForm.slug = postForm.path + '.md'
+    }
+    hexo.post.publish(postForm, true, function (err, value) {
+      if (err) {
+        deferred.reject(err)
+      } else {
+        context.commit('setSelectedPostId', undefined) // 重置一下当前选中的文章
+        deferred.resolve(value)
+      }
+    })
+    return deferred.promise
+  },
   /**
    * 删除文章
    * @param context
@@ -335,7 +358,7 @@ const getters = {
     let temp = state.instance.locals.get('posts').sort('date', -1)
     let tops = temp.filter(v => v.top)
     let notops = temp.filter(v => !v.top)
-    temp.length = tops.length +  notops.length
+    temp.length = tops.length + notops.length
     temp.data = [...tops.data, ...notops.data]
     if (temp && temp.length > 0) {
       temp.forEach(post => {

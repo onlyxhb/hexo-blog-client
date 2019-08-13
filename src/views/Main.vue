@@ -79,9 +79,17 @@
             <el-input v-model="postForm.img" :placeholder="$t('postForm.img.placeholder')" clearable />
           </el-form-item>
           <el-form-item :label="$t('postForm.toc.label')">
-            <el-switch v-model="postForm.toc" style="marginRight: 30px;"/>
-            <el-switch v-model="postForm.layout" active-value="draft" inactive-value="post"
-                              active-text="草稿" inactive-text="文章"></el-switch>
+            <el-switch v-model="postForm.toc" style="margin-right: 30px;"/>
+            <!-- 是否保存为草稿，如果切换成草稿之后，那么就不让切回去了, 否则来回切换会有问题 -->
+            <el-tooltip class="item" effect="dark" content="发布后的内容无法再切换为草稿" placement="top">
+              <el-switch
+                v-model="postForm.layout"
+                active-value="draft"
+                inactive-value="post"
+                active-text="草稿"
+                inactive-text="文章"
+                :disabled="isLockSwitchDraft()"/>
+            </el-tooltip>
           </el-form-item>
           <el-form-item style="text-align: left;">
             <el-button type="primary" @click="handleDialogConfirm">{{$t('confirmButtonText')}}</el-button>
@@ -160,7 +168,7 @@ export default {
         date: new Date(), // 创建时间
         updated: new Date(), // 修改时间
         author: '', // 文章作者
-        layout: 'post', // 默认发表文章，还可取值draft表示发表草稿
+        layout: 'post' // 默认发表文章，还可取值draft表示发表草稿
       },
       postFormRules: {
         title: [{ required: true, trigger: 'blur' }],
@@ -223,6 +231,11 @@ export default {
         this.visible = true
       }
     },
+    // 是否锁定切换草稿
+    isLockSwitchDraft () {
+      // 当前文章不是草稿时，编辑时不能切换为草稿状态
+      return !this.draft && this.type === 'edit'
+    },
     clearData () {
       this.postForm = {
         title: '', // 文章标题
@@ -236,7 +249,7 @@ export default {
         date: new Date(), // 创建时间
         updated: new Date(), // 修改时间
         author: '', // 文章作者
-        layout: 'post', // 默认发表文章，还可取值draft表示发表草稿
+        layout: 'post' // 默认发表文章，还可取值draft表示发表草稿
       }
     },
     // a标签在浏览器中打开
@@ -357,6 +370,12 @@ export default {
           ClientAnalytics.event('article', 'createSubmit')
         }
         await this.$store.dispatch(action, submitForm)
+        // 修改状态下，原本是草稿，现在标记为发布状态，那么本次操作是执行发布操作
+        let doPublish = this.type === 'edit' && this.draft && submitForm.layout === 'post'
+        if (doPublish) {
+          await this.$store.dispatch('Hexo/publishPost', submitForm)
+          this.$store.commit('Hexo/setSelectedDrafts', false)
+        }
         this.formChanged = false
         setTimeout(() => {
           // 选中当前

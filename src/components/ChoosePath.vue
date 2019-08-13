@@ -31,7 +31,7 @@ export default {
     }
   },
   watch: {
-    "config.path": function (val) {
+    'config.path': function (val) {
       this.path = val
     }
   },

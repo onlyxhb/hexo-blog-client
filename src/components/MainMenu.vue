@@ -68,14 +68,14 @@ export default {
           this.setCollapse(false)
           this.$router.push({ name: index })
           break
-        case 'drafts': 
+        case 'drafts':
           this.$router.push({
             name: 'main',
             query: {
               key: 'drafts'
             }
           })
-          break;
+          break
         default:
       }
     },

@@ -4,6 +4,7 @@
   "okBtn": "OK",
   "imgTitle": "Onlystar's blog client",
   "deploy": "Deploy",
+  "deploy.shell": "Deploy with shell",
   "deploy.nochange": "No change to database",
   "deploy.loading": "Release...",
   "deploy.success": "release success",

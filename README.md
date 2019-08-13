@@ -83,6 +83,7 @@ npm install --save-dev electron-icon-builder
 - `添加`阿里云oss图床
 - `添加`Google Analytics
 - `添加`草稿功能
+- `新增`发布方式, 支持`hexo deploy`
 
 ### 1.2.8 (2019-06-01)
 - `修复`新增文章后会默认选中列表第一个而不是新增项的bug

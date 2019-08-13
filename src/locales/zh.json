@@ -4,6 +4,7 @@
   "okBtn": "确定",
   "imgTitle": "星空守候的博客客户端",
   "deploy": "发布",
+  "deploy.shell": "命令行自动部署",
   "deploy.nochange": "资料库无变更",
   "deploy.loading": "发布中...",
   "deploy.success": "发布成功",

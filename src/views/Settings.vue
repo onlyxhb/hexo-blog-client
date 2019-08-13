@@ -35,42 +35,47 @@
             </el-select>
           </el-form-item>
           <el-form-item label="AccessKey">
-            <el-input v-model="configForm.qiniuAccessKey" style="width:100%" placeholder="七牛AccessKey"/>
+            <el-input v-model="configForm.qiniuAccessKey" style="width: 100%;" placeholder="七牛AccessKey"/>
           </el-form-item>
           <el-form-item label="SecretKey">
-            <el-input v-model="configForm.qiniuSecretKey" style="width:100%" placeholder="七牛SecretKey"/>
+            <el-input v-model="configForm.qiniuSecretKey" style="width: 100%;" placeholder="七牛SecretKey"/>
           </el-form-item>
           <el-form-item label="Bucket">
-            <el-input v-model="configForm.qiniuBucket" style="width:100%" placeholder="七牛Bucket"/>
+            <el-input v-model="configForm.qiniuBucket" style="width: 100%;" placeholder="七牛Bucket"/>
           </el-form-item>
           <el-form-item label="Host">
-            <el-input v-model="configForm.qiniuHost" style="width:100%" placeholder="七牛Host"/>
+            <el-input v-model="configForm.qiniuHost" style="width: 100%;" placeholder="七牛Host"/>
           </el-form-item>
         </div>
       </transition>
       <transition name="el-zoom-in-top">
         <div v-show="config.uploadType==='aliyunOss'">
           <el-form-item label="Endpoint">
-            <el-input v-model="config.aliyunOssEndpoint" style="width:100%" placeholder="Aliyun oss endpoint"/>
+            <el-input v-model="config.aliyunOssEndpoint" style="width: 100%;" placeholder="Aliyun oss endpoint"/>
           </el-form-item>
           <el-form-item label="AccessId">
-            <el-input v-model="config.aliyunOssAccessKeyId" style="width:100%" placeholder="Aliyun oss accessKeyId"/>
+            <el-input v-model="config.aliyunOssAccessKeyId" style="width: 100%;" placeholder="Aliyun oss accessKeyId"/>
           </el-form-item>
           <el-form-item label="AccessSecret">
-            <el-input v-model="config.aliyunOssAccessKeySecret" style="width:100%"
+            <el-input v-model="config.aliyunOssAccessKeySecret" style="width: 100%;"
                       placeholder="Aliyun oss accessKeySecret"/>
           </el-form-item>
           <el-form-item label="Bucket">
-            <el-input v-model="config.aliyunOssBucket" style="width:100%" placeholder="Aliyun oss bucket"/>
+            <el-input v-model="config.aliyunOssBucket" style="width: 100%;" placeholder="Aliyun oss bucket"/>
           </el-form-item>
           <el-form-item label="Host">
-            <el-input v-model="config.aliyunOssHost" style="width:100%" placeholder="Aliyun oss host"/>
+            <el-input v-model="config.aliyunOssHost" style="width: 100%;" placeholder="Aliyun oss host"/>
           </el-form-item>
         </div>
       </transition>
-      <el-form-item :label="$t('autoUpdate')">
-        <el-switch v-model="configForm.autoUpdate" style="width: 100%;" />
-      </el-form-item>
+      <el-form :inline="true">
+        <el-form-item :label="$t('autoUpdate')">
+          <el-switch v-model="configForm.autoUpdate" />
+        </el-form-item>
+        <el-form-item :label="$t('deploy.shell')" style="margin-left: 40px">
+          <el-switch v-model="configForm.shellDeploy"></el-switch>
+        </el-form-item>
+      </el-form>
       <el-form-item :label="$t('settingPhoto')">
         <div class="photo-upload" :class="{hasPic: getDisplayPic}">
           <img :src="getPhoto" v-if="getDisplayPic"/>
@@ -87,7 +92,7 @@
       <el-form-item>
         <el-button type="primary" @click="saveConfig">{{$t('save')}}</el-button>
         <el-button type="warning" @click="OpenDevTool">{{$t('devTools')}}</el-button>
-        <el-button type="primary" @click="checkVersion">{{$t('checkUpdate')}}</el-button>
+        <el-button type="primary" @click="checkVersion(false)">{{$t('checkUpdate')}}</el-button>
       </el-form-item>
     </el-form>
   </el-main>
