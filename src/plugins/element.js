@@ -44,7 +44,10 @@ import {
   Loading,
   MessageBox,
   Message,
-  Notification
+  Notification,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem
 } from 'element-ui'
 
 Vue.use(Dialog)
@@ -88,6 +91,9 @@ Vue.use(Container)
 Vue.use(Header)
 Vue.use(Aside)
 Vue.use(Main)
+Vue.use(Dropdown)
+Vue.use(DropdownMenu)
+Vue.use(DropdownItem)
 
 Vue.use(Loading.directive)
 

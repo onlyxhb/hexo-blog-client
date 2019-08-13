@@ -6,6 +6,13 @@
         <el-form-item style="margin-bottom: 0;">
           <i class="el-icon-back" :class="{ disabled: !getBackStatus }" :title="$t('goBack')" @click="handleBack"/>
           <el-input clearable :placeholder="$t('search')" v-model="keyword" />
+          <el-dropdown :hide-timeout="500" @command="handleDropdown">
+            <i class="el-icon-arrow-down el-icon--right"></i>
+            <el-dropdown-menu slot="dropdown" class="main-left-cate-select">
+              <el-dropdown-item>请选择分类</el-dropdown-item>
+              <el-dropdown-item v-for="item in categories" :command="item" :key="item">{{item}}</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         </el-form-item>
       </el-form>
       <div class="main-left-scrollbar main-scrollbar">
@@ -42,7 +49,8 @@ export default {
 
   computed: {
     ...mapGetters({
-      collapse: 'Article/collapse'
+      collapse: 'Article/collapse',
+      categories: 'Hexo/categories'
     }),
     getBackStatus () {
       return this.type === 'recentArticle' && this.hasParentKey
@@ -50,7 +58,8 @@ export default {
   },
   methods: {
     handleDropdown (command) {
-      this.filterType = command
+      let key = command ? `cat#${command}` : ''
+      this.$store.dispatch('Hexo/selectByKey', key)
     },
     handleBack () {
       if (this.getBackStatus) {
@@ -133,6 +142,18 @@ export default {
   // 收起
   &.collapsed {
     width: 0;
+  }
+}
+</style>
+
+<style lang="scss">
+.main-left-cate-select {
+  margin-top: -10px;
+  margin-right: -10px;
+  text-align: center;
+  -webkit-app-region: no-drag; 
+  .el-dropdown-menu__item {
+    text-align: center !important;
   }
 }
 </style>

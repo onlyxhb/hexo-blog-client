@@ -259,6 +259,12 @@ function getMacMenu () {
 function getTrayDockMenu () {
   return [
     {
+      label: $t['devTools'],
+      click: () => {
+        BrowserWindow.getFocusedWindow().webContents.openDevTools()
+      }
+    },
+    {
       label: $t['window.tray.showMain'],
       click: () => {
         win.show()

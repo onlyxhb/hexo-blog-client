@@ -76,6 +76,15 @@ npm install --save-dev electron-icon-builder
 ![修改文章页](https://user-images.githubusercontent.com/19361551/57982954-c3259980-7a7e-11e9-9689-729b3f519a44.png)
 
 ## version update record
+### 1.2.9 (2019-08-13)
+- Fix the problem of `loading'when software opens after `hexo' path changes
+-` Remove warning messages that appear in the `Merge'Optimized Repair `Console
+-` Fix the problem that the pictures cannot be displayed in the third party software after going to bed
+-` Add `Aliyun OSS map bed
+-` Add `Google Analytics'.
+-` Add Draft Function
+-` Added `publishing mode to support `hexo deployment'.`
+
 ### 1.2.8 (2019-06-01)
 - fixed bug where the first item in the list was selected instead of the new item by default after a new article was added
 - fixed an issue that appeared after clicking the cancel button in the popup box of a newly added article

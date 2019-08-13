@@ -24,7 +24,7 @@
         <i class="iconfont icon-tags"/>
       </el-menu-item>
       <el-menu-item index="drafts" :title="$t('drafts')">
-        <i class="iconfont icon-main"/>
+        <i class="iconfont icon-drafts"/>
       </el-menu-item>
       <el-menu-item index="localview" :title="$t('localview')">
         <i class="iconfont icon-localview"/>

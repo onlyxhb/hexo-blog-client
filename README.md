@@ -76,7 +76,7 @@ npm install --save-dev electron-icon-builder
 ![修改文章页](https://user-images.githubusercontent.com/19361551/57982954-c3259980-7a7e-11e9-9689-729b3f519a44.png)
 
 ## 版本更新记录
-### 1.2.9 (2019-08-10)
+### 1.2.9 (2019-08-13)
 - 修复`hexo`路径更改后软件打开一直`loading`的问题
 - `移除`并`优化修复`控制台出现的警告信息
 - `修复`图片上床后在第三方软件无法显示的问题

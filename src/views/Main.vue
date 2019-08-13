@@ -78,19 +78,21 @@
           <el-form-item :label="$t('postForm.img.label')">
             <el-input v-model="postForm.img" :placeholder="$t('postForm.img.placeholder')" clearable />
           </el-form-item>
-          <el-form-item :label="$t('postForm.toc.label')">
-            <el-switch v-model="postForm.toc" style="margin-right: 30px;"/>
-            <!-- 是否保存为草稿，如果切换成草稿之后，那么就不让切回去了, 否则来回切换会有问题 -->
-            <el-tooltip class="item" effect="dark" content="发布后的内容无法再切换为草稿" placement="top">
-              <el-switch
-                v-model="postForm.layout"
-                active-value="draft"
-                inactive-value="post"
-                active-text="草稿"
-                inactive-text="文章"
-                :disabled="isLockSwitchDraft()"/>
-            </el-tooltip>
-          </el-form-item>
+          <el-form :inline="true">
+            <el-form-item  :label="$t('postForm.toc.label')">
+              <el-switch v-model="postForm.toc" style="margin-right: 30px;"/>
+            </el-form-item>
+            <el-form-item :label="$t('drafts')">
+              <!-- 是否保存为草稿，如果切换成草稿之后，那么就不让切回去了, 否则来回切换会有问题 -->
+              <el-tooltip class="item" effect="dark" content="发布后的内容无法再切换为草稿" placement="top">
+                <el-switch
+                  v-model="postForm.layout"
+                  active-value="draft"
+                  inactive-value="post"
+                  :disabled="isLockSwitchDraft"/>
+              </el-tooltip>
+            </el-form-item>
+          </el-form>
           <el-form-item style="text-align: left;">
             <el-button type="primary" @click="handleDialogConfirm">{{$t('confirmButtonText')}}</el-button>
             <el-button @click="handleDialogCancel">{{$t('cancelButtonText')}}</el-button>
@@ -231,11 +233,6 @@ export default {
         this.visible = true
       }
     },
-    // 是否锁定切换草稿
-    isLockSwitchDraft () {
-      // 当前文章不是草稿时，编辑时不能切换为草稿状态
-      return !this.draft && this.type === 'edit'
-    },
     clearData () {
       this.postForm = {
         title: '', // 文章标题
@@ -270,7 +267,7 @@ export default {
     },
     getFrontMatter () {
       let post = this.post
-      this.postForm = {
+      let postForm = {
         title: post.title, // 文章标题
         content: post._content, // 修改后文
         tags: [], // 标签
@@ -283,12 +280,13 @@ export default {
         path: post.path
       }
       if (!post.published) {
-        this.postForm.layout = 'draft'
+        postForm.layout = 'draft'
         this.draft = true
       } else {
-        this.postForm.layout = 'post'
+        postForm.layout = 'post'
         this.draft = false
       }
+      this.postForm = postForm
       post.categories.forEach(cat => {
         this.postForm.categories.push(cat.name)
       })
@@ -408,6 +406,11 @@ export default {
       type: 'Article/type',
       categories: 'Hexo/categories'
     }),
+    // 是否锁定切换草稿
+    isLockSwitchDraft () {
+      // 当前文章不是草稿时，编辑时不能切换为草稿状态
+      return !this.draft && this.type === 'edit'
+    },
     post () {
       return this.$store.getters['Hexo/selectedPost']
     },
