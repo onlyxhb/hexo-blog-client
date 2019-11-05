@@ -121,7 +121,7 @@
           </el-table-column>
           <el-table-column prop="value" :label="$t('postForm.frontmatters.value')">
             <template scope="scope">
-              <el-input size="small" v-model="scope.row.value"></el-input>
+              <el-input size="small" :value="scope.row.value + ''" @input="handleFrontMatterInput($event, scope)"></el-input>
               <span>{{scope.row.value}}</span>
             </template>
           </el-table-column>
@@ -299,7 +299,7 @@ export default {
       Object.keys(frontMatter).forEach(key => {
         this.frontMatters.push({
           title: key,
-          value: frontMatter[key] + ''
+          value: frontMatter[key]
         })
       })
     },
@@ -320,7 +320,7 @@ export default {
       electron.shell.openExternal(this.post.permalink)
     },
     localviewPost () {
-      electron.shell.openExternal(`http://localhost:4000/${this.post.canonical_path}`)
+      electron.shell.openExternal(`http://localhost:1088/${this.post.canonical_path}`)
     },
     handleDialogConfirm () {
       this.setCollapse(true)
@@ -397,6 +397,9 @@ export default {
     },
     deleteFrontMatter ({ $index }) {
       this.frontMatters.splice($index, 1)
+    },
+    handleFrontMatterInput (value, { $index, row }) {
+      this.$set(this.frontMatters[$index], 'value', Utils.strToBoolean(value))
     }
   },
   computed: {

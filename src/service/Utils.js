@@ -92,10 +92,16 @@ class Utils {
     let ret = {}
     Object.keys(data).forEach(key => {
       if (!SYSTEM_FRONT_MATTERS.includes(key)) {
-        ret[key] = data[key]
+        ret[key] = this.strToBoolean(data[key])
       }
     })
     return ret
+  }
+
+  strToBoolean (str) {
+    if (str === 'true') return true
+    if (str === 'false') return false
+    return str
   }
 
   /**

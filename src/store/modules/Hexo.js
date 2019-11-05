@@ -71,7 +71,7 @@ const actions = {
         drafts: true // 显示草稿，详见hexo/index.js#_showDrafts
       })
       await hexo.init()
-      await hexo.call('server', {})
+      await hexo.call('server', { port: 1088 })
       // await hexo.watch()
 
       context.dispatch('UiStatus/setDialogFormVisible', false, { root: true })
@@ -356,8 +356,8 @@ const getters = {
     if (!state.instance || !state.instance.locals) return []
     let posts = []
     let temp = state.instance.locals.get('posts').sort('date', -1)
-    let tops = temp.filter(v => v.top)
-    let notops = temp.filter(v => !v.top)
+    let tops = temp.filter(v => v.top === true || v.top === 'true')
+    let notops = temp.filter(v => !(v.top === true || v.top === 'true'))
     temp.length = tops.length + notops.length
     temp.data = [...tops.data, ...notops.data]
     if (temp && temp.length > 0) {

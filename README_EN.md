@@ -76,6 +76,14 @@ npm install --save-dev electron-icon-builder
 ![修改文章页](https://user-images.githubusercontent.com/19361551/57982954-c3259980-7a7e-11e9-9689-729b3f519a44.png)
 
 ## version update record
+### 1.2.10 (2019-11-11)
+- `Modify` local article preview function (open 1088 port, original 4000, considering 4000 commonly used, has been replaced)
+- `Fix`fontMatters set `false` does not work.
+- `Add `dynamic configuration whether to open preview
+- `Add` left menu width can be adjusted in the settings
+- `Add` article demo mode
+- `Repair` known bugs
+
 ### 1.2.9 (2019-08-13)
 - Fix the problem of `loading'when software opens after `hexo' path changes
 -` Remove warning messages that appear in the `Merge'Optimized Repair `Console

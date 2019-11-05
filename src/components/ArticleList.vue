@@ -3,7 +3,7 @@
     <div class="article-list" v-if="getDisplayList.length > 0">
       <div
         class="article-list-panel"
-        :class="{active: type === 'recentArticle' ? item.id === selectedPostId : index === selectIndex, isTop: item.top }"
+        :class="{active: type === 'recentArticle' ? item.id === selectedPostId : index === selectIndex, isTop: item.top === true || item.top === 'true' }"
         v-for="(item, index) in getDisplayList"
         :key="index"
         ref="post"
