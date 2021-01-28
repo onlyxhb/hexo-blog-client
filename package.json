@@ -52,7 +52,7 @@
     "babel-eslint": "^8.2.1",
     "babel-plugin-component": "^1.1.1",
     "babel-preset-env": "^1.7.0",
-    "electron": "^4.0.0",
+    "electron": "^9.4.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.2.2",
     "node-sass": "^4.11.0",
